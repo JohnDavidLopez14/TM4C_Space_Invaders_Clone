@@ -25,31 +25,40 @@
 // 3.3V           (VCC, pin 9)  3.3V
 
 // Pinout Summary
-// Port A - SSI/Nokia 5110
-// PA2 - SSI0Clk
-// PA3 - SSI0Fss
-// PA4 -  N/A (not initialized since we are not using SSI0Rx)
-// PA5 - SSI0Tx
-// PA6 - GPIO, output
-// PA7 - GPIO, output
+// Port A   - SSI/Nokia 5110    - Nokia5110.h
+// PA2      - SSI0Clk           - Nokia5110.h
+// PA3      - SSI0Fss           - Nokia5110.h
+// PA4      -  N/A (not initialized since we are not using SSI0Rx)
+// PA5      - SSI0Tx            - Nokia5110.h
+// PA6      - GPIO, output      - Nokia5110.h
+// PA7      - GPIO, output      - Nokia5110.h
 
 // Port B
-// PB0 - GPIO, output
-// PB1 - GPIO, output
-// PB2 - GPIO, output
-// PB3 - GPIO, output
-// PB4 - GPIO, output
-// PB5 - GPIO, output
+// PB0 - GPIO, output - DAC.h
+// PB1 - GPIO, output - DAC.h
+// PB2 - GPIO, output - DAC.h
+// PB3 - GPIO, output - DAC.h
+// PB4 - GPIO, output - LED.h
+// PB5 - GPIO, output - LED.h
 
 // Port E
 // PE0 - GPIO, input, pull up - falling edge interrupt
 // PE1 - GPIO, input, pull up - falling edge interrupt
 // PE2 - AIN1, ADC
 
-#include "ADC.h" // need to modify this to use AIN1
 #include "PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "Nokia5110.h"
+#include "DAC.h"
+#include "ADC.h" // need to modify this to use AIN1
 #include "tm4c123gh6pm.h"
 #include <stdint.h>
 // #include sound.h - need to create a on output for systick interrupts to output the sound
 // timer2a interrupts - I plan to use this to spawn the enemies
+
+int main(void){
+    EnableInterrupts();
+    PLL_Init(); // set to 80 mHz
+    Nokia5110_Init();
+    DAC_Init(); // initialize PB0:3 for output
+    ADC_Init();
+}
