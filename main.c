@@ -46,7 +46,7 @@
 // PE1 - GPIO, input, pull up - Buttons.h
 // PE2 - AIN1, ADC
 
-// include macros
+// Include macros
 #include "PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "Nokia5110.h"
 #include "DAC.h"
@@ -58,7 +58,7 @@
 // #include sound.h - need to create a on output for systick interrupts to output the sound
 // timer2a interrupts - I plan to use this to spawn the enemies
 
-// constant macros
+// Constant macros
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
 #define PE0 (1 << 0)
@@ -70,13 +70,16 @@ const uint32_t LED2 = PB5;
 const uint32_t Button1 = PE0;
 const uint32_t Button2 = PE1;
 
+// Function prototypes
+void DisableInterrupts(void);
+void EnableInterrupts(void);
 
 int main(void){
     EnableInterrupts();
     PLL_Init();  // set to 80 mHz
     Nokia5110_Init();
-    DAC_Init    ();  // initialize PB0:3 for DAC output
-    LED_Init    ();  // initialize PB4:5 for LED output
-    Buttons_Init();  // initialize PE0:1 for falling edge interrupts, not complete yet
-    ADC_Init    ();  // initialize ADC on PE2 / AIN1
+    DAC_Init     ();  // initialize PB0:3 for DAC output
+    LED_Init     ();  // initialize PB4:5 for LED output
+    Buttons_Init();   // initialize PE0:1 for falling edge interrupts, not complete yet
+    ADC_Init     ();  // initialize ADC on PE2 / AIN1
 }

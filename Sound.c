@@ -9,6 +9,8 @@
 #include "DAC.h"
 #include "Timer0.h"
 #include "Sound.h"
+#include "tm4c123gh6pm.h"
+#include <stdint.h>
 
 const unsigned char shoot[4080] = {
   129, 99, 103, 164, 214, 129, 31, 105, 204, 118, 55, 92, 140, 225, 152, 61, 84, 154, 184, 101, 
