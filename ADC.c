@@ -10,26 +10,6 @@
 // SS3 triggering event: software trigger
 // SS3 1st sample source:  channel 1
 // SS3 interrupts: enabled but not promoted to controller
-void ADC0_Init1(void){
-  // basic GPIO stuff
-  volatile unsigned long delay;
-  SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOE;
-  delay = SYSCTL_RCGC2_R;
-  GPIO_PORTE_DIR_R &= ~PE3;             // make PE3 an input
-  GPIO_PORTE_AFSEL_R |= PE3;
-  GPIO_PORTE_DEN_R &= ~PE3;
-  GPIO_PORTE_AMSEL_R |= PE3;
-  SYSCTL_RCGC0_R = SYSCTL_RCGC0_ADC0;   // activate ADC0
-  delay = SYSCTL_RCGC0_R;
-  SYSCTL_RCGC0_R &= ~0x00000300;             // clear bits 8:9, set ADC0 max samples to 125k sample/second 
-  ADC0_SSPRI_R |= 0x123;                // SS3 - 0, SS2 - 1, SS1 - 2, SS0 - 3 
-  ADC0_ACTSS_R &= ~0x0008;                  // SS3
-  ADC0_EMUX_R &= ~0xF000;               // SET ADCPSSI to software trigger
-  ADC0_SSMUX3_R &= ~0xFF;               // this select the AIN pin for SS3, only 4 bits are shown since SS3 is single channel and we're going 4 bits - decimal
-  ADC0_SSCTL3_R |= 0x0006;               // no TS0 D0, yes IE0 END0
-  ADC0_ACTSS_R |= 0x08;
-}
-
 void ADC0_Init(void){
   SYSCTL_RCGCGPIO_R |= 0x10;              // activate Port E clock
   while((SYSCTL_PRGPIO_R & 0x10) == 0){}; // wait for PE
