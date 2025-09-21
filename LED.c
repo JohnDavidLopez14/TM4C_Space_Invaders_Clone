@@ -7,7 +7,7 @@
 #define PIN_MASK (PB4 | PB5)
 
 void LED_Init(void){
-        SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
+    SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
     while             ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1) == 0);  // Poll until ready
     GPIO_PORTB_CR_R    |= PIN_MASK;                                 // allow GPIOAFSEL, GPIOPUR, and GPIODEN bits to be written
     GPIO_PORTB_AMSEL_R &= ~PIN_MASK;                                // clear analog functions

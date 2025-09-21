@@ -73,10 +73,10 @@ const uint32_t Button2 = PE1;
 
 int main(void){
     EnableInterrupts();
-    PLL_Init(); // set to 80 mHz
+    PLL_Init();  // set to 80 mHz
     Nokia5110_Init();
-    DAC_Init(); // initialize PB0:3 for DAC output
-    LED_Init(); // initialize PB4:5 for LED output
-    Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
-    ADC_Init();
+    DAC_Init    ();  // initialize PB0:3 for DAC output
+    LED_Init    ();  // initialize PB4:5 for LED output
+    Buttons_Init();  // initialize PE0:1 for falling edge interrupts, not complete yet
+    ADC_Init    ();  // initialize ADC on PE2 / AIN1
 }
