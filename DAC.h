@@ -5,6 +5,6 @@
 void DAC_Init();
 
 // outputs the argument as PB0:3
-void DAC_Out(unsigned long data);
+void DAC_Out(unsigned char data);
 
 #endif

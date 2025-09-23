@@ -1146,15 +1146,16 @@ const unsigned char *Wave;
 unsigned long Count = 0;
 void Play(void){
   if(Count){
-    DAC_Out(Wave[Index]>>4);
+    DAC_Out(Wave[Index]>>4); // bit shift the 4 highest bits
     Index = Index + 1;
     Count = Count - 1;
   }else{
   NVIC_DIS0_R = 1<<19;           // disable IRQ 19 in NVIC
+  TIMER0_CTL_R &= ~0x00000001;    // disable TIMER0A
   }
 }
 void Sound_Init(void){
-  DAC_Init(8);               // initialize simple 4-bit DAC
+  DAC_Init();               // initialize simple 4-bit DAC
 //  Timer0B_Init(&Play, 20000); // 4 kHz
   Timer0_Init(&Play, 80000000/11025);     // 11.025 kHz
   Index = 0;

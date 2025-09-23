@@ -87,7 +87,7 @@ void Timer0_Init(void(*task)(void), unsigned long period){
   // nebales interrupt number 19
   // Table 2-9 -> interrupt 19 - Timer 0A
 
-  TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
+  // TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A
   // GPTM Control (GPTMCTL), offset 0x00C
   // This register is used alongside the GPTMCFG and GMTMTnMR registers to fine-tune the timer configuration, and to enable other features such as timer stall and the output trigger
   // The output trigger can be used to initiate transfers on the ADC module

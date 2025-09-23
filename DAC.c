@@ -20,7 +20,7 @@ void DAC_Init(){
     GPIO_PORTB_DATA_BITS_R[PIN_MASK] = 0;
 }
 
-void DAC_Out(unsigned long data){
+void DAC_Out(unsigned char data){
     data &= 0x0F;
     GPIO_PORTB_DATA_BITS_R[PIN_MASK] = data; // using PIN_MASK since we want to clear the other output pins
 }
