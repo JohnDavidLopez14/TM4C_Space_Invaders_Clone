@@ -1,5 +1,5 @@
 #ifndef __Buttons__
-#define __Bottons__
+#define __Buttons__
 #include <stdint.h>
 
 // Initializes pins PE0:1 as pull up resistor input switches

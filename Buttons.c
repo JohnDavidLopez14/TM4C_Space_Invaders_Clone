@@ -21,7 +21,6 @@ void Buttons_Init(void){
 
 // returns a pitmask of the values read
 uint32_t Button_Read(uint32_t button_mask){
-    uint32_t data_read;
     button_mask &= PIN_MASK;
     if (button_mask){
         return ~GPIO_PORTE_DATA_BITS_R[button_mask] & button_mask; // index the pins we want, invert, then mask again to isolate the values that have been flipped
