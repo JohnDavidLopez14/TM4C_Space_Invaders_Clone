@@ -113,8 +113,22 @@ int main(void){
     LED_Init       ();  // initialize PB4:5 for LED output
     Buttons_Init  ();   // initialize PE0:1 for falling edge interrupts, not complete yet
     ADC_Init       ();  // initialize ADC on PE2 / AIN1
-    while(1){ // main code logic
+    Random_Init(1);
 
+    // Initialize playership
+    struct PlayerShip playership;
+    playership.bmp = PlayerShip0;
+    playership.health = 100;
+    playership.xPos = random() % MAX_X;
+    playership.yPos = random() % MAX_Y;
+
+    while(1){ // main code logic
+        Nokia5110_PrintBMP(playership.xPos, playership.yPos, playership.bmp, 0);
+        Nokia5110_DisplayBuffer();
+        Nokia5110_ClearBuffer;
+
+        playership.xPos = random() % MAX_X;
+        playership.yPos = random() % MAX_Y;
         // need to use Timer2 to periodically spawn enemies
         // need to design a demo to work with the player ship moving with the slide pot
     }
