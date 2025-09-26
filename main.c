@@ -66,6 +66,9 @@
 #define PE1 (1 << 1)
 #define MAX_MISSILES 10
 #define MAX_ENEMIES 20
+#define SMOOTH_DEN 8
+#define ADCMIN 2070
+#define ADCMAX 4095
 
 // Global Constants
 const uint32_t LED1 = PB4;
@@ -86,11 +89,13 @@ typedef struct {
 } Entity;
 
 // Global Variables
-struct Entity missiles[MAX_MISSILES]; // pre-allocated missile array
-struct Entity enemies[MAX_ENEMIES];
 unsigned long ADCdata;
+unsigned long SmoothedADC = 0;
 unsigned long Flag;
 unsigned long Xpos;
+Entity missiles[MAX_MISSILES]; // pre-allocated missile array
+Entity enemies[MAX_ENEMIES];
+Entity playerShip; // global namespace since its parameters are being used in Convert
 
 int main(void){
     EnableInterrupts();
@@ -103,17 +108,20 @@ int main(void){
     Random_Init(1);
 
     // Initialize playership
-    Entity playership;
-    playership.sprite = &playerShip0;
-    playership.health = 100;
-    playership.xPos = 0; //Random() % MAX_X;
-    playership.yPos = 7; //Random() % MAX_Y;
+    playerShip.sprite = &playerShip0;
+    playerShip.health = 100;
+    playerShip.xPos = (SCREENW - playerShip.sprite->width) / 2; // start at the center of the screen
+    playerShip.yPos = SCREENH; // start at the bottom of the screen
 
     while(1){ // main code logic
-        Nokia5110_PrintBMP(playership.xPos, playership.yPos, playership.sprite->bmp, 0);
+        Nokia5110_PrintBMP(playerShip.xPos, playerShip.yPos, playerShip.sprite->bmp, 0);
         Nokia5110_DisplayBuffer();
         Nokia5110_ClearBuffer();
-				for (volatile int i = 0; i < 1000000 ; i++);
+				for (volatile int i = 0; i < 1000000 ; i++); // ghetto delay, need to get rid of this once the program is done
+        if (Flag) {
+          Flag = 0;
+          playerShip.xPos = Xpos;
+        }
 
         //playership.xPos = 10;//Random() % MAX_X;
         //playership.yPos = 10;//Random() % MAX_Y;
@@ -122,10 +130,14 @@ int main(void){
     }
 }
 
-// neeed to have this convert ADC read into Xpos on the screen
+// Converts ADC to a position on the screen
 unsigned long Convert(unsigned long sample){
-    int scale = MAX_X - playerShip0.width; // the range for the values that it can fall under
-		return 1;
+    unsigned long xMax = SCREENW - playerShip.sprite->width;
+    unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
+    if (result > xMax){
+      result = xMax;
+    }
+		return result;
 }
 
 // Initialize SysTick interrupts to trigger at 40 Hz, 25 ms
@@ -139,6 +151,7 @@ void SysTick_Init(void){
 // executes every 25 ms, collects a sample, converts and stores in mailbox
 void SysTick_Handler(void){ 
   ADCdata = ADC0_In();
-  Xpos = Convert(ADCdata);
+  SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure excatly how this works
+  Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
   Flag = 1; // set mail box
 }
