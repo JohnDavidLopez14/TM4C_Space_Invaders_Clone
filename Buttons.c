@@ -6,8 +6,9 @@
 #define PE1 (1 << 1)
 #define PIN_MASK (PE0 | PE1)
 
-// Initialize PE0:1 as negative logic input pins
+// Initialize PE0:1 as negative logic input pin
 void Buttons_Init(void){
+    // GPIO initialization
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOE;
     while ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R4) == 0);
     GPIO_PORTE_CR_R    |= PIN_MASK;   // allow GPIOAFSEL, GPIOPUR, and GPIODEN bits to be written
@@ -17,6 +18,19 @@ void Buttons_Init(void){
     GPIO_PORTE_AFSEL_R &= ~PIN_MASK;  // clear alternate functions
     GPIO_PORTE_PUR_R   |= PIN_MASK;   // enable pull up resistors
     GPIO_PORTE_DEN_R   |= PIN_MASK;   // enable digital
+
+    // Interrupts
+    GPIO_PORTE_IS_R &= ~PIN_MASK;
+    GPIO_PORTE_IBE_R &= ~PIN_MASK;
+    GPIO_PORTE_IEV_R &= ~PIN_MASK;
+    GPIO_PORTE_ICR_R = PIN_MASK;
+    GPIO_PORTE_IM_R |= PIN_MASK;
+    NVIC_PRI7_R;
+    NVIC_EN0_R;
+}
+
+void GPIOPortE_Handler(void){
+    
 }
 
 // returns a pitmask of the values read
