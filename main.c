@@ -80,7 +80,7 @@ void SysTick_Init(void);
 void SysTick_Handler(void);
 
 typedef struct {
-    Bitmap *bmp; // these structs are exported in bitmaps.h
+    Bitmap *sprite; // these structs are exported in bitmaps.h
     unsigned int health;
     unsigned int xPos, yPos;
 } Entity;
@@ -104,13 +104,13 @@ int main(void){
 
     // Initialize playership
     Entity playership;
-    playership.bmp = &playerShip0;
+    playership.sprite = &playerShip0;
     playership.health = 100;
     playership.xPos = 0; //Random() % MAX_X;
     playership.yPos = 7; //Random() % MAX_Y;
 
     while(1){ // main code logic
-        Nokia5110_PrintBMP(playership.xPos, playership.yPos, playership.bmp, 0);
+        Nokia5110_PrintBMP(playership.xPos, playership.yPos, playership.sprite->bmp, 0);
         Nokia5110_DisplayBuffer();
         Nokia5110_ClearBuffer();
 				for (volatile int i = 0; i < 1000000 ; i++);
@@ -124,6 +124,7 @@ int main(void){
 
 // neeed to have this convert ADC read into Xpos on the screen
 unsigned long Convert(unsigned long sample){
+    int scale = MAX_X - playerShip0.width; // the range for the values that it can fall under
 		return 1;
 }
 
