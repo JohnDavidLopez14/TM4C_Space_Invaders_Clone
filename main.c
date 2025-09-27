@@ -56,7 +56,9 @@
 #include "random.h"
 #include "bitmaps.h"
 #include "tm4c123gh6pm.h"
+#include "UART.h"
 #include <stdint.h>
+#include <stdio.h>
 // timer2a interrupts - I plan to use this to spawn the enemies
 
 // Constant macros
@@ -67,8 +69,8 @@
 #define MAX_MISSILES 10
 #define MAX_ENEMIES 20
 #define SMOOTH_DEN 8
-#define ADCMIN 2070
-#define ADCMAX 4095
+#define ADCMIN 2000
+#define ADCMAX 3400
 
 // Global Constants
 const uint32_t LED1 = PB4;
@@ -80,7 +82,6 @@ const uint32_t Button2 = PE1;
 void DisableInterrupts(void);
 void EnableInterrupts(void);
 void SysTick_Init(void);
-void SysTick_Handler(void);
 
 typedef struct {
     Bitmap *sprite; // these structs are exported in bitmaps.h
@@ -93,6 +94,7 @@ unsigned long ADCdata;
 unsigned long SmoothedADC = 0;
 unsigned long Flag;
 unsigned long Xpos;
+char adcBuffer[14];
 Entity missiles[MAX_MISSILES]; // pre-allocated missile array
 Entity enemies[MAX_ENEMIES];
 Entity playerShip; // global namespace since its parameters are being used in Convert
@@ -104,23 +106,28 @@ int main(void){
     Sound_Init    ();   // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
     LED_Init       ();  // initialize PB4:5 for LED output
     Buttons_Init  ();   // initialize PE0:1 for falling edge interrupts, not complete yet
+		SysTick_Init();
     ADC0_Init       ();  // initialize ADC on PE2 / AIN1
     Random_Init(1);
+
+    //UART_Init();
 
     // Initialize playership
     playerShip.sprite = &playerShip0;
     playerShip.health = 100;
     playerShip.xPos = (SCREENW - playerShip.sprite->width) / 2; // start at the center of the screen
-    playerShip.yPos = SCREENH; // start at the bottom of the screen
+    playerShip.yPos = SCREENH - 1; // start at the bottom of the screen
 
     while(1){ // main code logic
         Nokia5110_PrintBMP(playerShip.xPos, playerShip.yPos, playerShip.sprite->bmp, 0);
         Nokia5110_DisplayBuffer();
         Nokia5110_ClearBuffer();
-				for (volatile int i = 0; i < 1000000 ; i++); // ghetto delay, need to get rid of this once the program is done
         if (Flag) {
           Flag = 0;
           playerShip.xPos = Xpos;
+					//snprintf(adcBuffer, sizeof(adcBuffer), "%lu", ADCdata);
+					//UART_OutString(adcBuffer);
+					//UART_OutString("\r\n");
         }
 
         //playership.xPos = 10;//Random() % MAX_X;
@@ -132,11 +139,14 @@ int main(void){
 
 // Converts ADC to a position on the screen
 unsigned long Convert(unsigned long sample){
+		if (sample < ADCMIN){
+			sample = ADCMIN;
+		}
+		if (sample > ADCMAX){
+			sample = ADCMAX;
+		}
     unsigned long xMax = SCREENW - playerShip.sprite->width;
     unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
-    if (result > xMax){
-      result = xMax;
-    }
 		return result;
 }
 
@@ -151,7 +161,7 @@ void SysTick_Init(void){
 // executes every 25 ms, collects a sample, converts and stores in mailbox
 void SysTick_Handler(void){ 
   ADCdata = ADC0_In();
-  SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure excatly how this works
+  SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure exactly how this works
   Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
   Flag = 1; // set mail box
 }

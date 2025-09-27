@@ -489,6 +489,26 @@
               <FileType>5</FileType>
               <FilePath>..\Timer0.h</FilePath>
             </File>
+            <File>
+              <FileName>bitmaps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bitmaps.c</FilePath>
+            </File>
+            <File>
+              <FileName>bitmaps.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\bitmaps.h</FilePath>
+            </File>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\UART.c</FilePath>
+            </File>
+            <File>
+              <FileName>UART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\UART.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

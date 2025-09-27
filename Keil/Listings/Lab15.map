@@ -12,17 +12,23 @@ Section Cross References
     main.o(.text.main) refers to sound.o(.text.Sound_Init) for Sound_Init
     main.o(.text.main) refers to led.o(.text.LED_Init) for LED_Init
     main.o(.text.main) refers to buttons.o(.text.Buttons_Init) for Buttons_Init
+    main.o(.text.main) refers to main.o(.text.SysTick_Init) for SysTick_Init
     main.o(.text.main) refers to adc.o(.text.ADC0_Init) for ADC0_Init
     main.o(.text.main) refers to random.o(.text) for Random_Init
-    main.o(.text.main) refers to main.o(.rodata.PlayerShip0) for PlayerShip0
+    main.o(.text.main) refers to main.o(.bss.playerShip) for playerShip
+    main.o(.text.main) refers to bitmaps.o(.rodata.playerShip0) for playerShip0
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_PrintBMP) for Nokia5110_PrintBMP
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_DisplayBuffer) for Nokia5110_DisplayBuffer
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_ClearBuffer) for Nokia5110_ClearBuffer
+    main.o(.text.main) refers to main.o(.bss.Flag) for Flag
+    main.o(.text.main) refers to main.o(.bss.Xpos) for Xpos
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
-    main.o(.ARM.exidx.text.Convert) refers to main.o(.text.Convert) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.SysTick_Init) refers to main.o(.text.SysTick_Init) for [Anonymous Symbol]
+    main.o(.text.Convert) refers to main.o(.bss.playerShip) for playerShip
+    main.o(.ARM.exidx.text.Convert) refers to main.o(.text.Convert) for [Anonymous Symbol]
     main.o(.text.SysTick_Handler) refers to adc.o(.text.ADC0_In) for ADC0_In
     main.o(.text.SysTick_Handler) refers to main.o(.bss.ADCdata) for ADCdata
+    main.o(.text.SysTick_Handler) refers to main.o(.bss.SmoothedADC) for SmoothedADC
     main.o(.text.SysTick_Handler) refers to main.o(.text.Convert) for Convert
     main.o(.text.SysTick_Handler) refers to main.o(.bss.Xpos) for Xpos
     main.o(.text.SysTick_Handler) refers to main.o(.bss.Flag) for Flag
@@ -100,6 +106,7 @@ Section Cross References
     sound.o(.text.Sound_Highpitch) refers to sound.o(.text.Sound_Play) for Sound_Play
     sound.o(.ARM.exidx.text.Sound_Highpitch) refers to sound.o(.text.Sound_Highpitch) for [Anonymous Symbol]
     buttons.o(.ARM.exidx.text.Buttons_Init) refers to buttons.o(.text.Buttons_Init) for [Anonymous Symbol]
+    buttons.o(.ARM.exidx.text.GPIOPortE_Handler) refers to buttons.o(.text.GPIOPortE_Handler) for [Anonymous Symbol]
     buttons.o(.ARM.exidx.text.Button_Read) refers to buttons.o(.text.Button_Read) for [Anonymous Symbol]
     dac.o(.ARM.exidx.text.DAC_Init) refers to dac.o(.text.DAC_Init) for [Anonymous Symbol]
     dac.o(.ARM.exidx.text.DAC_Out) refers to dac.o(.text.DAC_Out) for [Anonymous Symbol]
@@ -110,6 +117,36 @@ Section Cross References
     timer0.o(.ARM.exidx.text.Timer0_Init) refers to timer0.o(.text.Timer0_Init) for [Anonymous Symbol]
     timer0.o(.text.Timer0A_Handler) refers to timer0.o(.bss.PeriodicTask) for PeriodicTask
     timer0.o(.ARM.exidx.text.Timer0A_Handler) refers to timer0.o(.text.Timer0A_Handler) for [Anonymous Symbol]
+    bitmaps.o(.rodata.smallEnemy30PointA) refers to bitmaps.o(.rodata.SmallEnemy30PointA) for SmallEnemy30PointA
+    bitmaps.o(.rodata.smallEnemy30PointB) refers to bitmaps.o(.rodata.SmallEnemy30PointB) for SmallEnemy30PointB
+    bitmaps.o(.rodata.smallEnemy20PointA) refers to bitmaps.o(.rodata.SmallEnemy20PointA) for SmallEnemy20PointA
+    bitmaps.o(.rodata.smallEnemy20PointB) refers to bitmaps.o(.rodata.SmallEnemy20PointB) for SmallEnemy20PointB
+    bitmaps.o(.rodata.smallEnemy10PointA) refers to bitmaps.o(.rodata.SmallEnemy10PointA) for SmallEnemy10PointA
+    bitmaps.o(.rodata.smallEnemy10PointB) refers to bitmaps.o(.rodata.SmallEnemy10PointB) for SmallEnemy10PointB
+    bitmaps.o(.rodata.playerShip0) refers to bitmaps.o(.rodata.PlayerShip0) for PlayerShip0
+    bitmaps.o(.rodata.smallEnemeyBonus0) refers to bitmaps.o(.rodata.SmallEnemyBonus0) for SmallEnemyBonus0
+    bitmaps.o(.rodata.bunker0) refers to bitmaps.o(.rodata.Bunker0) for Bunker0
+    bitmaps.o(.rodata.bunker1) refers to bitmaps.o(.rodata.Bunker1) for Bunker1
+    bitmaps.o(.rodata.bunker2) refers to bitmaps.o(.rodata.Bunker2) for Bunker2
+    bitmaps.o(.rodata.bunker3) refers to bitmaps.o(.rodata.Bunker3) for Bunker3
+    bitmaps.o(.rodata.bigExplosion0) refers to bitmaps.o(.rodata.BigExplosion0) for BigExplosion0
+    bitmaps.o(.rodata.bigExplosion1) refers to bitmaps.o(.rodata.BigExplosion1) for BigExplosion1
+    bitmaps.o(.rodata.smallExplosion0) refers to bitmaps.o(.rodata.SmallExplosion0) for SmallExplosion0
+    bitmaps.o(.rodata.smallExplosion1) refers to bitmaps.o(.rodata.SmallExplosion1) for SmallExplosion1
+    bitmaps.o(.rodata.missile0) refers to bitmaps.o(.rodata.Missile0) for Missile0
+    bitmaps.o(.rodata.missile1) refers to bitmaps.o(.rodata.Missile1) for Missile1
+    bitmaps.o(.rodata.missile2) refers to bitmaps.o(.rodata.Missile2) for Missile2
+    bitmaps.o(.rodata.laser0) refers to bitmaps.o(.rodata.Laser0) for Laser0
+    bitmaps.o(.rodata.laser1) refers to bitmaps.o(.rodata.Laser1) for Laser1
+    uart.o(.ARM.exidx.text.UART_Init) refers to uart.o(.text.UART_Init) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART_InChar) refers to uart.o(.text.UART_InChar) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART_InCharNonBlocking) refers to uart.o(.text.UART_InCharNonBlocking) for [Anonymous Symbol]
+    uart.o(.ARM.exidx.text.UART_OutChar) refers to uart.o(.text.UART_OutChar) for [Anonymous Symbol]
+    uart.o(.text.UART_InUDec) refers to uart.o(.text.UART_InChar) for UART_InChar
+    uart.o(.text.UART_InUDec) refers to uart.o(.text.UART_OutChar) for UART_OutChar
+    uart.o(.ARM.exidx.text.UART_InUDec) refers to uart.o(.text.UART_InUDec) for [Anonymous Symbol]
+    uart.o(.text.UART_OutString) refers to uart.o(.text.UART_OutChar) for UART_OutChar
+    uart.o(.ARM.exidx.text.UART_OutString) refers to uart.o(.text.UART_OutString) for [Anonymous Symbol]
     startup_tm4c123.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -243,37 +280,16 @@ Removing Unused input sections from the image.
     Removing adc.o(.ARM.exidx.text.ADC0_In), (8 bytes).
     Removing main.o(.text), (0 bytes).
     Removing main.o(.ARM.exidx.text.main), (8 bytes).
-    Removing main.o(.ARM.exidx.text.Convert), (8 bytes).
-    Removing main.o(.text.SysTick_Init), (68 bytes).
     Removing main.o(.ARM.exidx.text.SysTick_Init), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Convert), (8 bytes).
     Removing main.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
     Removing main.o(.rodata.LED1), (4 bytes).
     Removing main.o(.rodata.LED2), (4 bytes).
     Removing main.o(.rodata.Button1), (4 bytes).
     Removing main.o(.rodata.Button2), (4 bytes).
-    Removing main.o(.rodata.SmallEnemy30PointA), (199 bytes).
-    Removing main.o(.rodata.SmallEnemy30PointB), (199 bytes).
-    Removing main.o(.rodata.SmallEnemy20PointA), (199 bytes).
-    Removing main.o(.rodata.SmallEnemy20PointB), (199 bytes).
-    Removing main.o(.rodata.SmallEnemy10PointA), (199 bytes).
-    Removing main.o(.rodata.SmallEnemy10PointB), (199 bytes).
-    Removing main.o(.rodata.PlayerShip1), (215 bytes).
-    Removing main.o(.rodata.SmallEnemyBonus0), (203 bytes).
-    Removing main.o(.rodata.Bunker0), (179 bytes).
-    Removing main.o(.rodata.Bunker1), (179 bytes).
-    Removing main.o(.rodata.Bunker2), (179 bytes).
-    Removing main.o(.rodata.Bunker3), (179 bytes).
-    Removing main.o(.rodata.BigExplosion0), (215 bytes).
-    Removing main.o(.rodata.BigExplosion1), (215 bytes).
-    Removing main.o(.rodata.SmallExplosion0), (199 bytes).
-    Removing main.o(.rodata.SmallExplosion1), (199 bytes).
-    Removing main.o(.rodata.Missile0), (155 bytes).
-    Removing main.o(.rodata.Missile1), (155 bytes).
-    Removing main.o(.rodata.Missile2), (155 bytes).
-    Removing main.o(.rodata.Laser0), (155 bytes).
-    Removing main.o(.rodata.Laser1), (155 bytes).
-    Removing main.o(.bss.missiles), (240 bytes).
-    Removing main.o(.bss.enemies), (480 bytes).
+    Removing main.o(.bss.adcBuffer), (14 bytes).
+    Removing main.o(.bss.missiles), (160 bytes).
+    Removing main.o(.bss.enemies), (320 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing nokia5110.o(.text), (0 bytes).
     Removing nokia5110.o(.ARM.exidx.text.Nokia5110_Init), (8 bytes).
@@ -330,6 +346,8 @@ Removing Unused input sections from the image.
     Removing sound.o(.rodata.highpitch), (1802 bytes).
     Removing buttons.o(.text), (0 bytes).
     Removing buttons.o(.ARM.exidx.text.Buttons_Init), (8 bytes).
+    Removing buttons.o(.text.GPIOPortE_Handler), (2 bytes).
+    Removing buttons.o(.ARM.exidx.text.GPIOPortE_Handler), (8 bytes).
     Removing buttons.o(.text.Button_Read), (52 bytes).
     Removing buttons.o(.ARM.exidx.text.Button_Read), (8 bytes).
     Removing dac.o(.text), (0 bytes).
@@ -345,6 +363,60 @@ Removing Unused input sections from the image.
     Removing timer0.o(.ARM.exidx.text.Timer0_Init), (8 bytes).
     Removing timer0.o(.text.Timer0A_Handler), (26 bytes).
     Removing timer0.o(.ARM.exidx.text.Timer0A_Handler), (8 bytes).
+    Removing bitmaps.o(.text), (0 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy30PointA), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy30PointB), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy20PointA), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy20PointB), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy10PointA), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemy10PointB), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallEnemyBonus0), (203 bytes).
+    Removing bitmaps.o(.rodata.Bunker0), (179 bytes).
+    Removing bitmaps.o(.rodata.Bunker1), (179 bytes).
+    Removing bitmaps.o(.rodata.Bunker2), (179 bytes).
+    Removing bitmaps.o(.rodata.Bunker3), (179 bytes).
+    Removing bitmaps.o(.rodata.BigExplosion0), (215 bytes).
+    Removing bitmaps.o(.rodata.BigExplosion1), (215 bytes).
+    Removing bitmaps.o(.rodata.SmallExplosion0), (199 bytes).
+    Removing bitmaps.o(.rodata.SmallExplosion1), (199 bytes).
+    Removing bitmaps.o(.rodata.Missile0), (155 bytes).
+    Removing bitmaps.o(.rodata.Missile1), (155 bytes).
+    Removing bitmaps.o(.rodata.Missile2), (155 bytes).
+    Removing bitmaps.o(.rodata.Laser0), (155 bytes).
+    Removing bitmaps.o(.rodata.Laser1), (155 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy30PointA), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy30PointB), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy20PointA), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy20PointB), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy10PointA), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemy10PointB), (12 bytes).
+    Removing bitmaps.o(.rodata.smallEnemeyBonus0), (12 bytes).
+    Removing bitmaps.o(.rodata.bunker0), (12 bytes).
+    Removing bitmaps.o(.rodata.bunker1), (12 bytes).
+    Removing bitmaps.o(.rodata.bunker2), (12 bytes).
+    Removing bitmaps.o(.rodata.bunker3), (12 bytes).
+    Removing bitmaps.o(.rodata.bigExplosion0), (12 bytes).
+    Removing bitmaps.o(.rodata.bigExplosion1), (12 bytes).
+    Removing bitmaps.o(.rodata.smallExplosion0), (12 bytes).
+    Removing bitmaps.o(.rodata.smallExplosion1), (12 bytes).
+    Removing bitmaps.o(.rodata.missile0), (12 bytes).
+    Removing bitmaps.o(.rodata.missile1), (12 bytes).
+    Removing bitmaps.o(.rodata.missile2), (12 bytes).
+    Removing bitmaps.o(.rodata.laser0), (12 bytes).
+    Removing bitmaps.o(.rodata.laser1), (12 bytes).
+    Removing uart.o(.text), (0 bytes).
+    Removing uart.o(.text.UART_Init), (182 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_Init), (8 bytes).
+    Removing uart.o(.text.UART_InChar), (36 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_InChar), (8 bytes).
+    Removing uart.o(.text.UART_InCharNonBlocking), (52 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_InCharNonBlocking), (8 bytes).
+    Removing uart.o(.text.UART_OutChar), (46 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_OutChar), (8 bytes).
+    Removing uart.o(.text.UART_InUDec), (152 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_InUDec), (8 bytes).
+    Removing uart.o(.text.UART_OutString), (36 bytes).
+    Removing uart.o(.ARM.exidx.text.UART_OutString), (8 bytes).
     Removing system_tm4c123.o(.text), (0 bytes).
     Removing system_tm4c123.o(.text.SystemCoreClockUpdate), (326 bytes).
     Removing system_tm4c123.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
@@ -353,7 +425,7 @@ Removing Unused input sections from the image.
     Removing system_tm4c123.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_tm4c123.o(.data.SystemCoreClock), (4 bytes).
 
-114 unused section(s) (total 23082 bytes) removed from the image.
+149 unused section(s) (total 23375 bytes) removed from the image.
 
 ==============================================================================
 
@@ -424,6 +496,8 @@ Image Symbol Table
     RTE/Device/TM4C123GH6PM/startup_TM4C123.s 0x00000000   Number         0  startup_tm4c123.o ABSOLUTE
     Sound.c                                  0x00000000   Number         0  sound.o ABSOLUTE
     Timer0.c                                 0x00000000   Number         0  timer0.o ABSOLUTE
+    UART.c                                   0x00000000   Number         0  uart.o ABSOLUTE
+    bitmaps.c                                0x00000000   Number         0  bitmaps.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
     main.c                                   0x00000000   Number         0  main.o ABSOLUTE
     system_TM4C123.c                         0x00000000   Number         0  system_tm4c123.o ABSOLUTE
@@ -490,35 +564,36 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00000520   Section        0  adc.o(.text.ADC0_In)
     [Anonymous Symbol]                       0x00000568   Section        0  adc.o(.text.ADC0_Init)
     [Anonymous Symbol]                       0x00000654   Section        0  buttons.o(.text.Buttons_Init)
-    [Anonymous Symbol]                       0x000006ec   Section        0  main.o(.text.Convert)
-    [Anonymous Symbol]                       0x000006f8   Section        0  dac.o(.text.DAC_Init)
-    [Anonymous Symbol]                       0x00000790   Section        0  dac.o(.text.DAC_Out)
-    [Anonymous Symbol]                       0x000007b4   Section        0  led.o(.text.LED_Init)
-    [Anonymous Symbol]                       0x00000848   Section        0  nokia5110.o(.text.Nokia5110_ClearBuffer)
-    [Anonymous Symbol]                       0x00000878   Section        0  nokia5110.o(.text.Nokia5110_DisplayBuffer)
-    [Anonymous Symbol]                       0x00000888   Section        0  nokia5110.o(.text.Nokia5110_DrawFullImage)
-    [Anonymous Symbol]                       0x000008c4   Section        0  nokia5110.o(.text.Nokia5110_Init)
-    [Anonymous Symbol]                       0x00000a24   Section        0  nokia5110.o(.text.Nokia5110_PrintBMP)
-    [Anonymous Symbol]                       0x00000c2c   Section        0  nokia5110.o(.text.Nokia5110_SetCursor)
-    [Anonymous Symbol]                       0x00000c78   Section        0  pll.o(.text.PLL_Init)
-    [Anonymous Symbol]                       0x00000cf8   Section        0  sound.o(.text.Play)
-    [Anonymous Symbol]                       0x00000d64   Section        0  sound.o(.text.Sound_Init)
-    [Anonymous Symbol]                       0x00000d94   Section        0  main.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x00000dc4   Section        0  system_tm4c123.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x00000ed0   Section        0  timer0.o(.text.Timer0_Init)
-    lcdwrite                                 0x00000f61   Thumb Code   144  nokia5110.o(.text.lcdwrite)
-    [Anonymous Symbol]                       0x00000f60   Section        0  nokia5110.o(.text.lcdwrite)
-    [Anonymous Symbol]                       0x00000ff0   Section        0  main.o(.text.main)
-    $v0                                      0x00001070   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x00001070   Section       26  fpinit.o(x$fpl$fpinit)
+    [Anonymous Symbol]                       0x0000074c   Section        0  main.o(.text.Convert)
+    [Anonymous Symbol]                       0x000007a8   Section        0  dac.o(.text.DAC_Init)
+    [Anonymous Symbol]                       0x00000840   Section        0  dac.o(.text.DAC_Out)
+    [Anonymous Symbol]                       0x00000864   Section        0  led.o(.text.LED_Init)
+    [Anonymous Symbol]                       0x000008f8   Section        0  nokia5110.o(.text.Nokia5110_ClearBuffer)
+    [Anonymous Symbol]                       0x00000928   Section        0  nokia5110.o(.text.Nokia5110_DisplayBuffer)
+    [Anonymous Symbol]                       0x00000938   Section        0  nokia5110.o(.text.Nokia5110_DrawFullImage)
+    [Anonymous Symbol]                       0x00000974   Section        0  nokia5110.o(.text.Nokia5110_Init)
+    [Anonymous Symbol]                       0x00000ad4   Section        0  nokia5110.o(.text.Nokia5110_PrintBMP)
+    [Anonymous Symbol]                       0x00000cdc   Section        0  nokia5110.o(.text.Nokia5110_SetCursor)
+    [Anonymous Symbol]                       0x00000d28   Section        0  pll.o(.text.PLL_Init)
+    [Anonymous Symbol]                       0x00000da8   Section        0  sound.o(.text.Play)
+    [Anonymous Symbol]                       0x00000e14   Section        0  sound.o(.text.Sound_Init)
+    [Anonymous Symbol]                       0x00000e44   Section        0  main.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x00000e88   Section        0  main.o(.text.SysTick_Init)
+    [Anonymous Symbol]                       0x00000ecc   Section        0  system_tm4c123.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x00000fd8   Section        0  timer0.o(.text.Timer0_Init)
+    lcdwrite                                 0x00001069   Thumb Code   144  nokia5110.o(.text.lcdwrite)
+    [Anonymous Symbol]                       0x00001068   Section        0  nokia5110.o(.text.lcdwrite)
+    [Anonymous Symbol]                       0x000010f8   Section        0  main.o(.text.main)
+    $v0                                      0x000011a2   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x000011a2   Section       26  fpinit.o(x$fpl$fpinit)
     M                                        0x20000000   Data           4  random.o(DATA)
     DATA                                     0x20000000   Section        4  random.o(DATA)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
-    Heap_Mem                                 0x20000280   Data           0  startup_tm4c123.o(HEAP)
-    Stack_Mem                                0x20000280   Data         512  startup_tm4c123.o(STACK)
-    HEAP                                     0x20000280   Section        0  startup_tm4c123.o(HEAP)
-    STACK                                    0x20000280   Section      512  startup_tm4c123.o(STACK)
-    __initial_sp                             0x20000480   Data           0  startup_tm4c123.o(STACK)
+    Heap_Mem                                 0x20000290   Data           0  startup_tm4c123.o(HEAP)
+    Stack_Mem                                0x20000290   Data         512  startup_tm4c123.o(STACK)
+    HEAP                                     0x20000290   Section        0  startup_tm4c123.o(HEAP)
+    STACK                                    0x20000290   Section      512  startup_tm4c123.o(STACK)
+    __initial_sp                             0x20000490   Data           0  startup_tm4c123.o(STACK)
 
     Global Symbols
 
@@ -747,30 +822,32 @@ Image Symbol Table
     __semihosting_library_function           0x0000051f   Thumb Code     0  indicate_semi.o(.text)
     ADC0_In                                  0x00000521   Thumb Code    70  adc.o(.text.ADC0_In)
     ADC0_Init                                0x00000569   Thumb Code   234  adc.o(.text.ADC0_Init)
-    Buttons_Init                             0x00000655   Thumb Code   152  buttons.o(.text.Buttons_Init)
-    Convert                                  0x000006ed   Thumb Code    10  main.o(.text.Convert)
-    DAC_Init                                 0x000006f9   Thumb Code   150  dac.o(.text.DAC_Init)
-    DAC_Out                                  0x00000791   Thumb Code    36  dac.o(.text.DAC_Out)
-    LED_Init                                 0x000007b5   Thumb Code   148  led.o(.text.LED_Init)
-    Nokia5110_ClearBuffer                    0x00000849   Thumb Code    46  nokia5110.o(.text.Nokia5110_ClearBuffer)
-    Nokia5110_DisplayBuffer                  0x00000879   Thumb Code    16  nokia5110.o(.text.Nokia5110_DisplayBuffer)
-    Nokia5110_DrawFullImage                  0x00000889   Thumb Code    58  nokia5110.o(.text.Nokia5110_DrawFullImage)
-    Nokia5110_Init                           0x000008c5   Thumb Code   352  nokia5110.o(.text.Nokia5110_Init)
-    Nokia5110_PrintBMP                       0x00000a25   Thumb Code   518  nokia5110.o(.text.Nokia5110_PrintBMP)
-    Nokia5110_SetCursor                      0x00000c2d   Thumb Code    76  nokia5110.o(.text.Nokia5110_SetCursor)
-    PLL_Init                                 0x00000c79   Thumb Code   126  pll.o(.text.PLL_Init)
-    Play                                     0x00000cf9   Thumb Code   106  sound.o(.text.Play)
-    Sound_Init                               0x00000d65   Thumb Code    46  sound.o(.text.Sound_Init)
-    SysTick_Handler                          0x00000d95   Thumb Code    48  main.o(.text.SysTick_Handler)
-    SystemInit                               0x00000dc5   Thumb Code   268  system_tm4c123.o(.text.SystemInit)
-    Timer0_Init                              0x00000ed1   Thumb Code   144  timer0.o(.text.Timer0_Init)
-    main                                     0x00000ff1   Thumb Code   128  main.o(.text.main)
-    _fp_init                                 0x00001071   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x00001089   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00001089   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    PlayerShip0                              0x0000108a   Data         215  main.o(.rodata.PlayerShip0)
-    Region$$Table$$Base                      0x00001164   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001184   Number         0  anon$$obj.o(Region$$Table)
+    Buttons_Init                             0x00000655   Thumb Code   248  buttons.o(.text.Buttons_Init)
+    Convert                                  0x0000074d   Thumb Code    92  main.o(.text.Convert)
+    DAC_Init                                 0x000007a9   Thumb Code   150  dac.o(.text.DAC_Init)
+    DAC_Out                                  0x00000841   Thumb Code    36  dac.o(.text.DAC_Out)
+    LED_Init                                 0x00000865   Thumb Code   148  led.o(.text.LED_Init)
+    Nokia5110_ClearBuffer                    0x000008f9   Thumb Code    46  nokia5110.o(.text.Nokia5110_ClearBuffer)
+    Nokia5110_DisplayBuffer                  0x00000929   Thumb Code    16  nokia5110.o(.text.Nokia5110_DisplayBuffer)
+    Nokia5110_DrawFullImage                  0x00000939   Thumb Code    58  nokia5110.o(.text.Nokia5110_DrawFullImage)
+    Nokia5110_Init                           0x00000975   Thumb Code   352  nokia5110.o(.text.Nokia5110_Init)
+    Nokia5110_PrintBMP                       0x00000ad5   Thumb Code   518  nokia5110.o(.text.Nokia5110_PrintBMP)
+    Nokia5110_SetCursor                      0x00000cdd   Thumb Code    76  nokia5110.o(.text.Nokia5110_SetCursor)
+    PLL_Init                                 0x00000d29   Thumb Code   126  pll.o(.text.PLL_Init)
+    Play                                     0x00000da9   Thumb Code   106  sound.o(.text.Play)
+    Sound_Init                               0x00000e15   Thumb Code    46  sound.o(.text.Sound_Init)
+    SysTick_Handler                          0x00000e45   Thumb Code    68  main.o(.text.SysTick_Handler)
+    SysTick_Init                             0x00000e89   Thumb Code    68  main.o(.text.SysTick_Init)
+    SystemInit                               0x00000ecd   Thumb Code   268  system_tm4c123.o(.text.SystemInit)
+    Timer0_Init                              0x00000fd9   Thumb Code   144  timer0.o(.text.Timer0_Init)
+    main                                     0x000010f9   Thumb Code   170  main.o(.text.main)
+    _fp_init                                 0x000011a3   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x000011bb   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x000011bb   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    PlayerShip0                              0x000011bc   Data         215  bitmaps.o(.rodata.PlayerShip0)
+    playerShip0                              0x00001294   Data          12  bitmaps.o(.rodata.playerShip0)
+    Region$$Table$$Base                      0x000012a0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000012c0   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     ADCdata                                  0x20000068   Data           4  main.o(.bss.ADCdata)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
@@ -779,8 +856,10 @@ Image Symbol Table
     Index                                    0x20000074   Data           4  sound.o(.bss.Index)
     PeriodicTask                             0x20000078   Data           4  timer0.o(.bss.PeriodicTask)
     Screen                                   0x2000007c   Data         504  nokia5110.o(.bss.Screen)
-    Wave                                     0x20000274   Data           4  sound.o(.bss.Wave)
-    Xpos                                     0x20000278   Data           4  main.o(.bss.Xpos)
+    SmoothedADC                              0x20000274   Data           4  main.o(.bss.SmoothedADC)
+    Wave                                     0x20000278   Data           4  sound.o(.bss.Wave)
+    Xpos                                     0x2000027c   Data           4  main.o(.bss.Xpos)
+    playerShip                               0x20000280   Data          16  main.o(.bss.playerShip)
 
 
 
@@ -790,136 +869,138 @@ Memory Map of the image
 
   Image Entry point : 0x00000391
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001188, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000012c4, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001184, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000012c0, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x0000026c   Data   RO          203    RESET               startup_tm4c123.o
-    0x0000026c   0x0000026c   0x00000008   Code   RO          226  * !!!main             c_w.l(__main.o)
-    0x00000274   0x00000274   0x0000005c   Code   RO          391    !!!scatter          c_w.l(__scatter.o)
-    0x000002d0   0x000002d0   0x0000001a   Code   RO          395    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000000   0x00000000   0x0000026c   Data   RO          252    RESET               startup_tm4c123.o
+    0x0000026c   0x0000026c   0x00000008   Code   RO          275  * !!!main             c_w.l(__main.o)
+    0x00000274   0x00000274   0x0000005c   Code   RO          440    !!!scatter          c_w.l(__scatter.o)
+    0x000002d0   0x000002d0   0x0000001a   Code   RO          444    !!handler_copy      c_w.l(__scatter_copy.o)
     0x000002ea   0x000002ea   0x00000002   PAD
-    0x000002ec   0x000002ec   0x00000002   Code   RO          392    !!handler_null      c_w.l(__scatter.o)
+    0x000002ec   0x000002ec   0x00000002   Code   RO          441    !!handler_null      c_w.l(__scatter.o)
     0x000002ee   0x000002ee   0x00000002   PAD
-    0x000002f0   0x000002f0   0x0000001c   Code   RO          397    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x0000030c   0x0000030c   0x00000002   Code   RO          253    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0000030e   0x0000030e   0x00000004   Code   RO          259    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          262    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          264    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          269    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          282    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          284    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          286    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          288    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          290    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          292    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          294    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          298    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          300    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          302    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          304    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000002   Code   RO          305    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x00000314   0x00000314   0x00000002   Code   RO          327    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          342    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          344    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          347    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          350    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          352    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          355    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000002   Code   RO          356    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x00000318   0x00000318   0x00000000   Code   RO          228    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x00000318   0x00000318   0x00000000   Code   RO          230    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x00000318   0x00000318   0x00000006   Code   RO          242    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0000031e   0x0000031e   0x00000000   Code   RO          232    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x0000031e   0x0000031e   0x00000004   Code   RO          233    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x00000322   0x00000322   0x00000000   Code   RO          235    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x00000322   0x00000322   0x00000008   Code   RO          236    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0000032a   0x0000032a   0x00000002   Code   RO          257    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x0000032c   0x0000032c   0x00000000   Code   RO          307    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x0000032c   0x0000032c   0x00000004   Code   RO          308    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000330   0x00000330   0x00000006   Code   RO          309    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002f0   0x000002f0   0x0000001c   Code   RO          446    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x0000030c   0x0000030c   0x00000002   Code   RO          302    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0000030e   0x0000030e   0x00000004   Code   RO          308    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          311    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          313    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          316    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          318    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          320    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          323    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          325    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          327    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          329    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          331    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          333    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          335    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          337    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          339    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          341    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          343    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          347    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          349    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          351    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          353    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000002   Code   RO          354    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x00000314   0x00000314   0x00000002   Code   RO          376    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          391    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          393    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          396    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          399    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          401    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          404    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000002   Code   RO          405    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x00000318   0x00000318   0x00000000   Code   RO          277    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x00000318   0x00000318   0x00000000   Code   RO          279    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x00000318   0x00000318   0x00000006   Code   RO          291    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0000031e   0x0000031e   0x00000000   Code   RO          281    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x0000031e   0x0000031e   0x00000004   Code   RO          282    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x00000322   0x00000322   0x00000000   Code   RO          284    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x00000322   0x00000322   0x00000008   Code   RO          285    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0000032a   0x0000032a   0x00000002   Code   RO          306    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x0000032c   0x0000032c   0x00000000   Code   RO          356    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x0000032c   0x0000032c   0x00000004   Code   RO          357    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000330   0x00000330   0x00000006   Code   RO          358    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x00000336   0x00000336   0x00000002   PAD
-    0x00000338   0x00000338   0x0000003c   Code   RO          104    .text               random.o
-    0x00000374   0x00000374   0x0000001a   Code   RO          149    .text               startup.o
+    0x00000338   0x00000338   0x0000003c   Code   RO           85    .text               random.o
+    0x00000374   0x00000374   0x0000001a   Code   RO          130    .text               startup.o
     0x0000038e   0x0000038e   0x00000002   PAD
-    0x00000390   0x00000390   0x00000114   Code   RO          204  * .text               startup_tm4c123.o
-    0x000004a4   0x000004a4   0x00000006   Code   RO          224    .text               c_w.l(heapauxi.o)
-    0x000004aa   0x000004aa   0x0000004a   Code   RO          244    .text               c_w.l(sys_stackheap_outer.o)
-    0x000004f4   0x000004f4   0x00000012   Code   RO          246    .text               c_w.l(exit.o)
+    0x00000390   0x00000390   0x00000114   Code   RO          253  * .text               startup_tm4c123.o
+    0x000004a4   0x000004a4   0x00000006   Code   RO          273    .text               c_w.l(heapauxi.o)
+    0x000004aa   0x000004aa   0x0000004a   Code   RO          293    .text               c_w.l(sys_stackheap_outer.o)
+    0x000004f4   0x000004f4   0x00000012   Code   RO          295    .text               c_w.l(exit.o)
     0x00000506   0x00000506   0x00000002   PAD
-    0x00000508   0x00000508   0x00000008   Code   RO          254    .text               c_w.l(libspace.o)
-    0x00000510   0x00000510   0x0000000c   Code   RO          317    .text               c_w.l(sys_exit.o)
-    0x0000051c   0x0000051c   0x00000002   Code   RO          332    .text               c_w.l(use_no_semi.o)
-    0x0000051e   0x0000051e   0x00000000   Code   RO          334    .text               c_w.l(indicate_semi.o)
+    0x00000508   0x00000508   0x00000008   Code   RO          303    .text               c_w.l(libspace.o)
+    0x00000510   0x00000510   0x0000000c   Code   RO          366    .text               c_w.l(sys_exit.o)
+    0x0000051c   0x0000051c   0x00000002   Code   RO          381    .text               c_w.l(use_no_semi.o)
+    0x0000051e   0x0000051e   0x00000000   Code   RO          383    .text               c_w.l(indicate_semi.o)
     0x0000051e   0x0000051e   0x00000002   PAD
     0x00000520   0x00000520   0x00000046   Code   RO            4    .text.ADC0_In       adc.o
     0x00000566   0x00000566   0x00000002   PAD
     0x00000568   0x00000568   0x000000ea   Code   RO            2    .text.ADC0_Init     adc.o
     0x00000652   0x00000652   0x00000002   PAD
-    0x00000654   0x00000654   0x00000098   Code   RO          155    .text.Buttons_Init  buttons.o
-    0x000006ec   0x000006ec   0x0000000a   Code   RO           15    .text.Convert       main.o
-    0x000006f6   0x000006f6   0x00000002   PAD
-    0x000006f8   0x000006f8   0x00000096   Code   RO          166    .text.DAC_Init      dac.o
-    0x0000078e   0x0000078e   0x00000002   PAD
-    0x00000790   0x00000790   0x00000024   Code   RO          168    .text.DAC_Out       dac.o
-    0x000007b4   0x000007b4   0x00000094   Code   RO          177    .text.LED_Init      led.o
-    0x00000848   0x00000848   0x0000002e   Code   RO           78    .text.Nokia5110_ClearBuffer  nokia5110.o
-    0x00000876   0x00000876   0x00000002   PAD
-    0x00000878   0x00000878   0x00000010   Code   RO           84    .text.Nokia5110_DisplayBuffer  nokia5110.o
-    0x00000888   0x00000888   0x0000003a   Code   RO           74    .text.Nokia5110_DrawFullImage  nokia5110.o
-    0x000008c2   0x000008c2   0x00000002   PAD
-    0x000008c4   0x000008c4   0x00000160   Code   RO           60    .text.Nokia5110_Init  nokia5110.o
-    0x00000a24   0x00000a24   0x00000206   Code   RO           76    .text.Nokia5110_PrintBMP  nokia5110.o
-    0x00000c2a   0x00000c2a   0x00000002   PAD
-    0x00000c2c   0x00000c2c   0x0000004c   Code   RO           70    .text.Nokia5110_SetCursor  nokia5110.o
-    0x00000c78   0x00000c78   0x0000007e   Code   RO           96    .text.PLL_Init      pll.o
-    0x00000cf6   0x00000cf6   0x00000002   PAD
-    0x00000cf8   0x00000cf8   0x0000006a   Code   RO          110    .text.Play          sound.o
-    0x00000d62   0x00000d62   0x00000002   PAD
-    0x00000d64   0x00000d64   0x0000002e   Code   RO          112    .text.Sound_Init    sound.o
-    0x00000d92   0x00000d92   0x00000002   PAD
-    0x00000d94   0x00000d94   0x00000030   Code   RO           19    .text.SysTick_Handler  main.o
-    0x00000dc4   0x00000dc4   0x0000010c   Code   RO          213    .text.SystemInit    system_tm4c123.o
-    0x00000ed0   0x00000ed0   0x00000090   Code   RO          190    .text.Timer0_Init   timer0.o
-    0x00000f60   0x00000f60   0x00000090   Code   RO           62    .text.lcdwrite      nokia5110.o
-    0x00000ff0   0x00000ff0   0x00000080   Code   RO           13    .text.main          main.o
-    0x00001070   0x00001070   0x0000001a   Code   RO          315    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x0000108a   0x0000108a   0x000000d7   Data   RO           25    .rodata.PlayerShip0  main.o
-    0x00001161   0x00001161   0x00000003   PAD
-    0x00001164   0x00001164   0x00000020   Data   RO          390    Region$$Table       anon$$obj.o
+    0x00000654   0x00000654   0x000000f8   Code   RO          136    .text.Buttons_Init  buttons.o
+    0x0000074c   0x0000074c   0x0000005c   Code   RO           17    .text.Convert       main.o
+    0x000007a8   0x000007a8   0x00000096   Code   RO          149    .text.DAC_Init      dac.o
+    0x0000083e   0x0000083e   0x00000002   PAD
+    0x00000840   0x00000840   0x00000024   Code   RO          151    .text.DAC_Out       dac.o
+    0x00000864   0x00000864   0x00000094   Code   RO          160    .text.LED_Init      led.o
+    0x000008f8   0x000008f8   0x0000002e   Code   RO           59    .text.Nokia5110_ClearBuffer  nokia5110.o
+    0x00000926   0x00000926   0x00000002   PAD
+    0x00000928   0x00000928   0x00000010   Code   RO           65    .text.Nokia5110_DisplayBuffer  nokia5110.o
+    0x00000938   0x00000938   0x0000003a   Code   RO           55    .text.Nokia5110_DrawFullImage  nokia5110.o
+    0x00000972   0x00000972   0x00000002   PAD
+    0x00000974   0x00000974   0x00000160   Code   RO           41    .text.Nokia5110_Init  nokia5110.o
+    0x00000ad4   0x00000ad4   0x00000206   Code   RO           57    .text.Nokia5110_PrintBMP  nokia5110.o
+    0x00000cda   0x00000cda   0x00000002   PAD
+    0x00000cdc   0x00000cdc   0x0000004c   Code   RO           51    .text.Nokia5110_SetCursor  nokia5110.o
+    0x00000d28   0x00000d28   0x0000007e   Code   RO           77    .text.PLL_Init      pll.o
+    0x00000da6   0x00000da6   0x00000002   PAD
+    0x00000da8   0x00000da8   0x0000006a   Code   RO           91    .text.Play          sound.o
+    0x00000e12   0x00000e12   0x00000002   PAD
+    0x00000e14   0x00000e14   0x0000002e   Code   RO           93    .text.Sound_Init    sound.o
+    0x00000e42   0x00000e42   0x00000002   PAD
+    0x00000e44   0x00000e44   0x00000044   Code   RO           19    .text.SysTick_Handler  main.o
+    0x00000e88   0x00000e88   0x00000044   Code   RO           15    .text.SysTick_Init  main.o
+    0x00000ecc   0x00000ecc   0x0000010c   Code   RO          262    .text.SystemInit    system_tm4c123.o
+    0x00000fd8   0x00000fd8   0x00000090   Code   RO          173    .text.Timer0_Init   timer0.o
+    0x00001068   0x00001068   0x00000090   Code   RO           43    .text.lcdwrite      nokia5110.o
+    0x000010f8   0x000010f8   0x000000aa   Code   RO           13    .text.main          main.o
+    0x000011a2   0x000011a2   0x0000001a   Code   RO          364    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x000011bc   0x000011bc   0x000000d7   Data   RO          191    .rodata.PlayerShip0  bitmaps.o
+    0x00001293   0x00001293   0x00000001   PAD
+    0x00001294   0x00001294   0x0000000c   Data   RO          212    .rodata.playerShip0  bitmaps.o
+    0x000012a0   0x000012a0   0x00000020   Data   RO          439    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001184, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x00001184   0x00000004   Data   RW          103    DATA                random.o
-
-
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x00001188, Size: 0x00000478, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x000012c0, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000008        -       0x00000060   Zero   RW          255    .bss                c_w.l(libspace.o)
-    0x20000068        -       0x00000004   Zero   RW           26    .bss.ADCdata        main.o
-    0x2000006c        -       0x00000004   Zero   RW          141    .bss.Count          sound.o
-    0x20000070        -       0x00000004   Zero   RW           28    .bss.Flag           main.o
-    0x20000074        -       0x00000004   Zero   RW          140    .bss.Index          sound.o
-    0x20000078        -       0x00000004   Zero   RW          194    .bss.PeriodicTask   timer0.o
-    0x2000007c        -       0x000001f8   Zero   RW           88    .bss.Screen         nokia5110.o
-    0x20000274        -       0x00000004   Zero   RW          142    .bss.Wave           sound.o
-    0x20000278        -       0x00000004   Zero   RW           27    .bss.Xpos           main.o
-    0x2000027c   0x00001188   0x00000004   PAD
-    0x20000280        -       0x00000000   Zero   RW          202    HEAP                startup_tm4c123.o
-    0x20000280        -       0x00000200   Zero   RW          201    STACK               startup_tm4c123.o
+    0x20000000   0x000012c0   0x00000004   Data   RW           84    DATA                random.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x000012c4, Size: 0x00000488, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000008        -       0x00000060   Zero   RW          304    .bss                c_w.l(libspace.o)
+    0x20000068        -       0x00000004   Zero   RW           29    .bss.ADCdata        main.o
+    0x2000006c        -       0x00000004   Zero   RW          122    .bss.Count          sound.o
+    0x20000070        -       0x00000004   Zero   RW           27    .bss.Flag           main.o
+    0x20000074        -       0x00000004   Zero   RW          121    .bss.Index          sound.o
+    0x20000078        -       0x00000004   Zero   RW          177    .bss.PeriodicTask   timer0.o
+    0x2000007c        -       0x000001f8   Zero   RW           69    .bss.Screen         nokia5110.o
+    0x20000274        -       0x00000004   Zero   RW           25    .bss.SmoothedADC    main.o
+    0x20000278        -       0x00000004   Zero   RW          123    .bss.Wave           sound.o
+    0x2000027c        -       0x00000004   Zero   RW           28    .bss.Xpos           main.o
+    0x20000280        -       0x00000010   Zero   RW           26    .bss.playerShip     main.o
+    0x20000290        -       0x00000000   Zero   RW          251    HEAP                startup_tm4c123.o
+    0x20000290        -       0x00000200   Zero   RW          250    STACK               startup_tm4c123.o
 
 
 ==============================================================================
@@ -930,10 +1011,11 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        304          0          0          0          0        791   adc.o
-       152          0          0          0          0        740   buttons.o
+         0          0        227          0          0       1820   bitmaps.o
+       248          0          0          0          0        835   buttons.o
        186          0          0          0          0        709   dac.o
        148          0          0          0          0        849   led.o
-       186          0        215          0         12       2459   main.o
+       398          0          0          0         32       1837   main.o
       1210          4          0          0        504       4294   nokia5110.o
        126          0          0          0          0        550   pll.o
         60         14          0          4          0        268   random.o
@@ -944,9 +1026,9 @@ Image component sizes
        144          0          0          0          4        830   timer0.o
 
     ----------------------------------------------------------------------
-      3260         42        870          4       1048      26323   Object Totals
+      3566         42        880          4       1064      27616   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        22          0          3          0          4          0   (incl. Padding)
+        20          0          1          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -995,15 +1077,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3614         58        870          4       1144      26755   Grand Totals
-      3614         58        870          4       1144      26755   ELF Image Totals
-      3614         58        870          4          0          0   ROM Totals
+      3920         58        880          4       1160      28048   Grand Totals
+      3920         58        880          4       1160      28048   ELF Image Totals
+      3920         58        880          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4484 (   4.38kB)
-    Total RW  Size (RW Data + ZI Data)              1148 (   1.12kB)
-    Total ROM Size (Code + RO Data + RW Data)       4488 (   4.38kB)
+    Total RO  Size (Code + RO Data)                 4800 (   4.69kB)
+    Total RW  Size (RW Data + ZI Data)              1164 (   1.14kB)
+    Total ROM Size (Code + RO Data + RW Data)       4804 (   4.69kB)
 
 ==============================================================================
 
