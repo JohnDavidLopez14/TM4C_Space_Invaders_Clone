@@ -18,18 +18,21 @@ void LED_Init(void){
 
     // clear output pins
     GPIO_PORTB_DATA_BITS_R[PIN_MASK] = 0;
+		//GPIO_PORTB_DATA_R &= ~PIN_MASK; // pretty sure DATA_BITS_R is a safer way of doing this
 }
 
 void LED_On(uint8_t led_mask){
     led_mask &= PIN_MASK;  // mask PB4:5
     if (led_mask){
-        GPIO_PORTB_DATA_BITS_R[led_mask] = led_mask;
+			GPIO_PORTB_DATA_BITS_R[led_mask] = led_mask;
+			//GPIO_PORTB_DATA_R |= led_mask;
     }
 }
 
 void LED_Off(uint8_t led_mask){
     led_mask &= PIN_MASK;
     if (led_mask){
-        GPIO_PORTB_DATA_BITS_R[led_mask] = 0; // can also use ~led_mask
+			GPIO_PORTB_DATA_BITS_R[led_mask] = 0; // can also use ~led_mask
+			//GPIO_PORTB_DATA_R &= ~led_mask;
     }
 }

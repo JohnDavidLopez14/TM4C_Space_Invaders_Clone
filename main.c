@@ -85,7 +85,7 @@ void EnableInterrupts(void);
 void SysTick_Init(void);
 
 typedef struct {
-    Bitmap *sprite; // these structs are exported in bitmaps.h
+    const Bitmap *sprite; // these structs are exported in bitmaps.h
     unsigned int health;
     unsigned int xPos, yPos;
 } Entity;
@@ -118,7 +118,7 @@ int main(void){
     playerShip.health = 100;
     playerShip.xPos = (SCREENW - playerShip.sprite->width) / 2; // start at the center of the screen
     playerShip.yPos = SCREENH - 1; // start at the bottom of the screen
-
+	
     while(1){ // main code logic
         Nokia5110_PrintBMP(playerShip.xPos, playerShip.yPos, playerShip.sprite->bmp, 0);
         Nokia5110_DisplayBuffer();
@@ -131,12 +131,16 @@ int main(void){
 					//UART_OutString("\r\n");
         }
         if (MissileFlag){
-          LED_ON(LED1);
+					MissileFlag = 0; // clear the missile flag
+					LED_On(LED1);
+          // fireMissile();
         }
         if (LaserFlag){
-          LED_ON(LED2);
+					LaserFlag = 0; // clear the laser flag
+					LED_Off(LED1);
+					// fireLaser();
         }
-
+					
         //playership.xPos = 10;//Random() % MAX_X;
         //playership.yPos = 10;//Random() % MAX_Y;
         // need to use Timer2 to periodically spawn enemies
