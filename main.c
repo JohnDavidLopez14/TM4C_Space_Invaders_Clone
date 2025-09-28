@@ -70,6 +70,7 @@
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
 #define MAX_MISSILES 10
+#define MAX_LASERS 20
 #define MAX_ENEMIES 20
 #define SMOOTH_DEN 8
 #define ADCMIN 2000
@@ -83,6 +84,8 @@ const uint32_t LED2 = PB5;
 void DisableInterrupts(void);
 void EnableInterrupts(void);
 void SysTick_Init(void);
+void Fire_Missile(void);
+void Fire_Laser(void);
 
 typedef struct {
     const Bitmap *sprite; // these structs are exported in bitmaps.h
@@ -90,75 +93,122 @@ typedef struct {
     unsigned int xPos, yPos;
 } Entity;
 
+typedef struct {
+  const Bitmap *sprite;
+  unsigned int active;
+  unsigned int xPos, yPos;
+  unsigned int dx, dy; // this will be pixels/tick
+} Projectile;
+
 // Global Variables
 unsigned long ADCdata;
 unsigned long SmoothedADC = 0;
 unsigned long XposFlag;
 unsigned long Xpos;
-char adcBuffer[14];
-Entity missiles[MAX_MISSILES]; // pre-allocated missile array
-Entity enemies[MAX_ENEMIES];
-Entity playerShip; // global namespace since its parameters are being used in Convert
+Entity PlayerShip; // global namespace since its parameters are being used in Convert
+Projectile Missiles[MAX_MISSILES]; // pre-allocated missile array
+Projectile Lasers[MAX_LASERS];
+Entity Enemies[MAX_ENEMIES];
 
 int main(void){
-    EnableInterrupts();
-    PLL_Init      ();   // set to 80 mHz
-    Nokia5110_Init();   //
-    Sound_Init    ();   // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
-    LED_Init       ();  // initialize PB4:5 for LED output
-    Buttons_Init  ();   // initialize PE0:1 for falling edge interrupts, not complete yet
-		SysTick_Init();
-    ADC0_Init       ();  // initialize ADC on PE2 / AIN1
-    Random_Init(1);
+  UART_Init();
+  EnableInterrupts();
+  PLL_Init(); // set to 80 mHz
+  Nokia5110_Init();
+  Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
+  LED_Init(); // initialize PB4:5 for LED output
+  Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
+  SysTick_Init();
+  ADC0_Init();  // initialize ADC on PE2 / AIN1
+  Random_Init(1);
 
-    //UART_Init();
+  // Initialize playership
+  PlayerShip.sprite = &playerShip0;
+  PlayerShip.health = 100;
+  PlayerShip.xPos = (SCREENW - PlayerShip.sprite->width) / 2; // start at the center of the screen
+  PlayerShip.yPos = SCREENH - 1;  // start at the bottom of the screen
 
-    // Initialize playership
-    playerShip.sprite = &playerShip0;
-    playerShip.health = 100;
-    playerShip.xPos = (SCREENW - playerShip.sprite->width) / 2; // start at the center of the screen
-    playerShip.yPos = SCREENH - 1; // start at the bottom of the screen
-	
-    while(1){ // main code logic
-        Nokia5110_PrintBMP(playerShip.xPos, playerShip.yPos, playerShip.sprite->bmp, 0);
-        Nokia5110_DisplayBuffer();
-        Nokia5110_ClearBuffer();
-        if (XposFlag) {
-          XposFlag = 0;
-          playerShip.xPos = Xpos;
-					//snprintf(adcBuffer, sizeof(adcBuffer), "%lu", ADCdata);
-					//UART_OutString(adcBuffer);
-					//UART_OutString("\r\n");
-        }
-        if (MissileFlag){
-					MissileFlag = 0; // clear the missile flag
-					LED_On(LED1);
-          // fireMissile();
-        }
-        if (LaserFlag){
-					LaserFlag = 0; // clear the laser flag
-					LED_Off(LED1);
-					// fireLaser();
-        }
-					
-        //playership.xPos = 10;//Random() % MAX_X;
-        //playership.yPos = 10;//Random() % MAX_Y;
-        // need to use Timer2 to periodically spawn enemies
-        // need to design a demo to work with the player ship moving with the slide pot
-    }
+  // Initialize missile array
+  for (int i = 0; i < MAX_MISSILES; i++){
+    Missiles[i].sprite = &missile0;
+    Missiles[i].active = 0;
+    Missiles[i].xPos = 0;
+    Missiles[i].yPos = 0;
+    Missiles[i].dx = 0;
+    Missiles[i].dy = 0;
+  }
+
+  // Initialize laser array
+  for (int i = 0; i < MAX_LASERS; i++){
+    Lasers[i].sprite = &laser0;
+    Lasers[i].active = 0;
+    Lasers[i].xPos = 0;
+    Lasers[i].yPos = 0;
+    Lasers[i].dx = 0;
+    Lasers[i].dy = 0;
+  }
+
+  while(1){ // main code logic
+      Nokia5110_PrintBMP(PlayerShip.xPos, PlayerShip.yPos, PlayerShip.sprite->bmp, 0);
+      Nokia5110_DisplayBuffer();
+      Nokia5110_ClearBuffer();
+      if (XposFlag) {
+        XposFlag = 0;
+        PlayerShip.xPos = Xpos;
+      }
+      if (MissileFlag){
+        MissileFlag = 0; // clear the missile flag
+        LED_On(LED1);
+        // fireMissile();
+      }
+      if (LaserFlag){
+        LaserFlag = 0; // clear the laser flag
+        LED_Off(LED1);
+        // fireLaser();
+      }
+        
+      //playership.xPos = 10;//Random() % MAX_X;
+      //playership.yPos = 10;//Random() % MAX_Y;
+      // need to use Timer2 to periodically spawn enemies
+      // need to design a demo to work with the player ship moving with the slide pot
+  }
+}
+
+// Fires missile
+void Fire_Missile(void){
+  // Search through the missile array for a missile that is active
+  int i = 0;
+  while (i < MAX_MISSILES && Missiles[i].active != 0){
+    i++;
+  }
+  if (i < MAX_MISSILES){ // i must be less than max missiles, if greater than we 
+    // logic to spawn the missile on the display
+  }
+}
+
+// Fires laser
+void Fire_Laser(void){
+  int i = 0;
+  while (i < MAX_LASERS && Lasers[i].active != 0){
+    i++;
+  }
+  if (i < MAX_LASERS){
+    // logic to spawn the laser on the display
+  }
+
 }
 
 // Converts ADC to a position on the screen
 unsigned long Convert(unsigned long sample){
-		if (sample < ADCMIN){
-			sample = ADCMIN;
-		}
-		if (sample > ADCMAX){
-			sample = ADCMAX;
-		}
-    unsigned long xMax = SCREENW - playerShip.sprite->width;
-    unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
-		return result;
+  if (sample < ADCMIN){
+    sample = ADCMIN;
+  }
+  if (sample > ADCMAX){
+    sample = ADCMAX;
+  }
+  unsigned long xMax = SCREENW - PlayerShip.sprite->width;
+  unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
+  return result;
 }
 
 // Initialize SysTick interrupts to trigger at 40 Hz, 25 ms
