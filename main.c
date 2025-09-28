@@ -72,6 +72,8 @@
 #define MAX_MISSILES 10
 #define MAX_LASERS 20
 #define MAX_ENEMIES 20
+#define MISSILEV 1 // 1 pixel/tick
+#define LASERV 1 // 1 pixel/tick
 #define SMOOTH_DEN 8
 #define ADCMIN 2000
 #define ADCMAX 3400
@@ -130,47 +132,54 @@ int main(void){
 
   // Initialize missile array
   for (int i = 0; i < MAX_MISSILES; i++){
-    Missiles[i].sprite = &missile0;
     Missiles[i].active = 0;
-    Missiles[i].xPos = 0;
-    Missiles[i].yPos = 0;
-    Missiles[i].dx = 0;
-    Missiles[i].dy = 0;
   }
 
   // Initialize laser array
   for (int i = 0; i < MAX_LASERS; i++){
-    Lasers[i].sprite = &laser0;
     Lasers[i].active = 0;
-    Lasers[i].xPos = 0;
-    Lasers[i].yPos = 0;
-    Lasers[i].dx = 0;
-    Lasers[i].dy = 0;
   }
 
   while(1){ // main code logic
-      Nokia5110_PrintBMP(PlayerShip.xPos, PlayerShip.yPos, PlayerShip.sprite->bmp, 0);
-      Nokia5110_DisplayBuffer();
-      Nokia5110_ClearBuffer();
+      // Read Inputs / Poll Flags
       if (XposFlag) {
         XposFlag = 0;
         PlayerShip.xPos = Xpos;
       }
+
       if (MissileFlag){
         MissileFlag = 0; // clear the missile flag
-        LED_On(LED1);
-        // fireMissile();
+        fireMissile();
       }
+
       if (LaserFlag){
         LaserFlag = 0; // clear the laser flag
-        LED_Off(LED1);
-        // fireLaser();
+        fireLaser();
       }
-        
-      //playership.xPos = 10;//Random() % MAX_X;
-      //playership.yPos = 10;//Random() % MAX_Y;
-      // need to use Timer2 to periodically spawn enemies
-      // need to design a demo to work with the player ship moving with the slide pot
+
+      // if (EnemyFlag){ // this will be a timer ISR to set the flag to spawn more enemies
+      //  enemyFlag = 0;
+      //  spawnEnemies();
+      //}
+
+      // Draw Everything
+      Nokia5110_PrintBMP(PlayerShip.xPos, PlayerShip.yPos, PlayerShip.sprite->bmp, 0);
+
+      for (int i = 0; i < MAX_MISSILES; i++){
+        Nokia5110_PrintBMP(Missiles[i].xPos, Missiles[i].yPos, Missiles[i].sprite->bmp, 0);
+      }
+
+      for (int i = 0; i < MAX_LASERS; i ++){
+        Nokia5110_PrintBMP(Lasers[i].xPos, Lasers[i].yPos, Lasers[i].sprite->bmp, 0);
+      }
+
+      // Collision Detection
+
+      // Update Game State
+
+      // Display Graphics
+      Nokia5110_DisplayBuffer();
+      Nokia5110_ClearBuffer();
   }
 }
 
@@ -182,7 +191,12 @@ void Fire_Missile(void){
     i++;
   }
   if (i < MAX_MISSILES){ // i must be less than max missiles, if greater than we 
-    // logic to spawn the missile on the display
+    Missiles[i].sprite = &missile0;
+    Missiles[i].active = 1;
+    Missiles[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Missiles[i].sprite->width) / 2; //center the missile on the ship
+    Missiles[i].yPos = PlayerShip.yPos + PlayerShip.sprite->height + 1;
+    Missiles[i].dx = MISSILEV;
+    Missiles[i].dy = 0; // not using dy, leaving as something optional to return to later on
   }
 }
 
@@ -193,7 +207,12 @@ void Fire_Laser(void){
     i++;
   }
   if (i < MAX_LASERS){
-    // logic to spawn the laser on the display
+    Lasers[i].sprite = &laser0;
+    Lasers[i].active = 1;
+    Lasers[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Missiles[i].sprite->width) / 2; //center the missile on the ship
+    Lasers[i].yPos = PlayerShip.yPos + PlayerShip.sprite->height + 1;
+    Lasers[i].dx = MISSILEV;
+    Lasers[i].dy = 0;
   }
 
 }
