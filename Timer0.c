@@ -62,19 +62,19 @@ void Timer0_Init(void(*task)(void), unsigned long period){
   // GPTM Timer A Prescale (GPTMTAPR), offset 0x038
   // set this to 0 to disable prescaling
 
-  TIMER0_ICR_R = 0x00000001;    // 6) clear TIMER0A timeout flag
+  TIMER0_ICR_R |= 0x00000001;    // 6) clear TIMER0A timeout flag
   // GPTM Interrupt Clear, offset 0x024
   // 0 - TATOCINT
   // Writing a 1 to this bit clears the TATORIS bit in the GPTMRIS register and the TATOMIS bit in the GPTMMIS register
 
-  TIMER0_IMR_R = 0x00000001;    // 7) arm timeout interrupt
+  TIMER0_IMR_R |= 0x00000001;    // 7) arm timeout interrupt
   // GPTM Interrupt Mask (GPTMIMR), offset 0x018
   // This register allows softwar eto enable/disable GPTM controller-level interrupts
   // Setting a bit enable the corresponding interrupt, while clearing a bit disables it
   // bit 0 - GPTM Timer A Capture Mode Match Interrupt Mask
   // 1 - Interrupt is enabled
 
-  NVIC_PRI4_R = (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
+  NVIC_PRI4_R |= (NVIC_PRI4_R&0x00FFFFFF)|0x80000000; // 8) priority 4
   // Interrupt 16-19 Priority (PRI4), offset 0x410
   // interrupts enabled in the main program after all devices initialized
   // vector number 35, interrupt number 19
@@ -82,7 +82,7 @@ void Timer0_Init(void(*task)(void), unsigned long period){
   // Vector Number 34, Interrupt Number 19, 16-32-Bit Timer 0A
   // bits 31:29 -> 0b100 -> 4, priority 4
 
-  NVIC_EN0_R = 1<<19;           // 9) enable IRQ 19 in NVIC
+  NVIC_EN0_R |= 1<<19;           // 9) enable IRQ 19 in NVIC
   // Interrupt 0-31 Set Enable (EN0), offset 0x100
   // nebales interrupt number 19
   // Table 2-9 -> interrupt 19 - Timer 0A

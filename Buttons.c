@@ -6,6 +6,10 @@
 #define PE1 (1 << 1)
 #define PIN_MASK (PE0 | PE1)
 
+volatile uint8_t MissileFlag = 0;
+volatile uint8_t LaserFlag = 0;
+
+
 // Initialize PE0:1 as negative logic input pin
 void Buttons_Init(void){
     // GPIO initialization
@@ -20,24 +24,22 @@ void Buttons_Init(void){
     GPIO_PORTE_DEN_R   |= PIN_MASK;   // enable digital
 
     // Interrupts
-    GPIO_PORTE_IS_R &= ~PIN_MASK;
-    GPIO_PORTE_IBE_R &= ~PIN_MASK;
-    GPIO_PORTE_IEV_R &= ~PIN_MASK;
-    GPIO_PORTE_ICR_R = PIN_MASK;
-    GPIO_PORTE_IM_R |= PIN_MASK;
-    NVIC_PRI7_R;
-    NVIC_EN0_R;
+    GPIO_PORTE_IS_R &= ~PIN_MASK; // 0 - the edge on the corresponding pin is detected
+    GPIO_PORTE_IBE_R &= ~PIN_MASK; // 0 - the interrupt generation is controlled by the GPIO Interrupt Event (GPIOIEV) register
+    GPIO_PORTE_IEV_R &= ~PIN_MASK; // 0 - the falliwng edge or a low level on the corresponding pin triggers an interrupt
+    GPIO_PORTE_ICR_R |= PIN_MASK; // 1 - the corresponding interrupt is cleared
+    GPIO_PORTE_IM_R |= PIN_MASK; // 1 - The interrupt from the corresponding pin is sent to the interrupt controller
+    NVIC_PRI5_R |= (NVIC_PRI5_R & 0xFFFFFF1F) | (5 << 5); // 7:5 - priority 5
+    NVIC_EN0_R |= 1 << 20;
 }
 
 void GPIOPortE_Handler(void){
-    
-}
-
-// returns a pitmask of the values read
-uint32_t Button_Read(uint32_t button_mask){
-    button_mask &= PIN_MASK;
-    if (button_mask){
-        return ~GPIO_PORTE_DATA_BITS_R[button_mask] & button_mask; // index the pins we want, invert, then mask again to isolate the values that have been flipped
-        }
-    return 0;
+    uint32_t status = GPIO_PORTE_RIS_R;
+    if (status & PE0){
+        MissileFlag = 1;
+    }
+    if (status & PE1){
+        LaserFlag = 1;
+    }
+    GPIO_PORTE_ICR_R |= PIN_MASK; // acknowledge interrupt
 }

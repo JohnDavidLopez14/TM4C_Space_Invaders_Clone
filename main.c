@@ -46,6 +46,11 @@
 // PE1 - GPIO, input, pull up - Buttons.h
 // PE2 - AIN1, ADC
 
+// ISR Priority
+// Systick - Priority 2
+// Timer2A - Priority 4
+// GPIOPORTE - Priority 5
+
 // Include macros
 #include "PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "Nokia5110.h"
@@ -64,8 +69,6 @@
 // Constant macros
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
-#define PE0 (1 << 0)
-#define PE1 (1 << 1)
 #define MAX_MISSILES 10
 #define MAX_ENEMIES 20
 #define SMOOTH_DEN 8
@@ -75,8 +78,6 @@
 // Global Constants
 const uint32_t LED1 = PB4;
 const uint32_t LED2 = PB5;
-const uint32_t Button1 = PE0;
-const uint32_t Button2 = PE1;
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -92,7 +93,7 @@ typedef struct {
 // Global Variables
 unsigned long ADCdata;
 unsigned long SmoothedADC = 0;
-unsigned long Flag;
+unsigned long XposFlag;
 unsigned long Xpos;
 char adcBuffer[14];
 Entity missiles[MAX_MISSILES]; // pre-allocated missile array
@@ -122,12 +123,18 @@ int main(void){
         Nokia5110_PrintBMP(playerShip.xPos, playerShip.yPos, playerShip.sprite->bmp, 0);
         Nokia5110_DisplayBuffer();
         Nokia5110_ClearBuffer();
-        if (Flag) {
-          Flag = 0;
+        if (XposFlag) {
+          XposFlag = 0;
           playerShip.xPos = Xpos;
 					//snprintf(adcBuffer, sizeof(adcBuffer), "%lu", ADCdata);
 					//UART_OutString(adcBuffer);
 					//UART_OutString("\r\n");
+        }
+        if (MissileFlag){
+          LED_ON(LED1);
+        }
+        if (LaserFlag){
+          LED_ON(LED2);
         }
 
         //playership.xPos = 10;//Random() % MAX_X;
@@ -163,5 +170,5 @@ void SysTick_Handler(void){
   ADCdata = ADC0_In();
   SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure exactly how this works
   Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
-  Flag = 1; // set mail box
+  XposFlag = 1; // set mail box
 }
