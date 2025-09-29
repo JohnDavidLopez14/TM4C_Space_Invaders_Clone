@@ -149,12 +149,12 @@ int main(void){
 
       if (MissileFlag){
         MissileFlag = 0; // clear the missile flag
-        fireMissile();
+        Fire_Missile();
       }
 
       if (LaserFlag){
         LaserFlag = 0; // clear the laser flag
-        fireLaser();
+        Fire_Laser();
       }
 
       // if (EnemyFlag){ // this will be a timer ISR to set the flag to spawn more enemies
@@ -166,11 +166,15 @@ int main(void){
       Nokia5110_PrintBMP(PlayerShip.xPos, PlayerShip.yPos, PlayerShip.sprite->bmp, 0);
 
       for (int i = 0; i < MAX_MISSILES; i++){
-        Nokia5110_PrintBMP(Missiles[i].xPos, Missiles[i].yPos, Missiles[i].sprite->bmp, 0);
+				if (Missiles[i].active){
+					Nokia5110_PrintBMP(Missiles[i].xPos, Missiles[i].yPos, Missiles[i].sprite->bmp, 0);
+				}
       }
 
       for (int i = 0; i < MAX_LASERS; i ++){
-        Nokia5110_PrintBMP(Lasers[i].xPos, Lasers[i].yPos, Lasers[i].sprite->bmp, 0);
+				if (Lasers[i].active){
+					Nokia5110_PrintBMP(Lasers[i].xPos, Lasers[i].yPos, Lasers[i].sprite->bmp, 0);
+				}
       }
 
       // Collision Detection
@@ -194,7 +198,7 @@ void Fire_Missile(void){
     Missiles[i].sprite = &missile0;
     Missiles[i].active = 1;
     Missiles[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Missiles[i].sprite->width) / 2; //center the missile on the ship
-    Missiles[i].yPos = PlayerShip.yPos + PlayerShip.sprite->height + 1;
+    Missiles[i].yPos = PlayerShip.yPos - PlayerShip.sprite->height;
     Missiles[i].dx = MISSILEV;
     Missiles[i].dy = 0; // not using dy, leaving as something optional to return to later on
   }
@@ -209,8 +213,8 @@ void Fire_Laser(void){
   if (i < MAX_LASERS){
     Lasers[i].sprite = &laser0;
     Lasers[i].active = 1;
-    Lasers[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Missiles[i].sprite->width) / 2; //center the missile on the ship
-    Lasers[i].yPos = PlayerShip.yPos + PlayerShip.sprite->height + 1;
+    Lasers[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Lasers[i].sprite->width) / 2; //center the missile on the ship
+    Lasers[i].yPos = PlayerShip.yPos - PlayerShip.sprite->height;
     Lasers[i].dx = MISSILEV;
     Lasers[i].dy = 0;
   }
