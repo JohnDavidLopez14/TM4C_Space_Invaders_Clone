@@ -88,6 +88,8 @@ void EnableInterrupts(void);
 void SysTick_Init(void);
 void Fire_Missile(void);
 void Fire_Laser(void);
+void Update_Missile_Position(void);
+void Update_Laser_Position(void);
 
 typedef struct {
     const Bitmap *sprite; // these structs are exported in bitmaps.h
@@ -99,7 +101,8 @@ typedef struct {
   const Bitmap *sprite;
   unsigned int active;
   unsigned int xPos, yPos;
-  unsigned int dx, dy; // this will be pixels/tick
+  float dx, dy; // this will be pixels/tick
+  int timeAlive; // time initial, time final
 } Projectile;
 
 // Global Variables
@@ -108,7 +111,7 @@ unsigned long SmoothedADC = 0;
 unsigned long XposFlag;
 unsigned long Xpos;
 Entity PlayerShip; // global namespace since its parameters are being used in Convert
-Projectile Missiles[MAX_MISSILES]; // pre-allocated missile array
+Projectile Missiles[MAX_MISSILES]; // pre-allocated missile array, probably move these into the main namespace
 Projectile Lasers[MAX_LASERS];
 Entity Enemies[MAX_ENEMIES];
 
@@ -162,7 +165,17 @@ int main(void){
       //  spawnEnemies();
       //}
 
-      // Draw Everything
+      // Collision Detection
+
+      // Update Game State
+      Update_Missile_Position();
+      Update_Laser_Position();
+
+      // Out of bounds detection
+      Check_Missile();
+      Check_Lasers();
+
+         // Draw Everything
       Nokia5110_PrintBMP(PlayerShip.xPos, PlayerShip.yPos, PlayerShip.sprite->bmp, 0);
 
       for (int i = 0; i < MAX_MISSILES; i++){
@@ -177,48 +190,82 @@ int main(void){
 				}
       }
 
-      // Collision Detection
-
-      // Update Game State
-
       // Display Graphics
       Nokia5110_DisplayBuffer();
       Nokia5110_ClearBuffer();
   }
 }
 
+void Check_Projectile(Projectile *projectileList, int length){
+  for(int i = 0; i < length; i++){
+    if(projectileList[i].active == 1){
+      Projectile *projectile = &projectileList[i];
+      if (projectile->yPos < 0 || projectile->yPos > SCREENH || projectile->xPos < 0 || projectile->xPos > SCREENW){
+        projectile->active = 0;
+      }
+    }
+  }
+}
+
+void Check_Missile(){
+  Check_Projectile(Missiles, MAX_MISSILES);
+}
+
+void Check_Lasers(){
+  Check_Projectile(Lasers, MAX_LASERS);
+}
+
+void Update_Projectile_Position(Projectile *projectileList, int length){
+  for (int i = 0; i < length; i++){
+    Projectile *projectile = &projectileList[i];
+    if(projectile->active == 1){ // iterate through active projectiles
+      projectile->timeAlive += 1;
+      projectile->yPos =  (int)(projectile->dy * projectile->timeAlive + 0.5f);
+    }
+  }
+}
+
+void Update_Missile_Position(void){
+  Update_Projectile_Position(Missiles, MAX_MISSILES);
+}
+
+void Update_Laser_Position(void){
+  Update_Projectile_Position(Lasers, MAX_LASERS);
+}
+
+// searches projectile list for active status
+// bool - 1 for active, 0 for inactive
+// returns a NULL if nothing is found, a projectile pointer if found
+Projectile * Projectile_Search(Projectile *projectileList, int length, int state){
+  for (int i = 0; i < length; i++){
+    if(projectileList[i].active == state)
+      return &projectileList[i];
+  }
+  return NULL;
+}
+
+void Fire_Projectile(Projectile *projectileList, int length, Bitmap *bitmapObject, float velocity){
+  Projectile *projectile;
+  projectile = Projectile_Search(projectileList, length, 0); // search for inactive projectile
+  if (projectile != NULL){
+    projectile->sprite = bitmapObject;
+    projectile->active = 1;
+    projectile->xPos = PlayerShip.xPos + (PlayerShip.sprite->width - projectile->sprite->width) / 2; //center the projectile on the ship
+    projectile->yPos = PlayerShip.yPos - PlayerShip.sprite->height;
+    projectile->dx = 0; // leaving dx as an optional addition for later
+    projectile->dy = velocity;
+    projectile->timeAlive = 0;
+  }
+}
+
 // Fires missile
 void Fire_Missile(void){
-  // Search through the missile array for a missile that is active
-  int i = 0;
-  while (i < MAX_MISSILES && Missiles[i].active != 0){
-    i++;
-  }
-  if (i < MAX_MISSILES){ // i must be less than max missiles, if greater than we 
-    Missiles[i].sprite = &missile0;
-    Missiles[i].active = 1;
-    Missiles[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Missiles[i].sprite->width) / 2; //center the missile on the ship
-    Missiles[i].yPos = PlayerShip.yPos - PlayerShip.sprite->height;
-    Missiles[i].dx = MISSILEV;
-    Missiles[i].dy = 0; // not using dy, leaving as something optional to return to later on
-  }
+  Fire_Projectile(Missiles, MAX_MISSILES, &missile0, MISSILEV);
 }
 
 // Fires laser
 void Fire_Laser(void){
-  int i = 0;
-  while (i < MAX_LASERS && Lasers[i].active != 0){
-    i++;
-  }
-  if (i < MAX_LASERS){
-    Lasers[i].sprite = &laser0;
-    Lasers[i].active = 1;
-    Lasers[i].xPos = PlayerShip.xPos + (PlayerShip.sprite->width - Lasers[i].sprite->width) / 2; //center the missile on the ship
-    Lasers[i].yPos = PlayerShip.yPos - PlayerShip.sprite->height;
-    Lasers[i].dx = MISSILEV;
-    Lasers[i].dy = 0;
-  }
-
+  Fire_Projectile(Lasers, MAX_LASERS, &laser0, LASERV);
 }
 
 // Converts ADC to a position on the screen
