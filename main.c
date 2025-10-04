@@ -72,8 +72,8 @@
 #define MAX_MISSILES 10
 #define MAX_LASERS 20
 #define MAX_ENEMIES 20
-#define MISSILEV 1 // 1 pixel/tick
-#define LASERV 1 // 1 pixel/tick
+#define MISSILEV .05 // pixel/tick
+#define LASERV .05 // pixel/tick
 #define SMOOTH_DEN 8
 #define ADCMIN 2000
 #define ADCMAX 3400
@@ -90,6 +90,8 @@ void Fire_Missile(void);
 void Fire_Laser(void);
 void Update_Missile_Position(void);
 void Update_Laser_Position(void);
+void Check_Missiles(void);
+void Check_Lasers(void);
 
 typedef struct {
     const Bitmap *sprite; // these structs are exported in bitmaps.h
@@ -100,7 +102,8 @@ typedef struct {
 typedef struct {
   const Bitmap *sprite;
   unsigned int active;
-  unsigned int xPos, yPos;
+  unsigned int xPos, yPos; // stores the screen position
+	float xReal, yReal; // stores the actual position
   float dx, dy; // this will be pixels/tick
   int timeAlive; // time initial, time final
 } Projectile;
@@ -172,7 +175,7 @@ int main(void){
       Update_Laser_Position();
 
       // Out of bounds detection
-      Check_Missile();
+      Check_Missiles();
       Check_Lasers();
 
          // Draw Everything
@@ -207,7 +210,7 @@ void Check_Projectile(Projectile *projectileList, int length){
   }
 }
 
-void Check_Missile(){
+void Check_Missiles(){
   Check_Projectile(Missiles, MAX_MISSILES);
 }
 
@@ -219,8 +222,9 @@ void Update_Projectile_Position(Projectile *projectileList, int length){
   for (int i = 0; i < length; i++){
     Projectile *projectile = &projectileList[i];
     if(projectile->active == 1){ // iterate through active projectiles
-      projectile->timeAlive += 1;
-      projectile->yPos =  (int)(projectile->dy * projectile->timeAlive + 0.5f);
+      projectile->timeAlive++;
+			projectile->yReal -= projectile->dy; // subtract dy every frame, this is because we're doing this each tick, ie yo - dy * delta t
+      projectile->yPos =  (int)(projectile->yReal + 0.5f); // round up and then type cast
     }
   }
 }
@@ -236,7 +240,7 @@ void Update_Laser_Position(void){
 // searches projectile list for active status
 // bool - 1 for active, 0 for inactive
 // returns a NULL if nothing is found, a projectile pointer if found
-Projectile * Projectile_Search(Projectile *projectileList, int length, int state){
+Projectile * Projectile_Search(Projectile *projectileList, int length, unsigned int state){
   for (int i = 0; i < length; i++){
     if(projectileList[i].active == state)
       return &projectileList[i];
@@ -244,7 +248,7 @@ Projectile * Projectile_Search(Projectile *projectileList, int length, int state
   return NULL;
 }
 
-void Fire_Projectile(Projectile *projectileList, int length, Bitmap *bitmapObject, float velocity){
+void Fire_Projectile(Projectile *projectileList, int length, const Bitmap *bitmapObject, float velocity){
   Projectile *projectile;
   projectile = Projectile_Search(projectileList, length, 0); // search for inactive projectile
   if (projectile != NULL){
@@ -252,6 +256,8 @@ void Fire_Projectile(Projectile *projectileList, int length, Bitmap *bitmapObjec
     projectile->active = 1;
     projectile->xPos = PlayerShip.xPos + (PlayerShip.sprite->width - projectile->sprite->width) / 2; //center the projectile on the ship
     projectile->yPos = PlayerShip.yPos - PlayerShip.sprite->height;
+		projectile->xReal = projectile->xPos;
+		projectile->yReal = projectile->yPos;
     projectile->dx = 0; // leaving dx as an optional addition for later
     projectile->dy = velocity;
     projectile->timeAlive = 0;

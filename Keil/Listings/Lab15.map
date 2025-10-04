@@ -26,6 +26,10 @@ Section Cross References
     main.o(.text.main) refers to main.o(.text.Fire_Missile) for Fire_Missile
     main.o(.text.main) refers to buttons.o(.bss.LaserFlag) for LaserFlag
     main.o(.text.main) refers to main.o(.text.Fire_Laser) for Fire_Laser
+    main.o(.text.main) refers to main.o(.text.Update_Missile_Position) for Update_Missile_Position
+    main.o(.text.main) refers to main.o(.text.Update_Laser_Position) for Update_Laser_Position
+    main.o(.text.main) refers to main.o(.text.Check_Missiles) for Check_Missiles
+    main.o(.text.main) refers to main.o(.text.Check_Lasers) for Check_Lasers
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_PrintBMP) for Nokia5110_PrintBMP
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_DisplayBuffer) for Nokia5110_DisplayBuffer
     main.o(.text.main) refers to nokia5110.o(.text.Nokia5110_ClearBuffer) for Nokia5110_ClearBuffer
@@ -33,12 +37,30 @@ Section Cross References
     main.o(.ARM.exidx.text.SysTick_Init) refers to main.o(.text.SysTick_Init) for [Anonymous Symbol]
     main.o(.text.Fire_Missile) refers to main.o(.bss.Missiles) for Missiles
     main.o(.text.Fire_Missile) refers to bitmaps.o(.rodata.missile0) for missile0
-    main.o(.text.Fire_Missile) refers to main.o(.bss.PlayerShip) for PlayerShip
+    main.o(.text.Fire_Missile) refers to main.o(.text.Fire_Projectile) for Fire_Projectile
     main.o(.ARM.exidx.text.Fire_Missile) refers to main.o(.text.Fire_Missile) for [Anonymous Symbol]
     main.o(.text.Fire_Laser) refers to main.o(.bss.Lasers) for Lasers
     main.o(.text.Fire_Laser) refers to bitmaps.o(.rodata.laser0) for laser0
-    main.o(.text.Fire_Laser) refers to main.o(.bss.PlayerShip) for PlayerShip
+    main.o(.text.Fire_Laser) refers to main.o(.text.Fire_Projectile) for Fire_Projectile
     main.o(.ARM.exidx.text.Fire_Laser) refers to main.o(.text.Fire_Laser) for [Anonymous Symbol]
+    main.o(.text.Update_Missile_Position) refers to main.o(.bss.Missiles) for Missiles
+    main.o(.text.Update_Missile_Position) refers to main.o(.text.Update_Projectile_Position) for Update_Projectile_Position
+    main.o(.ARM.exidx.text.Update_Missile_Position) refers to main.o(.text.Update_Missile_Position) for [Anonymous Symbol]
+    main.o(.text.Update_Laser_Position) refers to main.o(.bss.Lasers) for Lasers
+    main.o(.text.Update_Laser_Position) refers to main.o(.text.Update_Projectile_Position) for Update_Projectile_Position
+    main.o(.ARM.exidx.text.Update_Laser_Position) refers to main.o(.text.Update_Laser_Position) for [Anonymous Symbol]
+    main.o(.text.Check_Missiles) refers to main.o(.bss.Missiles) for Missiles
+    main.o(.text.Check_Missiles) refers to main.o(.text.Check_Projectile) for Check_Projectile
+    main.o(.ARM.exidx.text.Check_Missiles) refers to main.o(.text.Check_Missiles) for [Anonymous Symbol]
+    main.o(.text.Check_Lasers) refers to main.o(.bss.Lasers) for Lasers
+    main.o(.text.Check_Lasers) refers to main.o(.text.Check_Projectile) for Check_Projectile
+    main.o(.ARM.exidx.text.Check_Lasers) refers to main.o(.text.Check_Lasers) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.Check_Projectile) refers to main.o(.text.Check_Projectile) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.Update_Projectile_Position) refers to main.o(.text.Update_Projectile_Position) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.Projectile_Search) refers to main.o(.text.Projectile_Search) for [Anonymous Symbol]
+    main.o(.text.Fire_Projectile) refers to main.o(.text.Projectile_Search) for Projectile_Search
+    main.o(.text.Fire_Projectile) refers to main.o(.bss.PlayerShip) for PlayerShip
+    main.o(.ARM.exidx.text.Fire_Projectile) refers to main.o(.text.Fire_Projectile) for [Anonymous Symbol]
     main.o(.text.Convert) refers to main.o(.bss.PlayerShip) for PlayerShip
     main.o(.ARM.exidx.text.Convert) refers to main.o(.text.Convert) for [Anonymous Symbol]
     main.o(.text.SysTick_Handler) refers to adc.o(.text.ADC0_In) for ADC0_In
@@ -300,6 +322,14 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.SysTick_Init), (8 bytes).
     Removing main.o(.ARM.exidx.text.Fire_Missile), (8 bytes).
     Removing main.o(.ARM.exidx.text.Fire_Laser), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Update_Missile_Position), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Update_Laser_Position), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Check_Missiles), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Check_Lasers), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Check_Projectile), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Update_Projectile_Position), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Projectile_Search), (8 bytes).
+    Removing main.o(.ARM.exidx.text.Fire_Projectile), (8 bytes).
     Removing main.o(.ARM.exidx.text.Convert), (8 bytes).
     Removing main.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
     Removing main.o(.rodata.LED1), (4 bytes).
@@ -432,7 +462,7 @@ Removing Unused input sections from the image.
     Removing system_tm4c123.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_tm4c123.o(.data.SystemCoreClock), (4 bytes).
 
-139 unused section(s) (total 22631 bytes) removed from the image.
+147 unused section(s) (total 22695 bytes) removed from the image.
 
 ==============================================================================
 
@@ -571,40 +601,48 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00000520   Section        0  adc.o(.text.ADC0_In)
     [Anonymous Symbol]                       0x00000568   Section        0  adc.o(.text.ADC0_Init)
     [Anonymous Symbol]                       0x00000654   Section        0  buttons.o(.text.Buttons_Init)
-    [Anonymous Symbol]                       0x00000760   Section        0  main.o(.text.Convert)
-    [Anonymous Symbol]                       0x000007bc   Section        0  dac.o(.text.DAC_Init)
-    [Anonymous Symbol]                       0x00000854   Section        0  dac.o(.text.DAC_Out)
-    [Anonymous Symbol]                       0x00000878   Section        0  main.o(.text.Fire_Laser)
-    [Anonymous Symbol]                       0x00000954   Section        0  main.o(.text.Fire_Missile)
-    [Anonymous Symbol]                       0x00000a30   Section        0  buttons.o(.text.GPIOE_Handler)
-    [Anonymous Symbol]                       0x00000a84   Section        0  led.o(.text.LED_Init)
-    [Anonymous Symbol]                       0x00000b18   Section        0  nokia5110.o(.text.Nokia5110_ClearBuffer)
-    [Anonymous Symbol]                       0x00000b48   Section        0  nokia5110.o(.text.Nokia5110_DisplayBuffer)
-    [Anonymous Symbol]                       0x00000b58   Section        0  nokia5110.o(.text.Nokia5110_DrawFullImage)
-    [Anonymous Symbol]                       0x00000b94   Section        0  nokia5110.o(.text.Nokia5110_Init)
-    [Anonymous Symbol]                       0x00000cf4   Section        0  nokia5110.o(.text.Nokia5110_PrintBMP)
-    [Anonymous Symbol]                       0x00000efc   Section        0  nokia5110.o(.text.Nokia5110_SetCursor)
-    [Anonymous Symbol]                       0x00000f48   Section        0  pll.o(.text.PLL_Init)
-    [Anonymous Symbol]                       0x00000fc8   Section        0  sound.o(.text.Play)
-    [Anonymous Symbol]                       0x00001034   Section        0  sound.o(.text.Sound_Init)
-    [Anonymous Symbol]                       0x00001064   Section        0  main.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x000010a8   Section        0  main.o(.text.SysTick_Init)
-    [Anonymous Symbol]                       0x000010ec   Section        0  system_tm4c123.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x000011f8   Section        0  timer0.o(.text.Timer0_Init)
-    [Anonymous Symbol]                       0x0000129c   Section        0  uart.o(.text.UART_Init)
-    lcdwrite                                 0x00001355   Thumb Code   144  nokia5110.o(.text.lcdwrite)
-    [Anonymous Symbol]                       0x00001354   Section        0  nokia5110.o(.text.lcdwrite)
-    [Anonymous Symbol]                       0x000013e4   Section        0  main.o(.text.main)
-    $v0                                      0x000015da   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x000015da   Section       26  fpinit.o(x$fpl$fpinit)
+    [Anonymous Symbol]                       0x00000760   Section        0  main.o(.text.Check_Lasers)
+    [Anonymous Symbol]                       0x00000774   Section        0  main.o(.text.Check_Missiles)
+    [Anonymous Symbol]                       0x00000788   Section        0  main.o(.text.Check_Projectile)
+    [Anonymous Symbol]                       0x00000800   Section        0  main.o(.text.Convert)
+    [Anonymous Symbol]                       0x0000085c   Section        0  dac.o(.text.DAC_Init)
+    [Anonymous Symbol]                       0x000008f4   Section        0  dac.o(.text.DAC_Out)
+    [Anonymous Symbol]                       0x00000918   Section        0  main.o(.text.Fire_Laser)
+    [Anonymous Symbol]                       0x0000093c   Section        0  main.o(.text.Fire_Missile)
+    [Anonymous Symbol]                       0x00000960   Section        0  main.o(.text.Fire_Projectile)
+    [Anonymous Symbol]                       0x000009f0   Section        0  buttons.o(.text.GPIOE_Handler)
+    [Anonymous Symbol]                       0x00000a44   Section        0  led.o(.text.LED_Init)
+    [Anonymous Symbol]                       0x00000ad8   Section        0  nokia5110.o(.text.Nokia5110_ClearBuffer)
+    [Anonymous Symbol]                       0x00000b08   Section        0  nokia5110.o(.text.Nokia5110_DisplayBuffer)
+    [Anonymous Symbol]                       0x00000b18   Section        0  nokia5110.o(.text.Nokia5110_DrawFullImage)
+    [Anonymous Symbol]                       0x00000b54   Section        0  nokia5110.o(.text.Nokia5110_Init)
+    [Anonymous Symbol]                       0x00000cb4   Section        0  nokia5110.o(.text.Nokia5110_PrintBMP)
+    [Anonymous Symbol]                       0x00000ebc   Section        0  nokia5110.o(.text.Nokia5110_SetCursor)
+    [Anonymous Symbol]                       0x00000f08   Section        0  pll.o(.text.PLL_Init)
+    [Anonymous Symbol]                       0x00000f88   Section        0  sound.o(.text.Play)
+    [Anonymous Symbol]                       0x00000ff4   Section        0  main.o(.text.Projectile_Search)
+    [Anonymous Symbol]                       0x00001048   Section        0  sound.o(.text.Sound_Init)
+    [Anonymous Symbol]                       0x00001078   Section        0  main.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x000010bc   Section        0  main.o(.text.SysTick_Init)
+    [Anonymous Symbol]                       0x00001100   Section        0  system_tm4c123.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x0000120c   Section        0  timer0.o(.text.Timer0_Init)
+    [Anonymous Symbol]                       0x000012b0   Section        0  uart.o(.text.UART_Init)
+    [Anonymous Symbol]                       0x00001368   Section        0  main.o(.text.Update_Laser_Position)
+    [Anonymous Symbol]                       0x0000137c   Section        0  main.o(.text.Update_Missile_Position)
+    [Anonymous Symbol]                       0x00001390   Section        0  main.o(.text.Update_Projectile_Position)
+    lcdwrite                                 0x00001401   Thumb Code   144  nokia5110.o(.text.lcdwrite)
+    [Anonymous Symbol]                       0x00001400   Section        0  nokia5110.o(.text.lcdwrite)
+    [Anonymous Symbol]                       0x00001490   Section        0  main.o(.text.main)
+    $v0                                      0x00001696   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x00001696   Section       26  fpinit.o(x$fpl$fpinit)
     M                                        0x20000000   Data           4  random.o(DATA)
     DATA                                     0x20000000   Section        4  random.o(DATA)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
-    Heap_Mem                                 0x20000568   Data           0  startup_tm4c123.o(HEAP)
-    Stack_Mem                                0x20000568   Data         512  startup_tm4c123.o(STACK)
-    HEAP                                     0x20000568   Section        0  startup_tm4c123.o(HEAP)
-    STACK                                    0x20000568   Section      512  startup_tm4c123.o(STACK)
-    __initial_sp                             0x20000768   Data           0  startup_tm4c123.o(STACK)
+    Heap_Mem                                 0x200006d0   Data           0  startup_tm4c123.o(HEAP)
+    Stack_Mem                                0x200006d0   Data         512  startup_tm4c123.o(STACK)
+    HEAP                                     0x200006d0   Section        0  startup_tm4c123.o(HEAP)
+    STACK                                    0x200006d0   Section      512  startup_tm4c123.o(STACK)
+    __initial_sp                             0x200008d0   Data           0  startup_tm4c123.o(STACK)
 
     Global Symbols
 
@@ -833,55 +871,63 @@ Image Symbol Table
     ADC0_In                                  0x00000521   Thumb Code    70  adc.o(.text.ADC0_In)
     ADC0_Init                                0x00000569   Thumb Code   234  adc.o(.text.ADC0_Init)
     Buttons_Init                             0x00000655   Thumb Code   266  buttons.o(.text.Buttons_Init)
-    Convert                                  0x00000761   Thumb Code    92  main.o(.text.Convert)
-    DAC_Init                                 0x000007bd   Thumb Code   150  dac.o(.text.DAC_Init)
-    DAC_Out                                  0x00000855   Thumb Code    36  dac.o(.text.DAC_Out)
-    Fire_Laser                               0x00000879   Thumb Code   220  main.o(.text.Fire_Laser)
-    Fire_Missile                             0x00000955   Thumb Code   220  main.o(.text.Fire_Missile)
-    GPIOE_Handler                            0x00000a31   Thumb Code    84  buttons.o(.text.GPIOE_Handler)
-    LED_Init                                 0x00000a85   Thumb Code   148  led.o(.text.LED_Init)
-    Nokia5110_ClearBuffer                    0x00000b19   Thumb Code    46  nokia5110.o(.text.Nokia5110_ClearBuffer)
-    Nokia5110_DisplayBuffer                  0x00000b49   Thumb Code    16  nokia5110.o(.text.Nokia5110_DisplayBuffer)
-    Nokia5110_DrawFullImage                  0x00000b59   Thumb Code    58  nokia5110.o(.text.Nokia5110_DrawFullImage)
-    Nokia5110_Init                           0x00000b95   Thumb Code   352  nokia5110.o(.text.Nokia5110_Init)
-    Nokia5110_PrintBMP                       0x00000cf5   Thumb Code   518  nokia5110.o(.text.Nokia5110_PrintBMP)
-    Nokia5110_SetCursor                      0x00000efd   Thumb Code    76  nokia5110.o(.text.Nokia5110_SetCursor)
-    PLL_Init                                 0x00000f49   Thumb Code   126  pll.o(.text.PLL_Init)
-    Play                                     0x00000fc9   Thumb Code   106  sound.o(.text.Play)
-    Sound_Init                               0x00001035   Thumb Code    46  sound.o(.text.Sound_Init)
-    SysTick_Handler                          0x00001065   Thumb Code    68  main.o(.text.SysTick_Handler)
-    SysTick_Init                             0x000010a9   Thumb Code    68  main.o(.text.SysTick_Init)
-    SystemInit                               0x000010ed   Thumb Code   268  system_tm4c123.o(.text.SystemInit)
-    Timer0_Init                              0x000011f9   Thumb Code   162  timer0.o(.text.Timer0_Init)
-    UART_Init                                0x0000129d   Thumb Code   182  uart.o(.text.UART_Init)
-    main                                     0x000013e5   Thumb Code   502  main.o(.text.main)
-    _fp_init                                 0x000015db   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x000015f3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x000015f3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Laser0                                   0x000015f4   Data         155  bitmaps.o(.rodata.Laser0)
-    Missile0                                 0x0000168f   Data         155  bitmaps.o(.rodata.Missile0)
-    PlayerShip0                              0x0000172a   Data         215  bitmaps.o(.rodata.PlayerShip0)
-    laser0                                   0x00001804   Data          12  bitmaps.o(.rodata.laser0)
-    missile0                                 0x00001810   Data          12  bitmaps.o(.rodata.missile0)
-    playerShip0                              0x0000181c   Data          12  bitmaps.o(.rodata.playerShip0)
-    Region$$Table$$Base                      0x00001828   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001848   Number         0  anon$$obj.o(Region$$Table)
+    Check_Lasers                             0x00000761   Thumb Code    18  main.o(.text.Check_Lasers)
+    Check_Missiles                           0x00000775   Thumb Code    18  main.o(.text.Check_Missiles)
+    Check_Projectile                         0x00000789   Thumb Code   120  main.o(.text.Check_Projectile)
+    Convert                                  0x00000801   Thumb Code    92  main.o(.text.Convert)
+    DAC_Init                                 0x0000085d   Thumb Code   150  dac.o(.text.DAC_Init)
+    DAC_Out                                  0x000008f5   Thumb Code    36  dac.o(.text.DAC_Out)
+    Fire_Laser                               0x00000919   Thumb Code    32  main.o(.text.Fire_Laser)
+    Fire_Missile                             0x0000093d   Thumb Code    32  main.o(.text.Fire_Missile)
+    Fire_Projectile                          0x00000961   Thumb Code   144  main.o(.text.Fire_Projectile)
+    GPIOE_Handler                            0x000009f1   Thumb Code    84  buttons.o(.text.GPIOE_Handler)
+    LED_Init                                 0x00000a45   Thumb Code   148  led.o(.text.LED_Init)
+    Nokia5110_ClearBuffer                    0x00000ad9   Thumb Code    46  nokia5110.o(.text.Nokia5110_ClearBuffer)
+    Nokia5110_DisplayBuffer                  0x00000b09   Thumb Code    16  nokia5110.o(.text.Nokia5110_DisplayBuffer)
+    Nokia5110_DrawFullImage                  0x00000b19   Thumb Code    58  nokia5110.o(.text.Nokia5110_DrawFullImage)
+    Nokia5110_Init                           0x00000b55   Thumb Code   352  nokia5110.o(.text.Nokia5110_Init)
+    Nokia5110_PrintBMP                       0x00000cb5   Thumb Code   518  nokia5110.o(.text.Nokia5110_PrintBMP)
+    Nokia5110_SetCursor                      0x00000ebd   Thumb Code    76  nokia5110.o(.text.Nokia5110_SetCursor)
+    PLL_Init                                 0x00000f09   Thumb Code   126  pll.o(.text.PLL_Init)
+    Play                                     0x00000f89   Thumb Code   106  sound.o(.text.Play)
+    Projectile_Search                        0x00000ff5   Thumb Code    84  main.o(.text.Projectile_Search)
+    Sound_Init                               0x00001049   Thumb Code    46  sound.o(.text.Sound_Init)
+    SysTick_Handler                          0x00001079   Thumb Code    68  main.o(.text.SysTick_Handler)
+    SysTick_Init                             0x000010bd   Thumb Code    68  main.o(.text.SysTick_Init)
+    SystemInit                               0x00001101   Thumb Code   268  system_tm4c123.o(.text.SystemInit)
+    Timer0_Init                              0x0000120d   Thumb Code   162  timer0.o(.text.Timer0_Init)
+    UART_Init                                0x000012b1   Thumb Code   182  uart.o(.text.UART_Init)
+    Update_Laser_Position                    0x00001369   Thumb Code    18  main.o(.text.Update_Laser_Position)
+    Update_Missile_Position                  0x0000137d   Thumb Code    18  main.o(.text.Update_Missile_Position)
+    Update_Projectile_Position               0x00001391   Thumb Code   110  main.o(.text.Update_Projectile_Position)
+    main                                     0x00001491   Thumb Code   518  main.o(.text.main)
+    _fp_init                                 0x00001697   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x000016af   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x000016af   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Laser0                                   0x000016b0   Data         155  bitmaps.o(.rodata.Laser0)
+    Missile0                                 0x0000174b   Data         155  bitmaps.o(.rodata.Missile0)
+    PlayerShip0                              0x000017e6   Data         215  bitmaps.o(.rodata.PlayerShip0)
+    laser0                                   0x000018c0   Data          12  bitmaps.o(.rodata.laser0)
+    missile0                                 0x000018cc   Data          12  bitmaps.o(.rodata.missile0)
+    playerShip0                              0x000018d8   Data          12  bitmaps.o(.rodata.playerShip0)
+    Region$$Table$$Base                      0x000018e4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001904   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     ADCdata                                  0x20000068   Data           4  main.o(.bss.ADCdata)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
     Count                                    0x2000006c   Data           4  sound.o(.bss.Count)
     Index                                    0x20000070   Data           4  sound.o(.bss.Index)
     LaserFlag                                0x20000074   Data           1  buttons.o(.bss.LaserFlag)
-    Lasers                                   0x20000078   Data         480  main.o(.bss.Lasers)
-    MissileFlag                              0x20000258   Data           1  buttons.o(.bss.MissileFlag)
-    Missiles                                 0x2000025c   Data         240  main.o(.bss.Missiles)
-    PeriodicTask                             0x2000034c   Data           4  timer0.o(.bss.PeriodicTask)
-    PlayerShip                               0x20000350   Data          16  main.o(.bss.PlayerShip)
-    Screen                                   0x20000360   Data         504  nokia5110.o(.bss.Screen)
-    SmoothedADC                              0x20000558   Data           4  main.o(.bss.SmoothedADC)
-    Wave                                     0x2000055c   Data           4  sound.o(.bss.Wave)
-    Xpos                                     0x20000560   Data           4  main.o(.bss.Xpos)
-    XposFlag                                 0x20000564   Data           4  main.o(.bss.XposFlag)
+    Lasers                                   0x20000078   Data         720  main.o(.bss.Lasers)
+    MissileFlag                              0x20000348   Data           1  buttons.o(.bss.MissileFlag)
+    Missiles                                 0x2000034c   Data         360  main.o(.bss.Missiles)
+    PeriodicTask                             0x200004b4   Data           4  timer0.o(.bss.PeriodicTask)
+    PlayerShip                               0x200004b8   Data          16  main.o(.bss.PlayerShip)
+    Screen                                   0x200004c8   Data         504  nokia5110.o(.bss.Screen)
+    SmoothedADC                              0x200006c0   Data           4  main.o(.bss.SmoothedADC)
+    Wave                                     0x200006c4   Data           4  sound.o(.bss.Wave)
+    Xpos                                     0x200006c8   Data           4  main.o(.bss.Xpos)
+    XposFlag                                 0x200006cc   Data           4  main.o(.bss.XposFlag)
 
 
 
@@ -891,155 +937,168 @@ Memory Map of the image
 
   Image Entry point : 0x00000391
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x0000184c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001908, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001848, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00001904, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x0000026c   Data   RO          254    RESET               startup_tm4c123.o
-    0x0000026c   0x0000026c   0x00000008   Code   RO          277  * !!!main             c_w.l(__main.o)
-    0x00000274   0x00000274   0x0000005c   Code   RO          442    !!!scatter          c_w.l(__scatter.o)
-    0x000002d0   0x000002d0   0x0000001a   Code   RO          446    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000000   0x00000000   0x0000026c   Data   RO          270    RESET               startup_tm4c123.o
+    0x0000026c   0x0000026c   0x00000008   Code   RO          293  * !!!main             c_w.l(__main.o)
+    0x00000274   0x00000274   0x0000005c   Code   RO          458    !!!scatter          c_w.l(__scatter.o)
+    0x000002d0   0x000002d0   0x0000001a   Code   RO          462    !!handler_copy      c_w.l(__scatter_copy.o)
     0x000002ea   0x000002ea   0x00000002   PAD
-    0x000002ec   0x000002ec   0x00000002   Code   RO          443    !!handler_null      c_w.l(__scatter.o)
+    0x000002ec   0x000002ec   0x00000002   Code   RO          459    !!handler_null      c_w.l(__scatter.o)
     0x000002ee   0x000002ee   0x00000002   PAD
-    0x000002f0   0x000002f0   0x0000001c   Code   RO          448    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x0000030c   0x0000030c   0x00000002   Code   RO          304    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0000030e   0x0000030e   0x00000004   Code   RO          310    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          313    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          315    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          318    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          320    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          322    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          325    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          327    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          329    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          331    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          333    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          335    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          337    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          339    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          341    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          343    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          345    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          349    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          351    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          353    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000000   Code   RO          355    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x00000312   0x00000312   0x00000002   Code   RO          356    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x00000314   0x00000314   0x00000002   Code   RO          378    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          393    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          395    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          398    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          401    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          403    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000000   Code   RO          406    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x00000316   0x00000316   0x00000002   Code   RO          407    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x00000318   0x00000318   0x00000000   Code   RO          279    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x00000318   0x00000318   0x00000000   Code   RO          281    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x00000318   0x00000318   0x00000006   Code   RO          293    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0000031e   0x0000031e   0x00000000   Code   RO          283    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x0000031e   0x0000031e   0x00000004   Code   RO          284    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x00000322   0x00000322   0x00000000   Code   RO          286    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x00000322   0x00000322   0x00000008   Code   RO          287    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0000032a   0x0000032a   0x00000002   Code   RO          308    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x0000032c   0x0000032c   0x00000000   Code   RO          358    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x0000032c   0x0000032c   0x00000004   Code   RO          359    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000330   0x00000330   0x00000006   Code   RO          360    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002f0   0x000002f0   0x0000001c   Code   RO          464    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x0000030c   0x0000030c   0x00000002   Code   RO          320    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0000030e   0x0000030e   0x00000004   Code   RO          326    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          329    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          331    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          334    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          336    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          338    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          341    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          343    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          345    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          347    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          349    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          351    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          353    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          355    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          357    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          359    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          361    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          365    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          367    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          369    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000000   Code   RO          371    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x00000312   0x00000312   0x00000002   Code   RO          372    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x00000314   0x00000314   0x00000002   Code   RO          394    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          409    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          411    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          414    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          417    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          419    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000000   Code   RO          422    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x00000316   0x00000316   0x00000002   Code   RO          423    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x00000318   0x00000318   0x00000000   Code   RO          295    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x00000318   0x00000318   0x00000000   Code   RO          297    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x00000318   0x00000318   0x00000006   Code   RO          309    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0000031e   0x0000031e   0x00000000   Code   RO          299    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x0000031e   0x0000031e   0x00000004   Code   RO          300    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x00000322   0x00000322   0x00000000   Code   RO          302    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x00000322   0x00000322   0x00000008   Code   RO          303    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0000032a   0x0000032a   0x00000002   Code   RO          324    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x0000032c   0x0000032c   0x00000000   Code   RO          374    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x0000032c   0x0000032c   0x00000004   Code   RO          375    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000330   0x00000330   0x00000006   Code   RO          376    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x00000336   0x00000336   0x00000002   PAD
-    0x00000338   0x00000338   0x0000003c   Code   RO           87    .text               random.o
-    0x00000374   0x00000374   0x0000001a   Code   RO          132    .text               startup.o
+    0x00000338   0x00000338   0x0000003c   Code   RO          103    .text               random.o
+    0x00000374   0x00000374   0x0000001a   Code   RO          148    .text               startup.o
     0x0000038e   0x0000038e   0x00000002   PAD
-    0x00000390   0x00000390   0x00000114   Code   RO          255  * .text               startup_tm4c123.o
-    0x000004a4   0x000004a4   0x00000006   Code   RO          275    .text               c_w.l(heapauxi.o)
-    0x000004aa   0x000004aa   0x0000004a   Code   RO          295    .text               c_w.l(sys_stackheap_outer.o)
-    0x000004f4   0x000004f4   0x00000012   Code   RO          297    .text               c_w.l(exit.o)
+    0x00000390   0x00000390   0x00000114   Code   RO          271  * .text               startup_tm4c123.o
+    0x000004a4   0x000004a4   0x00000006   Code   RO          291    .text               c_w.l(heapauxi.o)
+    0x000004aa   0x000004aa   0x0000004a   Code   RO          311    .text               c_w.l(sys_stackheap_outer.o)
+    0x000004f4   0x000004f4   0x00000012   Code   RO          313    .text               c_w.l(exit.o)
     0x00000506   0x00000506   0x00000002   PAD
-    0x00000508   0x00000508   0x00000008   Code   RO          305    .text               c_w.l(libspace.o)
-    0x00000510   0x00000510   0x0000000c   Code   RO          368    .text               c_w.l(sys_exit.o)
-    0x0000051c   0x0000051c   0x00000002   Code   RO          383    .text               c_w.l(use_no_semi.o)
-    0x0000051e   0x0000051e   0x00000000   Code   RO          385    .text               c_w.l(indicate_semi.o)
+    0x00000508   0x00000508   0x00000008   Code   RO          321    .text               c_w.l(libspace.o)
+    0x00000510   0x00000510   0x0000000c   Code   RO          384    .text               c_w.l(sys_exit.o)
+    0x0000051c   0x0000051c   0x00000002   Code   RO          399    .text               c_w.l(use_no_semi.o)
+    0x0000051e   0x0000051e   0x00000000   Code   RO          401    .text               c_w.l(indicate_semi.o)
     0x0000051e   0x0000051e   0x00000002   PAD
     0x00000520   0x00000520   0x00000046   Code   RO            4    .text.ADC0_In       adc.o
     0x00000566   0x00000566   0x00000002   PAD
     0x00000568   0x00000568   0x000000ea   Code   RO            2    .text.ADC0_Init     adc.o
     0x00000652   0x00000652   0x00000002   PAD
-    0x00000654   0x00000654   0x0000010a   Code   RO          138    .text.Buttons_Init  buttons.o
+    0x00000654   0x00000654   0x0000010a   Code   RO          154    .text.Buttons_Init  buttons.o
     0x0000075e   0x0000075e   0x00000002   PAD
-    0x00000760   0x00000760   0x0000005c   Code   RO           21    .text.Convert       main.o
-    0x000007bc   0x000007bc   0x00000096   Code   RO          151    .text.DAC_Init      dac.o
-    0x00000852   0x00000852   0x00000002   PAD
-    0x00000854   0x00000854   0x00000024   Code   RO          153    .text.DAC_Out       dac.o
-    0x00000878   0x00000878   0x000000dc   Code   RO           19    .text.Fire_Laser    main.o
-    0x00000954   0x00000954   0x000000dc   Code   RO           17    .text.Fire_Missile  main.o
-    0x00000a30   0x00000a30   0x00000054   Code   RO          140    .text.GPIOE_Handler  buttons.o
-    0x00000a84   0x00000a84   0x00000094   Code   RO          162    .text.LED_Init      led.o
-    0x00000b18   0x00000b18   0x0000002e   Code   RO           61    .text.Nokia5110_ClearBuffer  nokia5110.o
-    0x00000b46   0x00000b46   0x00000002   PAD
-    0x00000b48   0x00000b48   0x00000010   Code   RO           67    .text.Nokia5110_DisplayBuffer  nokia5110.o
-    0x00000b58   0x00000b58   0x0000003a   Code   RO           57    .text.Nokia5110_DrawFullImage  nokia5110.o
-    0x00000b92   0x00000b92   0x00000002   PAD
-    0x00000b94   0x00000b94   0x00000160   Code   RO           43    .text.Nokia5110_Init  nokia5110.o
-    0x00000cf4   0x00000cf4   0x00000206   Code   RO           59    .text.Nokia5110_PrintBMP  nokia5110.o
-    0x00000efa   0x00000efa   0x00000002   PAD
-    0x00000efc   0x00000efc   0x0000004c   Code   RO           53    .text.Nokia5110_SetCursor  nokia5110.o
-    0x00000f48   0x00000f48   0x0000007e   Code   RO           79    .text.PLL_Init      pll.o
-    0x00000fc6   0x00000fc6   0x00000002   PAD
-    0x00000fc8   0x00000fc8   0x0000006a   Code   RO           93    .text.Play          sound.o
-    0x00001032   0x00001032   0x00000002   PAD
-    0x00001034   0x00001034   0x0000002e   Code   RO           95    .text.Sound_Init    sound.o
-    0x00001062   0x00001062   0x00000002   PAD
-    0x00001064   0x00001064   0x00000044   Code   RO           23    .text.SysTick_Handler  main.o
-    0x000010a8   0x000010a8   0x00000044   Code   RO           15    .text.SysTick_Init  main.o
-    0x000010ec   0x000010ec   0x0000010c   Code   RO          264    .text.SystemInit    system_tm4c123.o
-    0x000011f8   0x000011f8   0x000000a2   Code   RO          175    .text.Timer0_Init   timer0.o
-    0x0000129a   0x0000129a   0x00000002   PAD
-    0x0000129c   0x0000129c   0x000000b6   Code   RO          234    .text.UART_Init     uart.o
-    0x00001352   0x00001352   0x00000002   PAD
-    0x00001354   0x00001354   0x00000090   Code   RO           45    .text.lcdwrite      nokia5110.o
-    0x000013e4   0x000013e4   0x000001f6   Code   RO           13    .text.main          main.o
-    0x000015da   0x000015da   0x0000001a   Code   RO          366    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x000015f4   0x000015f4   0x0000009b   Data   RO          206    .rodata.Laser0      bitmaps.o
-    0x0000168f   0x0000168f   0x0000009b   Data   RO          203    .rodata.Missile0    bitmaps.o
-    0x0000172a   0x0000172a   0x000000d7   Data   RO          193    .rodata.PlayerShip0  bitmaps.o
-    0x00001801   0x00001801   0x00000003   PAD
-    0x00001804   0x00001804   0x0000000c   Data   RO          227    .rodata.laser0      bitmaps.o
-    0x00001810   0x00001810   0x0000000c   Data   RO          224    .rodata.missile0    bitmaps.o
-    0x0000181c   0x0000181c   0x0000000c   Data   RO          214    .rodata.playerShip0  bitmaps.o
-    0x00001828   0x00001828   0x00000020   Data   RO          441    Region$$Table       anon$$obj.o
+    0x00000760   0x00000760   0x00000012   Code   RO           27    .text.Check_Lasers  main.o
+    0x00000772   0x00000772   0x00000002   PAD
+    0x00000774   0x00000774   0x00000012   Code   RO           25    .text.Check_Missiles  main.o
+    0x00000786   0x00000786   0x00000002   PAD
+    0x00000788   0x00000788   0x00000078   Code   RO           29    .text.Check_Projectile  main.o
+    0x00000800   0x00000800   0x0000005c   Code   RO           37    .text.Convert       main.o
+    0x0000085c   0x0000085c   0x00000096   Code   RO          167    .text.DAC_Init      dac.o
+    0x000008f2   0x000008f2   0x00000002   PAD
+    0x000008f4   0x000008f4   0x00000024   Code   RO          169    .text.DAC_Out       dac.o
+    0x00000918   0x00000918   0x00000024   Code   RO           19    .text.Fire_Laser    main.o
+    0x0000093c   0x0000093c   0x00000024   Code   RO           17    .text.Fire_Missile  main.o
+    0x00000960   0x00000960   0x00000090   Code   RO           35    .text.Fire_Projectile  main.o
+    0x000009f0   0x000009f0   0x00000054   Code   RO          156    .text.GPIOE_Handler  buttons.o
+    0x00000a44   0x00000a44   0x00000094   Code   RO          178    .text.LED_Init      led.o
+    0x00000ad8   0x00000ad8   0x0000002e   Code   RO           77    .text.Nokia5110_ClearBuffer  nokia5110.o
+    0x00000b06   0x00000b06   0x00000002   PAD
+    0x00000b08   0x00000b08   0x00000010   Code   RO           83    .text.Nokia5110_DisplayBuffer  nokia5110.o
+    0x00000b18   0x00000b18   0x0000003a   Code   RO           73    .text.Nokia5110_DrawFullImage  nokia5110.o
+    0x00000b52   0x00000b52   0x00000002   PAD
+    0x00000b54   0x00000b54   0x00000160   Code   RO           59    .text.Nokia5110_Init  nokia5110.o
+    0x00000cb4   0x00000cb4   0x00000206   Code   RO           75    .text.Nokia5110_PrintBMP  nokia5110.o
+    0x00000eba   0x00000eba   0x00000002   PAD
+    0x00000ebc   0x00000ebc   0x0000004c   Code   RO           69    .text.Nokia5110_SetCursor  nokia5110.o
+    0x00000f08   0x00000f08   0x0000007e   Code   RO           95    .text.PLL_Init      pll.o
+    0x00000f86   0x00000f86   0x00000002   PAD
+    0x00000f88   0x00000f88   0x0000006a   Code   RO          109    .text.Play          sound.o
+    0x00000ff2   0x00000ff2   0x00000002   PAD
+    0x00000ff4   0x00000ff4   0x00000054   Code   RO           33    .text.Projectile_Search  main.o
+    0x00001048   0x00001048   0x0000002e   Code   RO          111    .text.Sound_Init    sound.o
+    0x00001076   0x00001076   0x00000002   PAD
+    0x00001078   0x00001078   0x00000044   Code   RO           39    .text.SysTick_Handler  main.o
+    0x000010bc   0x000010bc   0x00000044   Code   RO           15    .text.SysTick_Init  main.o
+    0x00001100   0x00001100   0x0000010c   Code   RO          280    .text.SystemInit    system_tm4c123.o
+    0x0000120c   0x0000120c   0x000000a2   Code   RO          191    .text.Timer0_Init   timer0.o
+    0x000012ae   0x000012ae   0x00000002   PAD
+    0x000012b0   0x000012b0   0x000000b6   Code   RO          250    .text.UART_Init     uart.o
+    0x00001366   0x00001366   0x00000002   PAD
+    0x00001368   0x00001368   0x00000012   Code   RO           23    .text.Update_Laser_Position  main.o
+    0x0000137a   0x0000137a   0x00000002   PAD
+    0x0000137c   0x0000137c   0x00000012   Code   RO           21    .text.Update_Missile_Position  main.o
+    0x0000138e   0x0000138e   0x00000002   PAD
+    0x00001390   0x00001390   0x0000006e   Code   RO           31    .text.Update_Projectile_Position  main.o
+    0x000013fe   0x000013fe   0x00000002   PAD
+    0x00001400   0x00001400   0x00000090   Code   RO           61    .text.lcdwrite      nokia5110.o
+    0x00001490   0x00001490   0x00000206   Code   RO           13    .text.main          main.o
+    0x00001696   0x00001696   0x0000001a   Code   RO          382    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x000016b0   0x000016b0   0x0000009b   Data   RO          222    .rodata.Laser0      bitmaps.o
+    0x0000174b   0x0000174b   0x0000009b   Data   RO          219    .rodata.Missile0    bitmaps.o
+    0x000017e6   0x000017e6   0x000000d7   Data   RO          209    .rodata.PlayerShip0  bitmaps.o
+    0x000018bd   0x000018bd   0x00000003   PAD
+    0x000018c0   0x000018c0   0x0000000c   Data   RO          243    .rodata.laser0      bitmaps.o
+    0x000018cc   0x000018cc   0x0000000c   Data   RO          240    .rodata.missile0    bitmaps.o
+    0x000018d8   0x000018d8   0x0000000c   Data   RO          230    .rodata.playerShip0  bitmaps.o
+    0x000018e4   0x000018e4   0x00000020   Data   RO          457    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001848, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001904, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00001848   0x00000004   Data   RW           86    DATA                random.o
+    0x20000000   0x00001904   0x00000004   Data   RW          102    DATA                random.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x0000184c, Size: 0x00000760, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x00001908, Size: 0x000008c8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000008        -       0x00000060   Zero   RW          306    .bss                c_w.l(libspace.o)
-    0x20000068        -       0x00000004   Zero   RW           33    .bss.ADCdata        main.o
-    0x2000006c        -       0x00000004   Zero   RW          124    .bss.Count          sound.o
-    0x20000070        -       0x00000004   Zero   RW          123    .bss.Index          sound.o
-    0x20000074        -       0x00000001   Zero   RW          143    .bss.LaserFlag      buttons.o
-    0x20000075   0x0000184c   0x00000003   PAD
-    0x20000078        -       0x000001e0   Zero   RW           30    .bss.Lasers         main.o
-    0x20000258        -       0x00000001   Zero   RW          142    .bss.MissileFlag    buttons.o
-    0x20000259   0x0000184c   0x00000003   PAD
-    0x2000025c        -       0x000000f0   Zero   RW           29    .bss.Missiles       main.o
-    0x2000034c        -       0x00000004   Zero   RW          179    .bss.PeriodicTask   timer0.o
-    0x20000350        -       0x00000010   Zero   RW           28    .bss.PlayerShip     main.o
-    0x20000360        -       0x000001f8   Zero   RW           71    .bss.Screen         nokia5110.o
-    0x20000558        -       0x00000004   Zero   RW           27    .bss.SmoothedADC    main.o
-    0x2000055c        -       0x00000004   Zero   RW          125    .bss.Wave           sound.o
-    0x20000560        -       0x00000004   Zero   RW           32    .bss.Xpos           main.o
-    0x20000564        -       0x00000004   Zero   RW           31    .bss.XposFlag       main.o
-    0x20000568        -       0x00000000   Zero   RW          253    HEAP                startup_tm4c123.o
-    0x20000568        -       0x00000200   Zero   RW          252    STACK               startup_tm4c123.o
+    0x20000008        -       0x00000060   Zero   RW          322    .bss                c_w.l(libspace.o)
+    0x20000068        -       0x00000004   Zero   RW           49    .bss.ADCdata        main.o
+    0x2000006c        -       0x00000004   Zero   RW          140    .bss.Count          sound.o
+    0x20000070        -       0x00000004   Zero   RW          139    .bss.Index          sound.o
+    0x20000074        -       0x00000001   Zero   RW          159    .bss.LaserFlag      buttons.o
+    0x20000075   0x00001908   0x00000003   PAD
+    0x20000078        -       0x000002d0   Zero   RW           46    .bss.Lasers         main.o
+    0x20000348        -       0x00000001   Zero   RW          158    .bss.MissileFlag    buttons.o
+    0x20000349   0x00001908   0x00000003   PAD
+    0x2000034c        -       0x00000168   Zero   RW           45    .bss.Missiles       main.o
+    0x200004b4        -       0x00000004   Zero   RW          195    .bss.PeriodicTask   timer0.o
+    0x200004b8        -       0x00000010   Zero   RW           44    .bss.PlayerShip     main.o
+    0x200004c8        -       0x000001f8   Zero   RW           87    .bss.Screen         nokia5110.o
+    0x200006c0        -       0x00000004   Zero   RW           43    .bss.SmoothedADC    main.o
+    0x200006c4        -       0x00000004   Zero   RW          141    .bss.Wave           sound.o
+    0x200006c8        -       0x00000004   Zero   RW           48    .bss.Xpos           main.o
+    0x200006cc        -       0x00000004   Zero   RW           47    .bss.XposFlag       main.o
+    0x200006d0        -       0x00000000   Zero   RW          269    HEAP                startup_tm4c123.o
+    0x200006d0        -       0x00000200   Zero   RW          268    STACK               startup_tm4c123.o
 
 
 ==============================================================================
@@ -1054,7 +1113,7 @@ Image component sizes
        350          0          0          0          2        874   buttons.o
        186          0          0          0          0        709   dac.o
        148          0          0          0          0        849   led.o
-      1170          0          0          0        752       2768   main.o
+      1348          8          0          0       1112       4102   main.o
       1210          4          0          0        504       4294   nokia5110.o
        126          0          0          0          0        550   pll.o
         60         14          0          4          0        268   random.o
@@ -1066,9 +1125,9 @@ Image component sizes
        182          0          0          0          0       1468   uart.o
 
     ----------------------------------------------------------------------
-      4646         42       1216          4       1792      30059   Object Totals
+      4834         50       1216          4       2152      31393   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        26          0          3          0          6          0   (incl. Padding)
+        36          0          3          0          6          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1117,15 +1176,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5000         58       1216          4       1888      30471   Grand Totals
-      5000         58       1216          4       1888      30471   ELF Image Totals
-      5000         58       1216          4          0          0   ROM Totals
+      5188         66       1216          4       2248      31805   Grand Totals
+      5188         66       1216          4       2248      31805   ELF Image Totals
+      5188         66       1216          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 6216 (   6.07kB)
-    Total RW  Size (RW Data + ZI Data)              1892 (   1.85kB)
-    Total ROM Size (Code + RO Data + RW Data)       6220 (   6.07kB)
+    Total RO  Size (Code + RO Data)                 6404 (   6.25kB)
+    Total RW  Size (RW Data + ZI Data)              2252 (   2.20kB)
+    Total ROM Size (Code + RO Data + RW Data)       6408 (   6.26kB)
 
 ==============================================================================
 
