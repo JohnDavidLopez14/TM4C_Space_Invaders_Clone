@@ -71,16 +71,21 @@
 #define PB5 (1 << 5)
 #define MAX_MISSILES 10
 #define MAX_LASERS 20
-#define MAX_ENEMIES 20
 #define MISSILEV .05 // pixel/tick
 #define LASERV .05 // pixel/tick
 #define SMOOTH_DEN 8
 #define ADCMIN 2000
 #define ADCMAX 3400
+#define MAX_WAVES 4
+#define WAVEV .001
+#define VWAVESPACING 14
+#define MAX_WAVE_ENEMIES 5
+#define MAX_ENEMIES (MAX_WAVES * MAX_WAVE_ENEMIES) // can only fit enemies across the screen max
 
 // Global Constants
 const uint32_t LED1 = PB4;
 const uint32_t LED2 = PB5;
+unsigned int enemySpawn = 5000;
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -92,31 +97,48 @@ void Update_Missile_Position(void);
 void Update_Laser_Position(void);
 void Check_Missiles(void);
 void Check_Lasers(void);
+void SpawnWave(int *);
 
 typedef struct {
     const Bitmap *sprite; // these structs are exported in bitmaps.h
     unsigned int health;
     unsigned int xPos, yPos;
-} Entity;
+} Player;
 
 typedef struct {
   const Bitmap *sprite;
   unsigned int active;
   unsigned int xPos, yPos; // stores the screen position
 	float xReal, yReal; // stores the actual position
-  float dx, dy; // this will be pixels/tick
-  int timeAlive; // time initial, time final
+  float dy; // this will be pixels/tick
 } Projectile;
 
+typedef struct{
+  unsigned int active;
+  unsigned int xPos;
+  float xReal;
+} Enemy;
+
+typedef struct{
+  unsigned int active;
+  Enemy *enemyList;
+  unsigned int listLength;
+  unsigned int yPos;
+  float yReal;
+  float dy;
+} Wave;
+
 // Global Variables
-unsigned long ADCdata;
-unsigned long SmoothedADC = 0;
-unsigned long XposFlag;
-unsigned long Xpos;
-Entity PlayerShip; // global namespace since its parameters are being used in Convert
+volatile unsigned long ADCdata;
+volatile unsigned long SmoothedADC = 0;
+volatile int XposFlag = 0;
+volatile unsigned long Xpos;
+volatile int EnemyFlag = 0;
+Player PlayerShip; // global namespace since its parameters are being used in Convert
 Projectile Missiles[MAX_MISSILES]; // pre-allocated missile array, probably move these into the main namespace
 Projectile Lasers[MAX_LASERS];
-Entity Enemies[MAX_ENEMIES];
+Enemy Enemies[MAX_ENEMIES];
+Wave Waves[MAX_WAVES];
 
 int main(void){
   UART_Init();
@@ -138,13 +160,41 @@ int main(void){
 
   // Initialize missile array
   for (int i = 0; i < MAX_MISSILES; i++){
-    Missiles[i].active = 0;
+    Projectile *missile = &Missiles[i];
+    missile->sprite = &missile0;
+    missile->active = 0;
+    missile->xPos = 0;
+    missile->yPos = 0;
+    missile->xReal = 0;
+    missile->yReal = 0;
+    missile->dy = 0;
   }
 
   // Initialize laser array
   for (int i = 0; i < MAX_LASERS; i++){
-    Lasers[i].active = 0;
+    Projectile *laser = &Lasers[i];
+    laser->sprite = &laser0;
+    laser->active = 0;
+    laser->xPos = 0;
+    laser->yPos = 0;
+    laser->xReal = 0;
+    laser->yReal = 0;
+    laser->dy = 0;
   }
+
+  // Initialize wave array
+  for (int i = 0; i < MAX_WAVES; i++){
+    Wave *wave = &Waves[i];
+    wave->active = 0;
+    wave->enemyList = &Enemies[i * MAX_WAVE_ENEMIES];
+    wave->listLength = 0;
+    wave->yPos = 0;
+    wave->yReal = 0;
+    wave->dy = 0;
+  }
+
+  // used to keep track of most recent wave that has been spawned
+  int currentWaveIndex = -1;
 
   while(1){ // main code logic
       // Read Inputs / Poll Flags
@@ -155,18 +205,18 @@ int main(void){
 
       if (MissileFlag){
         MissileFlag = 0; // clear the missile flag
-        Fire_Missile();
+        Fire_Missile(); // sets missile to active and initializes parameters
       }
 
       if (LaserFlag){
         LaserFlag = 0; // clear the laser flag
-        Fire_Laser();
+        Fire_Laser(); // sets laser to active and initializes parameters
       }
 
-      // if (EnemyFlag){ // this will be a timer ISR to set the flag to spawn more enemies
-      //  enemyFlag = 0;
-      //  spawnEnemies();
-      //}
+      if (EnemyFlag){ // need to initialize a timer to set this flag later on
+        EnemyFlag = 0;
+        SpawnWave(&currentWaveIndex);
+      }
 
       // Collision Detection
 
@@ -199,6 +249,38 @@ int main(void){
   }
 }
 
+// Searches for a Wave that is inactive
+// returns the inactive wave and sets currentWaveIndex to that Wave's index
+Wave *WaveSearch(Wave *waveList, unsigned int length, int *currentWaveIndex){
+  for(unsigned int i = 0; i < length; i++){
+    Wave *currentWave = &waveList[i];
+    if(currentWave->active == 0){
+      *currentWaveIndex = i;
+      return currentWave;
+    }
+  }
+  return NULL;
+}
+
+// initializes the enemies
+void InitializeWaveEnemeies(Wave *waveList,int *currentWaveIndex,unsigned long enemyNumber){
+  for (int i; i < enemyNumber; i++){
+
+  }
+}
+
+void SpawnWave(int *currentWaveIndex){
+  // if the no waves are spawned, the most recent wave in active, or if the most recent wave is far enough down the screen to spawn a new wave
+  if (currentWaveIndex == -1 || Waves[*currentWaveIndex].active == 0 || Waves[*currentWaveIndex].yPos > VWAVESPACING){
+    Wave *currentWave;
+    currentWave = waveSearch(Waves, MAX_WAVES, currentWaveIndex);
+    if (currentWave != NULL){ // if we have a wave available to spawn
+      unsigned long enemyNumber = (Random() % 5);
+      InitializeWaveEnemeies(Waves, currentWaveIndex, enemyNumber);
+    }
+  }
+}
+
 void Check_Projectile(Projectile *projectileList, int length){
   for(int i = 0; i < length; i++){
     if(projectileList[i].active == 1){
@@ -222,7 +304,6 @@ void Update_Projectile_Position(Projectile *projectileList, int length){
   for (int i = 0; i < length; i++){
     Projectile *projectile = &projectileList[i];
     if(projectile->active == 1){ // iterate through active projectiles
-      projectile->timeAlive++;
 			projectile->yReal -= projectile->dy; // subtract dy every frame, this is because we're doing this each tick, ie yo - dy * delta t
       projectile->yPos =  (int)(projectile->yReal + 0.5f); // round up and then type cast
     }
@@ -258,9 +339,7 @@ void Fire_Projectile(Projectile *projectileList, int length, const Bitmap *bitma
     projectile->yPos = PlayerShip.yPos - PlayerShip.sprite->height;
 		projectile->xReal = projectile->xPos;
 		projectile->yReal = projectile->yPos;
-    projectile->dx = 0; // leaving dx as an optional addition for later
     projectile->dy = velocity;
-    projectile->timeAlive = 0;
   }
 }
 
@@ -301,4 +380,10 @@ void SysTick_Handler(void){
   SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure exactly how this works
   Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
   XposFlag = 1; // set mail box
+
+  // enemy spawn shoved int Systick until I create another timer to handle this
+  enemySpawn--;
+  if (enemySpawn == 0){
+    EnemyFlag = 0;
+  }
 }
