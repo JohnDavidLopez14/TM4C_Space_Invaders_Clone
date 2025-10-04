@@ -81,6 +81,7 @@
 #define VWAVESPACING 14
 #define MAX_WAVE_ENEMIES 5
 #define MAX_ENEMIES (MAX_WAVES * MAX_WAVE_ENEMIES) // can only fit enemies across the screen max
+#define ENEMYWIDTH 16
 
 // Global Constants
 const uint32_t LED1 = PB4;
@@ -263,20 +264,31 @@ Wave *WaveSearch(Wave *waveList, unsigned int length, int *currentWaveIndex){
 }
 
 // initializes the enemies
-void InitializeWaveEnemeies(Wave *waveList,int *currentWaveIndex,unsigned long enemyNumber){
-  for (int i; i < enemyNumber; i++){
+void InitializeWave(Wave *currentWave,int *currentWaveIndex,unsigned long enemyNumber, float velocity){
+  // Initialize wave
+  currentWave->active = 1;
+  currentWave->dy = velocity;
+  currentWave->listLength = enemyNumber;
+  currentWave->yPos = 0;
+  currentWave->yReal = (float) currentWave->yPos;
 
+  // initialize wave enemies
+  int spacing = (SCREENW - enemyNumber * ENEMYWIDTH);
+  for (int i = 0; i < currentWave->listLength; i++){
+    Enemy *currentEnemy = &currentWave->enemyList[i];
+    currentEnemy->active = 1;
+    currentEnemy->xPos = 0; // need to figure out the gaps to center them 1 to 5
+    currentEnemy->xReal = (float) currentEnemy->xPos;
   }
 }
 
 void SpawnWave(int *currentWaveIndex){
   // if the no waves are spawned, the most recent wave in active, or if the most recent wave is far enough down the screen to spawn a new wave
   if (currentWaveIndex == -1 || Waves[*currentWaveIndex].active == 0 || Waves[*currentWaveIndex].yPos > VWAVESPACING){
-    Wave *currentWave;
-    currentWave = waveSearch(Waves, MAX_WAVES, currentWaveIndex);
+    Wave *currentWave = waveSearch(Waves, MAX_WAVES, currentWaveIndex);
     if (currentWave != NULL){ // if we have a wave available to spawn
       unsigned long enemyNumber = (Random() % 5);
-      InitializeWaveEnemeies(Waves, currentWaveIndex, enemyNumber);
+      InitializeWave(currentWave, currentWaveIndex, enemyNumber, WAVEV);
     }
   }
 }
