@@ -274,7 +274,7 @@ unsigned int EnemySpacing(int enemyNumber, int enemyIndex){
 
 
 // initializes the enemies
-void InitializeWave(Wave *currentWave,int *currentWaveIndex,unsigned long enemyNumber, float velocity){
+void InitializeWave(Wave *currentWave,unsigned long enemyNumber, float velocity){
   // Initialize wave
   currentWave->active = 1;
   currentWave->dy = velocity;
@@ -297,7 +297,7 @@ void SpawnWave(int *currentWaveIndex){
     Wave *currentWave = WaveSearch(Waves, MAX_WAVES, currentWaveIndex);
     if (currentWave != NULL){ // if we have a wave available to spawn
       unsigned long enemyNumber = (Random() % 5) + 1;
-      InitializeWave(currentWave, currentWaveIndex, enemyNumber, WAVEV);
+      InitializeWave(currentWave, enemyNumber, WAVEV);
     }
   }
 }
