@@ -263,6 +263,16 @@ Wave *WaveSearch(Wave *waveList, unsigned int length, int *currentWaveIndex){
   return NULL;
 }
 
+
+// generate a location for the enemy given the number of enemies and which enemy
+unsigned int EnemySpacing(int enemyNumber, int enemyIndex){
+  float totalWidth = enemyNumber * ENEMYWIDTH;
+  float spacing = (SCREENW - totalWidth) / (enemyNumber + 1.0f);
+  float x = spacing * (enemyIndex + 1) + ENEMYWIDTH * enemyIndex;
+  return (unsigned int)(x + 0.5f);  // round to nearest int
+}
+
+
 // initializes the enemies
 void InitializeWave(Wave *currentWave,int *currentWaveIndex,unsigned long enemyNumber, float velocity){
   // Initialize wave
@@ -273,21 +283,20 @@ void InitializeWave(Wave *currentWave,int *currentWaveIndex,unsigned long enemyN
   currentWave->yReal = (float) currentWave->yPos;
 
   // initialize wave enemies
-  int spacing = (SCREENW - enemyNumber * ENEMYWIDTH);
   for (int i = 0; i < currentWave->listLength; i++){
     Enemy *currentEnemy = &currentWave->enemyList[i];
     currentEnemy->active = 1;
-    currentEnemy->xPos = 0; // need to figure out the gaps to center them 1 to 5
+    currentEnemy->xPos = EnemySpacing(enemyNumber, i);
     currentEnemy->xReal = (float) currentEnemy->xPos;
   }
 }
 
 void SpawnWave(int *currentWaveIndex){
   // if the no waves are spawned, the most recent wave in active, or if the most recent wave is far enough down the screen to spawn a new wave
-  if (currentWaveIndex == -1 || Waves[*currentWaveIndex].active == 0 || Waves[*currentWaveIndex].yPos > VWAVESPACING){
-    Wave *currentWave = waveSearch(Waves, MAX_WAVES, currentWaveIndex);
+  if (*currentWaveIndex == -1 || Waves[*currentWaveIndex].active == 0 || Waves[*currentWaveIndex].yPos > VWAVESPACING){
+    Wave *currentWave = WaveSearch(Waves, MAX_WAVES, currentWaveIndex);
     if (currentWave != NULL){ // if we have a wave available to spawn
-      unsigned long enemyNumber = (Random() % 5);
+      unsigned long enemyNumber = (Random() % 5) + 1;
       InitializeWave(currentWave, currentWaveIndex, enemyNumber, WAVEV);
     }
   }
