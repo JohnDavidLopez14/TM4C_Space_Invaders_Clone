@@ -54,6 +54,7 @@
 // Include macros
 // library
 #include <stdint.h>
+#include <stddef.h>
 #include <stdio.h>
 // hardware
 #include "hardware/tm4c123gh6pm.h"
@@ -62,6 +63,7 @@
 #include "hardware/LED.h"
 #include "hardware/PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "hardware/Sound.h"
+#include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
 #include "hardware/UART.h"
 // game logic
@@ -74,24 +76,14 @@
 // Constant macros
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
-#define SMOOTH_DEN 8
-#define ADCMIN 2000
-#define ADCMAX 3400
 
 // Global Constants
 const uint32_t LED1 = PB4;
 const uint32_t LED2 = PB5;
 
-// Global Variables
-volatile unsigned long ADCdata;
-volatile unsigned long SmoothedADC = 0;
-volatile int XposFlag = 0;
-volatile unsigned long Xpos;
-
 // Function Prototypes
 void DisableInterrupts(void);
 void EnableInterrupts(void);
-void SysTick_Init(void);
 
 int main(void){
   // Hardware Initialization
@@ -102,7 +94,6 @@ int main(void){
   Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
   LED_Init(); // initialize PB4:5 for LED output
   Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
-  SysTick_Init();
   ADC0_Init();  // initialize ADC on PE2 / AIN1
   Random_Init(1);
 
@@ -111,6 +102,7 @@ int main(void){
   // Player Initialization
   Player_Init();
   Player* playerShip = Get_Player();
+  SysTick_Init(playerShip);
   
 
   // Projectile Initialization
@@ -151,50 +143,16 @@ int main(void){
          // Draw Everything
       Nokia5110_PrintBMP(playerShip->xPos, playerShip->yPos, playerShip->sprite->bmp, 0);
       
-      int i = 0;
-      while (Missiles[i] != NULL){
+      for (int i = 0; Missiles[i] != NULL; i++){
         Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
-        i++;
       }
 
-      int i = 0;
-      while (Lasers[i] != NULL){
+      for (int i = 0; Lasers[i] != NULL; i++){
         Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
-        i++;
       }
 
       // Display Graphics
       Nokia5110_DisplayBuffer();
       Nokia5110_ClearBuffer();
   }
-}
-
-
-// Converts ADC to a position on the screen
-unsigned long Convert(unsigned long sample){
-  if (sample < ADCMIN){
-    sample = ADCMIN;
-  }
-  if (sample > ADCMAX){
-    sample = ADCMAX;
-  }
-  unsigned long xMax = SCREENW - playerShip->sprite->width;
-  unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
-  return result;
-}
-
-// Initialize SysTick interrupts to trigger at 40 Hz, 25 ms
-void SysTick_Init(void){
-  NVIC_ST_CTRL_R = 0;                                             // turn off Systick
-  NVIC_ST_CURRENT_R = 0;                                          // clear the counter
-  NVIC_SYS_PRI3_R = (NVIC_SYS_PRI3_R & 0x00FFFFFF) | 0x40000000;  // set priority 2
-  NVIC_ST_RELOAD_R = 0x1E847F; // 2000000 - 1 in hex, this is allowed since reload is 24 bits
-  NVIC_ST_CTRL_R |= 0x07; // enable systic, system clock, interrupt generation
-}
-// executes every 25 ms, collects a sample, converts and stores in mailbox
-void SysTick_Handler(void){ 
-  ADCdata = ADC0_In();
-  SmoothedADC = (SmoothedADC * 7 + ADCdata) / SMOOTH_DEN; // ADC smoothing, not sure exactly how this works
-  Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
-  XposFlag = 1; // set mail box
 }

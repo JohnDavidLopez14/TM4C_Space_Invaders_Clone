@@ -1,1 +1,1 @@
-./objects/bitmaps.o: ..\bitmaps.c ..\bitmaps.h
+./objects/bitmaps.o: ..\gameLogic\bitmaps.c ..\gameLogic\bitmaps.h

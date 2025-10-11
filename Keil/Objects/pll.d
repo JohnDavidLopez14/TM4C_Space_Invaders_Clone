@@ -1,1 +1,2 @@
-./objects/pll.o: ..\PLL.c ..\PLL.h ..\tm4c123gh6pm.h
+./objects/pll.o: ..\hardware\PLL.c ..\hardware\PLL.h \
+  ..\hardware\tm4c123gh6pm.h

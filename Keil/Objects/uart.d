@@ -1,1 +1,2 @@
-./objects/uart.o: ..\UART.c ..\tm4c123gh6pm.h ..\UART.h
+./objects/uart.o: ..\hardware\UART.c ..\hardware\tm4c123gh6pm.h \
+  ..\hardware\UART.h

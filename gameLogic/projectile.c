@@ -6,12 +6,12 @@
 #define LASERV .05 // pixel/tick
 #define DEFAULT_LASER_BMP &laser0
 #define DEFAULT_MISSILE_BMP &missile0
-
-Projectile *Missiles[MAX_MISSILES + 1]; // pre-allocated missile array, probably move these into the main namespace
-Projectile MissileStorage[MAX_LASERS];
-Projectile *Lasers[MAX_LASERS + 1];
-Projectile LaserStorage[MAX_LASERS];
-Player *PlayerShip;
+// pre-allocated missile array, probably move these into the main namespace
+static Projectile MissileStorage[MAX_LASERS];
+static Projectile *Lasers[MAX_LASERS + 1];
+static Projectile LaserStorage[MAX_LASERS];
+static Projectile *Missiles[MAX_MISSILES + 1]; // 
+static Player *PlayerShip;
 
 void Projectile_Init(Player *playerShip){
   // store player bitmap into global
@@ -45,12 +45,12 @@ void Projectile_Init(Player *playerShip){
 }
 
 // return pointer to a null terminated array
-Projectile* Get_Missiles(){
+Projectile** Get_Missiles(void){
   return Missiles;
 }
 
 // return pointer to a null terminated array
-Projectile* Get_Lasers(){
+Projectile** Get_Lasers(void){
   return Lasers;
 }
 
@@ -66,7 +66,7 @@ Projectile *Projectile_Search(Projectile **projectileList, unsigned int state){
   return NULL;
 }
 
-void Fire_Projectile(Projectile **projectileList, float velocity, Bitmap *bitmapObject){
+void Fire_Projectile(Projectile **projectileList, float velocity, const Bitmap *bitmapObject){
   Projectile *projectile;
   projectile = Projectile_Search(projectileList, 0); // search for inactive projectile
   if (projectile != NULL){
@@ -121,10 +121,10 @@ void Check_Projectile_OOB(Projectile **projectileList){
   }
 }
 
-void Check_Missile_OOB(void){
+void Check_Missiles_OOB(void){
   Check_Projectile_OOB(Missiles);
 }
 
-void Check_Laser_OOB(void){
+void Check_Lasers_OOB(void){
   Check_Projectile_OOB(Lasers);
 }

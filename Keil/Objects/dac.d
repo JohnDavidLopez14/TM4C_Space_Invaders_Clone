@@ -1,1 +1,2 @@
-./objects/dac.o: ..\DAC.c ..\DAC.h ..\tm4c123gh6pm.h
+./objects/dac.o: ..\hardware\DAC.c ..\hardware\DAC.h \
+  ..\hardware\tm4c123gh6pm.h

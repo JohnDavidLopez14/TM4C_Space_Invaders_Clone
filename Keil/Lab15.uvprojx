@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>..\..\Lab15</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -382,132 +382,172 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>hardware</GroupName>
           <Files>
             <File>
               <FileName>ADC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ADC.c</FilePath>
+              <FilePath>..\hardware\ADC.c</FilePath>
             </File>
             <File>
               <FileName>ADC.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\ADC.h</FilePath>
-            </File>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>Nokia5110.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Nokia5110.c</FilePath>
-            </File>
-            <File>
-              <FileName>Nokia5110.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Nokia5110.h</FilePath>
-            </File>
-            <File>
-              <FileName>PLL.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\PLL.c</FilePath>
-            </File>
-            <File>
-              <FileName>PLL.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\PLL.h</FilePath>
-            </File>
-            <File>
-              <FileName>random.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\random.h</FilePath>
-            </File>
-            <File>
-              <FileName>random.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\random.s</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Sound.c</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Sound.h</FilePath>
-            </File>
-            <File>
-              <FileName>startup.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\startup.s</FilePath>
-            </File>
-            <File>
-              <FileName>tm4c123gh6pm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\tm4c123gh6pm.h</FilePath>
+              <FilePath>..\hardware\ADC.h</FilePath>
             </File>
             <File>
               <FileName>Buttons.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Buttons.c</FilePath>
+              <FilePath>..\hardware\Buttons.c</FilePath>
             </File>
             <File>
               <FileName>Buttons.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Buttons.h</FilePath>
+              <FilePath>..\hardware\Buttons.h</FilePath>
             </File>
             <File>
               <FileName>DAC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\DAC.c</FilePath>
+              <FilePath>..\hardware\DAC.c</FilePath>
             </File>
             <File>
               <FileName>DAC.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\DAC.h</FilePath>
+              <FilePath>..\hardware\DAC.h</FilePath>
             </File>
             <File>
               <FileName>LED.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\LED.c</FilePath>
+              <FilePath>..\hardware\LED.c</FilePath>
             </File>
             <File>
               <FileName>LED.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\LED.h</FilePath>
+              <FilePath>..\hardware\LED.h</FilePath>
+            </File>
+            <File>
+              <FileName>Nokia5110.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\Nokia5110.c</FilePath>
+            </File>
+            <File>
+              <FileName>Nokia5110.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\hardware\Nokia5110.h</FilePath>
+            </File>
+            <File>
+              <FileName>PLL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\PLL.c</FilePath>
+            </File>
+            <File>
+              <FileName>PLL.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\hardware\PLL.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sound.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\Sound.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sound.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\hardware\Sound.h</FilePath>
+            </File>
+            <File>
+              <FileName>startup.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\hardware\startup.s</FilePath>
+            </File>
+            <File>
+              <FileName>SysTick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hardware\SysTick.c</FilePath>
+            </File>
+            <File>
+              <FileName>SysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\hardware\SysTick.h</FilePath>
             </File>
             <File>
               <FileName>Timer0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Timer0.c</FilePath>
+              <FilePath>..\hardware\Timer0.c</FilePath>
             </File>
             <File>
               <FileName>Timer0.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Timer0.h</FilePath>
+              <FilePath>..\hardware\Timer0.h</FilePath>
             </File>
             <File>
-              <FileName>bitmaps.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\bitmaps.c</FilePath>
-            </File>
-            <File>
-              <FileName>bitmaps.h</FileName>
+              <FileName>tm4c123gh6pm.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\bitmaps.h</FilePath>
+              <FilePath>..\hardware\tm4c123gh6pm.h</FilePath>
             </File>
             <File>
               <FileName>UART.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\UART.c</FilePath>
+              <FilePath>..\hardware\UART.c</FilePath>
             </File>
             <File>
               <FileName>UART.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\UART.h</FilePath>
+              <FilePath>..\hardware\UART.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>gameLogic</GroupName>
+          <Files>
+            <File>
+              <FileName>bitmaps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\gameLogic\bitmaps.c</FilePath>
+            </File>
+            <File>
+              <FileName>bitmaps.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\bitmaps.h</FilePath>
+            </File>
+            <File>
+              <FileName>player.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\gameLogic\player.c</FilePath>
+            </File>
+            <File>
+              <FileName>player.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\player.h</FilePath>
+            </File>
+            <File>
+              <FileName>projectile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\gameLogic\projectile.c</FilePath>
+            </File>
+            <File>
+              <FileName>projectile.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\projectile.h</FilePath>
+            </File>
+            <File>
+              <FileName>random.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\random.h</FilePath>
+            </File>
+            <File>
+              <FileName>random.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\gameLogic\random.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -3,7 +3,7 @@
 #define DEFAULT_BMP &playerShip0
 #define DEFAULT_HEALTH 100
 
-Player PlayerShip;
+static Player PlayerShip;
 
 void Player_Init(void){
     PlayerShip.sprite = DEFAULT_BMP;

@@ -3,6 +3,7 @@
 
 // Pre-Processor Includes
 #include <stdint.h>
+#include <stddef.h>
 #include "hardware/Nokia5110.h"
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/player.h"
@@ -18,11 +19,13 @@ typedef struct {
 
 // Prototypes
 void Projectile_Init(Player *);
+Projectile **Get_Missiles(void);
+Projectile **Get_Lasers(void);
 void Fire_Missile(void);
 void Fire_Laser(void);
 void Update_Missile_Position(void);
 void Update_Laser_Position(void);
-void Check_Missile_OOB(void);
-void Check_Laser_OOB(void);
+void Check_Missiles_OOB(void);
+void Check_Lasers_OOB(void);
 
 #endif
