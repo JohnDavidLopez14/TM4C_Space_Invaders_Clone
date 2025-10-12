@@ -21,29 +21,48 @@ void Enemies_Init(void){
   Enemies[MAX_ENEMIES] = NULL;
 }
 
-// searches for inactive enemy and then spawns it if available
-void Spawn_Enemy(int uHealth, Bitmap *bitmapStruct, int x, int y, int xVelocity, int yVelocity){
+Enemy **Get_Enemies(void){
+  return Enemies;
+}
+
+Enemy *Enemy_Search(bool state){
   for (int i = 0; Enemies[i] != NULL; i++){
-    if (Enemies[i] && Enemies[i]->active == true){
-      Enemies[i]->health = uHealth;
-      Enemies[i]->sprite = bitmapStruct;
-      Enemies[i]->xReal = x;
-      Enemies[i]->xPos = x;
-      Enemies[i]->yReal = y;
-      Enemies[i]->yPos = y;
-      Enemies[i]->dx = xVelocity;
-      Enemies[i]->dy = yVelocity;
-      return;
-    }
+    if (Enemies[i]->active == state)
+      return Enemies[i];
+  }
+  return NULL;
+}
+
+// searches for inactive enemy and then spawns it if available
+void Spawn_Enemy(int uHealth, const Bitmap *bitmapStruct, int x, int y, int xVelocity, int yVelocity){
+  Enemy *enemy;
+  enemy = Enemy_Search(false);
+  if (enemy != NULL){
+    enemy->active = true;
+    enemy->sprite = bitmapStruct;
+    enemy->health = uHealth;
+    enemy->xReal = x;
+    enemy->yReal = y;
+    enemy->xPos = x;
+    enemy->yPos = y;
+    enemy->dx = xVelocity;
+    enemy->dy = yVelocity;
   }
 }
 
-void Enemy_Spacing(int enemyNumber,int enemyTotalWidth , int enemyIndex){
-
+int Enemy_Spacing(int enemyNumber,int enemyWidth, int enemyIndex){
+  int enemyTotalWidth = enemyWidth * enemyNumber;
+  if (SCREENW < enemyTotalWidth)
+    return -1;
+  float spacing = (SCREENW - enemyTotalWidth) / (enemyNumber + 1.0f);
+  float xPos = spacing * (enemyIndex + 1) + enemyWidth * enemyIndex;
+  return (int) (xPos + 0.5f);
 }
 
-void Spawn_Enemies(int enemyNumber, int uHealth, Bitmap *bitmapStruct, int y, int xVelocity, int yVelocity){
+void Spawn_Enemies(int enemyNumber, int uHealth, const Bitmap *bitmapStruct, int y, float xVelocity, float yVelocity){
   for (int i = 0; i < enemyNumber; i++){
-    Spawn_Enemy(uHealth, bitmapStruct, 911, y, xVelocity, yVelocity);
+    int xPos = Enemy_Spacing(enemyNumber, bitmapStruct->width, i);
+    if (xPos > 0)
+      Spawn_Enemy(uHealth, bitmapStruct, xPos, y, xVelocity, yVelocity);
   }
 }

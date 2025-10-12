@@ -68,6 +68,7 @@
 #include "hardware/UART.h"
 // game logic
 #include "gameLogic/bitmaps.h"
+#include "gameLogic/enemies.h"
 #include "gameLogic/player.h"
 #include "gameLogic/projectile.h"
 #include "gameLogic/random.h"
@@ -83,6 +84,8 @@ const uint32_t LED2 = PB5;
 static Player *PlayerShip;
 static Projectile **Missiles;
 static Projectile **Lasers;
+static Enemy **Enemies;
+
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -119,14 +122,23 @@ void Draw_State(void){
   // Player Ship
   Nokia5110_PrintBMP(PlayerShip->xPos, PlayerShip->yPos, PlayerShip->sprite->bmp, 0);
 
+  // Enemies
+  for (int i = 0; Enemies[i] != NULL; i++){
+    if (Enemies[i]->active)
+      Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
+  }
+
   // Missiles
-  for (int i = 0; Missiles[i] != NULL; i++){
-    Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
+  for (int i = 0; Missiles[i] != NULL; i++)
+  {
+    if (Missiles[i]->active)
+      Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
   }
 
   // Lasers
   for (int i = 0; Lasers[i] != NULL; i++){
-    Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
+    if (Lasers[i]->active)
+      Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
   }
 }
 
@@ -147,12 +159,21 @@ int main(void){
   Player_Init();
   PlayerShip = Get_Player();
   SysTick_Init(PlayerShip);
-  
 
+  // Enemy Initialization
+  Enemies_Init();
+  Enemies = Get_Enemies();
+  
   // Projectile Initialization
   Projectile_Init(PlayerShip);
   Missiles = Get_Missiles(); // returns a null terminated array
   Lasers = Get_Lasers(); // returns a null terminated array
+
+  // This is for testing
+  Spawn_Enemies(5, 100, &smallEnemy10PointA, smallEnemy10PointA.height, .01, .01);
+  Spawn_Enemies(4, 100, &smallEnemy10PointA, smallEnemy10PointB.height * 2, .01, .01);
+  Spawn_Enemies(3, 100, &smallEnemy10PointA, smallEnemy20PointA.height * 3, .01, .01);
+  Spawn_Enemies(2, 100, &smallEnemy10PointA, smallEnemy20PointB.height * 4, .01, .01);
 
   EnableInterrupts();
   while(1){ // main code logic

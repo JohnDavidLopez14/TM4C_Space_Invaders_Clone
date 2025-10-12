@@ -3,6 +3,7 @@
 
 // Pre-Processor Includes
 #include <stddef.h>
+#include <stdbool.h>
 #include "hardware/Nokia5110.h"
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/player.h"
@@ -10,7 +11,7 @@
 // Global Data Types
 typedef struct {
   const Bitmap *sprite;
-  unsigned int active;
+  bool active;
   unsigned int xPos, yPos; // stores the screen position
 	float xReal, yReal; // stores the actual position
   float dy; // this will be pixels/tick

@@ -1,16 +1,16 @@
 #include "gameLogic/projectile.h"
 
-#define MAX_MISSILES 10
-#define MAX_LASERS 20
+#define MAX_MISSILES 4
+#define MAX_LASERS 4
 #define MISSILEV .05 // pixsel/tick
 #define LASERV .05 // pixel/tick
 #define DEFAULT_LASER_BMP &laser0
 #define DEFAULT_MISSILE_BMP &missile0
 
-static Projectile MissileStorage[MAX_LASERS];
+static Projectile MissileStorage[MAX_MISSILES];
+static Projectile *Missiles[MAX_MISSILES + 1];
 static Projectile *Lasers[MAX_LASERS + 1];
 static Projectile LaserStorage[MAX_LASERS];
-static Projectile *Missiles[MAX_MISSILES + 1]; // 
 static Player *PlayerShip;
 
 void Projectile_Init(Player *playerShip){
@@ -21,7 +21,7 @@ void Projectile_Init(Player *playerShip){
   for (int i = 0; i < MAX_MISSILES; i++){
     Missiles[i] = &MissileStorage[i];
     Missiles[i]->sprite = &missile0;
-    Missiles[i]->active = 0;
+    Missiles[i]->active = false;
     Missiles[i]->xPos = 0;
     Missiles[i]->yPos = 0;
     Missiles[i]->xReal = 0;
@@ -34,7 +34,7 @@ void Projectile_Init(Player *playerShip){
   for (int i = 0; i < MAX_LASERS; i++){
     Lasers[i] = &LaserStorage[i];
     Lasers[i]->sprite = &laser0;
-    Lasers[i]->active = 0;
+    Lasers[i]->active = false;
     Lasers[i]->xPos = 0;
     Lasers[i]->yPos = 0;
     Lasers[i]->xReal = 0;
@@ -45,19 +45,19 @@ void Projectile_Init(Player *playerShip){
 }
 
 // return pointer to a null terminated array
-Projectile** Get_Missiles(void){
+Projectile **Get_Missiles(void){
   return Missiles;
 }
 
 // return pointer to a null terminated array
-Projectile** Get_Lasers(void){
+Projectile **Get_Lasers(void){
   return Lasers;
 }
 
 // searches projectile list for active status
 // bool - 1 for active, 0 for inactive
 // returns a NULL if nothing is found, a projectile pointer if found
-Projectile *Projectile_Search(Projectile **projectileList, unsigned int state){
+Projectile *Projectile_Search(Projectile **projectileList, bool state){
   for (int i = 0;projectileList[i] != NULL; i++){
     if (projectileList[i]->active == state){
       return projectileList[i];
@@ -68,10 +68,10 @@ Projectile *Projectile_Search(Projectile **projectileList, unsigned int state){
 
 void Fire_Projectile(Projectile **projectileList, float velocity, const Bitmap *bitmapStruct){
   Projectile *projectile;
-  projectile = Projectile_Search(projectileList, 0); // search for inactive projectile
+  projectile = Projectile_Search(projectileList, false); // search for inactive projectile
   if (projectile != NULL){
     projectile->sprite = bitmapStruct;
-    projectile->active = 1;
+    projectile->active = true;
     projectile->xPos = PlayerShip->xPos + (PlayerShip->sprite->width - projectile->sprite->width) / 2; //center the projectile on the ship
     projectile->yPos = PlayerShip->yPos - PlayerShip->sprite->height;
 		projectile->xReal = projectile->xPos;
@@ -92,7 +92,7 @@ void Fire_Laser(void){
 
 void Update_Projectile_Position(Projectile **projectileList){
   for (int i = 0;projectileList[i] != NULL; i++){
-    if(projectileList[i]->active == 1){ // iterate through active projectiles
+    if(projectileList[i]->active == true){ // iterate through active projectiles
       projectileList[i]->yReal -= projectileList[i]->dy; // subtract dy every frame, each tick is t, ie y0 - dy * dt
       projectileList[i]->yPos = (int)(projectileList[i]->yReal + 0.5f); // round up and then type cast
     }
@@ -115,7 +115,7 @@ void Check_Projectile_OOB(Projectile **projectileList){
   for (int i = 0;projectileList[i] != NULL; i++){
     if (projectileList[i]->active){
       if (Is_Out_Of_Bounds(projectileList[i]->xPos, projectileList[i]->yPos, SCREENW, SCREENH)){
-        projectileList[i]->active = 0;
+        projectileList[i]->active = false;
       }
     }
   }
