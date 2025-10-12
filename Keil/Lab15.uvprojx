@@ -539,6 +539,16 @@
               <FileType>2</FileType>
               <FilePath>..\gameLogic\random.s</FilePath>
             </File>
+            <File>
+              <FileName>enemies.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\gameLogic\enemies.c</FilePath>
+            </File>
+            <File>
+              <FileName>enemies.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\enemies.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

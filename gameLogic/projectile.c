@@ -66,11 +66,11 @@ Projectile *Projectile_Search(Projectile **projectileList, unsigned int state){
   return NULL;
 }
 
-void Fire_Projectile(Projectile **projectileList, float velocity, const Bitmap *bitmapObject){
+void Fire_Projectile(Projectile **projectileList, float velocity, const Bitmap *bitmapStruct){
   Projectile *projectile;
   projectile = Projectile_Search(projectileList, 0); // search for inactive projectile
   if (projectile != NULL){
-    projectile->sprite = bitmapObject;
+    projectile->sprite = bitmapStruct;
     projectile->active = 1;
     projectile->xPos = PlayerShip->xPos + (PlayerShip->sprite->width - projectile->sprite->width) / 2; //center the projectile on the ship
     projectile->yPos = PlayerShip->yPos - PlayerShip->sprite->height;

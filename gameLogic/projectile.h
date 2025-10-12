@@ -2,7 +2,6 @@
 #define PROJECTILE_H
 
 // Pre-Processor Includes
-#include <stdint.h>
 #include <stddef.h>
 #include "hardware/Nokia5110.h"
 #include "gameLogic/bitmaps.h"

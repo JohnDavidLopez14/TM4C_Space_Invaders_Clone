@@ -133,7 +133,6 @@ void Draw_State(void){
 int main(void){
   // Hardware Initialization
   UART_Init();
-  EnableInterrupts();
   PLL_Init(); // set to 80 mHz
   Nokia5110_Init();
   Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
@@ -155,6 +154,7 @@ int main(void){
   Missiles = Get_Missiles(); // returns a null terminated array
   Lasers = Get_Lasers(); // returns a null terminated array
 
+  EnableInterrupts();
   while(1){ // main code logic
     Poll_Flags(); // Read Inputs / Poll Flags// Collision Detection
     Update_Game_State();// Update Game State
