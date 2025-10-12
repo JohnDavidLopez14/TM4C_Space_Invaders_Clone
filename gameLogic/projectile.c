@@ -57,7 +57,7 @@ Projectile **Get_Lasers(void){
 // searches projectile list for active status
 // bool - 1 for active, 0 for inactive
 // returns a NULL if nothing is found, a projectile pointer if found
-Projectile *Projectile_Search(Projectile **projectileList, bool state){
+Projectile *Find_First_Projectile_By_State(Projectile **projectileList, bool state){
   for (int i = 0;projectileList[i] != NULL; i++){
     if (projectileList[i]->active == state){
       return projectileList[i];
@@ -68,7 +68,7 @@ Projectile *Projectile_Search(Projectile **projectileList, bool state){
 
 void Fire_Projectile(Projectile **projectileList, float velocity, const Bitmap *bitmapStruct){
   Projectile *projectile;
-  projectile = Projectile_Search(projectileList, false); // search for inactive projectile
+  projectile = Find_First_Projectile_By_State(projectileList, false); // search for inactive projectile
   if (projectile != NULL){
     projectile->sprite = bitmapStruct;
     projectile->active = true;

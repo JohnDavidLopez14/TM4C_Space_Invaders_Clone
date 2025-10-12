@@ -25,7 +25,7 @@ Enemy **Get_Enemies(void){
   return Enemies;
 }
 
-Enemy *Enemy_Search(bool state){
+Enemy *Find_First_Enemy_By_State(bool state){
   for (int i = 0; Enemies[i] != NULL; i++){
     if (Enemies[i]->active == state)
       return Enemies[i];
@@ -36,7 +36,7 @@ Enemy *Enemy_Search(bool state){
 // searches for inactive enemy and then spawns it if available
 void Spawn_Enemy(int uHealth, const Bitmap *bitmapStruct, int x, int y, int xVelocity, int yVelocity){
   Enemy *enemy;
-  enemy = Enemy_Search(false);
+  enemy = Find_First_Enemy_By_State(false);
   if (enemy != NULL){
     enemy->active = true;
     enemy->sprite = bitmapStruct;
