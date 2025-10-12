@@ -6,7 +6,7 @@
 #define LASERV .05 // pixel/tick
 #define DEFAULT_LASER_BMP &laser0
 #define DEFAULT_MISSILE_BMP &missile0
-// pre-allocated missile array, probably move these into the main namespace
+
 static Projectile MissileStorage[MAX_LASERS];
 static Projectile *Lasers[MAX_LASERS + 1];
 static Projectile LaserStorage[MAX_LASERS];

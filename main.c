@@ -77,13 +77,58 @@
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
 
-// Global Constants
+// Globals
 const uint32_t LED1 = PB4;
 const uint32_t LED2 = PB5;
+static Player *PlayerShip;
+static Projectile **Missiles;
+static Projectile **Lasers;
 
 // Function Prototypes
 void DisableInterrupts(void);
 void EnableInterrupts(void);
+
+void Poll_Flags(void){
+    if (XposFlag) {
+      XposFlag = 0;
+      PlayerShip->xPos = Xpos;
+    }
+
+    if (MissileFlag){
+      MissileFlag = 0;
+      Fire_Missile();
+    }
+
+    if (LaserFlag){
+      LaserFlag = 0;
+      Fire_Laser();
+    }
+}
+
+void Update_Game_State(void){
+  Update_Missile_Position();
+  Update_Laser_Position();
+}
+
+void Check_OOB(void){
+  Check_Lasers_OOB();
+  Check_Missiles_OOB();
+}
+
+void Draw_State(void){
+  // Player Ship
+  Nokia5110_PrintBMP(PlayerShip->xPos, PlayerShip->yPos, PlayerShip->sprite->bmp, 0);
+
+  // Missiles
+  for (int i = 0; Missiles[i] != NULL; i++){
+    Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
+  }
+
+  // Lasers
+  for (int i = 0; Lasers[i] != NULL; i++){
+    Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
+  }
+}
 
 int main(void){
   // Hardware Initialization
@@ -101,58 +146,23 @@ int main(void){
   
   // Player Initialization
   Player_Init();
-  Player* playerShip = Get_Player();
-  SysTick_Init(playerShip);
+  PlayerShip = Get_Player();
+  SysTick_Init(PlayerShip);
   
 
   // Projectile Initialization
-  Projectile_Init(playerShip);
-  Projectile **Missiles = Get_Missiles(); // returns a null terminated array
-  Projectile **Lasers = Get_Lasers(); // returns a null terminated array
-
-
-  // Wave_Init();
+  Projectile_Init(PlayerShip);
+  Missiles = Get_Missiles(); // returns a null terminated array
+  Lasers = Get_Lasers(); // returns a null terminated array
 
   while(1){ // main code logic
-      // Read Inputs / Poll Flags
-      if (XposFlag) {
-        XposFlag = 0;
-        playerShip->xPos = Xpos;
-      }
+    Poll_Flags(); // Read Inputs / Poll Flags// Collision Detection
+    Update_Game_State();// Update Game State
+    Check_OOB(); // check out of bounds
+    Draw_State(); // draw everything
 
-      if (MissileFlag){
-        MissileFlag = 0; // clear the missile flag
-        Fire_Missile(); // sets missile to active and initializes parameters
-      }
-
-      if (LaserFlag){
-        LaserFlag = 0; // clear the laser flag
-        Fire_Laser(); // sets laser to active and initializes parameters
-      }
-		
-      // Collision Detection
-
-      // Update Game State
-      Update_Missile_Position();
-      Update_Laser_Position();
-
-      // Out of bounds detection, sets missile to inactive if their new position is out of bounds
-      Check_Missiles_OOB();
-      Check_Lasers_OOB();
-
-         // Draw Everything
-      Nokia5110_PrintBMP(playerShip->xPos, playerShip->yPos, playerShip->sprite->bmp, 0);
-      
-      for (int i = 0; Missiles[i] != NULL; i++){
-        Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
-      }
-
-      for (int i = 0; Lasers[i] != NULL; i++){
-        Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
-      }
-
-      // Display Graphics
-      Nokia5110_DisplayBuffer();
-      Nokia5110_ClearBuffer();
+    // Display Graphics
+    Nokia5110_DisplayBuffer();
+    Nokia5110_ClearBuffer();
   }
 }
