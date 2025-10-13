@@ -30,7 +30,7 @@ void Buttons_Init(void){
     GPIO_PORTE_IEV_R &= ~PIN_MASK; // 0 - the falliwng edge or a low level on the corresponding pin triggers an interrupt
     GPIO_PORTE_ICR_R |= PIN_MASK; // 1 - the corresponding interrupt is cleared
     GPIO_PORTE_IM_R |= PIN_MASK; // 1 - The interrupt from the corresponding pin is sent to the interrupt controller
-    NVIC_PRI1_R = (NVIC_PRI1_R & 0xFFFFFF1F) | (5 << 5); // 7:5 - priority 5
+    NVIC_PRI1_R = (NVIC_PRI1_R & 0xFFFFFF1F) | (3 << 5); // 7:5 - priority 3
     NVIC_EN0_R |= 1 << 4; // Interrupt Number (Bit in Interrupt Registers)
 		//UART_Init();
 }

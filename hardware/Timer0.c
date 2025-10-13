@@ -20,11 +20,9 @@
  For more information about my classes, my research, and my books, see
  http://users.ece.utexas.edu/~valvano/
  */
+#include "Timer0.h"
 
-#include "tm4c123gh6pm.h"
-#include <stdint.h>
-
-void (*PeriodicTask)(void);   // function pointer, void return type, void arguments
+static void (*PeriodicTask)(void);   // function pointer, void return type, void arguments
 
 // ***************** Timer0_Init ****************
 // Activate TIMER0 interrupts to run user task periodically
@@ -82,9 +80,9 @@ void Timer0_Init(void(*task)(void), unsigned long period){
   // Vector Number 34, Interrupt Number 19, 16-32-Bit Timer 0A
   // bits 31:29 -> 0b100 -> 4, priority 4
 
-  NVIC_EN0_R |= 1<<19;           // 9) enable IRQ 19 in NVIC
+  NVIC_EN0_R |= (1<<19);           // 9) enable IRQ 19 in NVIC
   // Interrupt 0-31 Set Enable (EN0), offset 0x100
-  // nebales interrupt number 19
+  // enbales interrupt number 19
   // Table 2-9 -> interrupt 19 - Timer 0A
 
   // TIMER0_CTL_R = 0x00000001;    // 10) enable TIMER0A

@@ -1,6 +1,8 @@
 // Header Guards
 #ifndef __PLL_H__
 #define __PLL_H__
+#include "tm4c123gh6pm.h"
+#include <stdint.h>
 
 // The #define statement SYSDIV2 initializes
 // the PLL to the desired frequency.

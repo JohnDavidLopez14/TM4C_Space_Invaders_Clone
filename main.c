@@ -48,8 +48,11 @@
 
 // ISR Priority
 // Systick - Priority 2
-// Timer2A - Priority 4
-// GPIOPORTE - Priority 5
+// GPIOPORTE - Priority 3
+// Timer0A - Priority 4
+// Timer1A - Priority 5
+// Timer2A - Priority 6
+// Timer3A - Priority 7
 
 // Include macros
 // library
@@ -60,19 +63,18 @@
 #include "hardware/tm4c123gh6pm.h"
 #include "hardware/ADC.h"
 #include "hardware/Buttons.h"
-#include "hardware/LED.h"
+#include "hardware/LED.h" // Timer 3A, 32 bis
 #include "hardware/PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
-#include "hardware/Sound.h"
+#include "hardware/Sound.h" // Timer 0A, 32 bit
 #include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
 #include "hardware/UART.h"
 // game logic
 #include "gameLogic/bitmaps.h"
-#include "gameLogic/enemies.h"
+#include "gameLogic/enemies.h" // Timer 1A, 32 bit, Timer2A 32 bit
 #include "gameLogic/player.h"
 #include "gameLogic/projectile.h"
 #include "gameLogic/random.h"
-// timer2a interrupts - I plan to use this to spawn the enemies
 
 // Constant macros
 #define PB4 (1 << 4)

@@ -1,7 +1,5 @@
 // Files
-#include "tm4c123gh6pm.h"
 #include "UART.h"
-#include <stdint.h>
 
 // Constants
 #define PA0 0X01

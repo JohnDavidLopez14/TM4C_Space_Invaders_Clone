@@ -1,6 +1,8 @@
 // Header Guards
 #ifndef __UART_H__
 #define __UART_H__
+#include "tm4c123gh6pm.h"
+#include <stdint.h>
 
 // standard ASCII symbols
 #define CR   0x0D

@@ -1,7 +1,4 @@
-#include <stdint.h>
 #include "PLL.h"
-#include "tm4c123gh6pm.h"
-
 
   // configure the system to get its clock from the PLL
 void PLL_Init(void){
