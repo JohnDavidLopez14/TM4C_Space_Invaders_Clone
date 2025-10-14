@@ -5,7 +5,7 @@
 #define ADCMAX 3400
 
 // Global Variables
-volatile int XposFlag = 0;
+volatile bool XposFlag = false;
 volatile unsigned long Xpos;
 static Player *PlayerShip;
 
@@ -38,5 +38,5 @@ unsigned long Convert(unsigned long sample){
 void SysTick_Handler(void){ 
     SmoothedADC = (SmoothedADC * 7 + ADC0_In()) / SMOOTH_DEN; // ADC smoothing, not sure exactly how this works
     Xpos = Convert(SmoothedADC); // convert ADC to a value on the screen
-    XposFlag = 1; // set mail box
+    XposFlag = true; // set mail box
 }

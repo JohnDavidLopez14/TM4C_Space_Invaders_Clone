@@ -59,6 +59,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <stdbool.h>
 // hardware
 #include "hardware/tm4c123gh6pm.h"
 #include "hardware/ADC.h"
@@ -95,17 +96,17 @@ void EnableInterrupts(void);
 
 void Poll_Flags(void){
     if (XposFlag) {
-      XposFlag = 0;
+      XposFlag = false;
       PlayerShip->xPos = Xpos;
     }
 
     if (MissileFlag){
-      MissileFlag = 0;
+      MissileFlag = false;
       Fire_Missile();
     }
 
     if (LaserFlag){
-      LaserFlag = 0;
+      LaserFlag = false;
       Fire_Laser();
     }
 }
@@ -113,6 +114,7 @@ void Poll_Flags(void){
 void Update_Game_State(void){
   Update_Missile_Position();
   Update_Laser_Position();
+  Update_Enemies_Position();
 }
 
 void Check_OOB(void){
@@ -125,10 +127,10 @@ void Draw_State(void){
   Nokia5110_PrintBMP(PlayerShip->xPos, PlayerShip->yPos, PlayerShip->sprite->bmp, 0);
 
   // Enemies
-  for (int i = 0; Enemies[i] != NULL; i++){
-    if (Enemies[i]->active)
-      Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
-  }
+  //for (int i = 0; Enemies[i] != NULL; i++){
+//    if (Enemies[i]->active)
+      //Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
+  //}
 
   // Missiles
   for (int i = 0; Missiles[i] != NULL; i++)
@@ -163,19 +165,13 @@ int main(void){
   SysTick_Init(PlayerShip);
 
   // Enemy Initialization
-  Enemies_Init();
-  Enemies = Get_Enemies();
+  //Enemies_Init();
+  //Enemies = Get_Enemies();
   
   // Projectile Initialization
   Projectile_Init(PlayerShip);
   Missiles = Get_Missiles(); // returns a null terminated array
   Lasers = Get_Lasers(); // returns a null terminated array
-
-  // This is for testing
-  Spawn_Enemies(5, 100, &smallEnemy10PointA, smallEnemy10PointA.height, .01, .01);
-  Spawn_Enemies(4, 100, &smallEnemy10PointA, smallEnemy10PointB.height * 2, .01, .01);
-  Spawn_Enemies(3, 100, &smallEnemy10PointA, smallEnemy20PointA.height * 3, .01, .01);
-  Spawn_Enemies(2, 100, &smallEnemy10PointA, smallEnemy20PointB.height * 4, .01, .01);
 
   EnableInterrupts();
   while(1){ // main code logic

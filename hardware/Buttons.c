@@ -7,8 +7,8 @@
 #define PE1 (1 << 1)
 #define PIN_MASK (PE0 | PE1)
 
-volatile uint8_t MissileFlag = 0;
-volatile uint8_t LaserFlag = 0;
+volatile bool MissileFlag = false;
+volatile bool LaserFlag = false;
 
 
 // Initialize PE0:1 as negative logic input pin
@@ -39,11 +39,11 @@ void GPIOE_Handler(void){
     uint32_t status = GPIO_PORTE_RIS_R;
     if (status & PE0){
 				//UART_OutString("missile flag\r\n");
-        MissileFlag = 1;
+        MissileFlag = true;
     }
     if (status & PE1){
 				//UART_OutString("laser flag\r\n");
-        LaserFlag = 1;
+        LaserFlag = true;
     }
     GPIO_PORTE_ICR_R |= PIN_MASK; // acknowledge interrupt
 }

@@ -4,10 +4,10 @@ F (..\hardware\ADC.c)(0x68D37FC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=
 I (..\hardware\ADC.h)(0x68D37ED5)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
 F (..\hardware\ADC.h)(0x68D37ED5)()
-F (..\hardware\Buttons.c)(0x68EA9B19)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/buttons.o -MMD)
-I (..\hardware\Buttons.h)(0x68EA9AF8)
+F (..\hardware\Buttons.c)(0x68EDBEA8)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/buttons.o -MMD)
+I (..\hardware\Buttons.h)(0x68EDBE8E)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
-F (..\hardware\Buttons.h)(0x68EA9AF8)()
+F (..\hardware\Buttons.h)(0x68EDBE8E)()
 F (..\hardware\DAC.c)(0x68D37FC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/dac.o -MMD)
 I (..\hardware\DAC.h)(0x68D37FC7)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
@@ -20,33 +20,46 @@ F (..\hardware\Nokia5110.c)(0x68D37FC7)(-xc -std=c99 --target=arm-arm-none-eabi 
 I (..\hardware\Nokia5110.h)(0x68D37FC7)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
 F (..\hardware\Nokia5110.h)(0x68D37FC7)()
-F (..\hardware\PLL.c)(0x68D37ED5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/pll.o -MMD)
-I (..\hardware\PLL.h)(0x68D37ED5)
+F (..\hardware\PLL.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/pll.o -MMD)
+I (..\hardware\PLL.h)(0x68EDB1E0)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
-F (..\hardware\PLL.h)(0x68D37ED5)()
+F (..\hardware\PLL.h)(0x68EDB1E0)()
 F (..\hardware\Sound.c)(0x68D37FC7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/sound.o -MMD)
 I (..\hardware\DAC.h)(0x68D37FC7)
-I (..\hardware\Timer0.h)(0x68D37FC7)
-I (..\hardware\Sound.h)(0x68D37ED5)
+I (..\hardware\Timer0.h)(0x68EDB1E0)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
+I (..\hardware\Sound.h)(0x68D37ED5)
 F (..\hardware\Sound.h)(0x68D37ED5)()
 F (..\hardware\startup.s)(0x68D37ED5)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-Wa,armasm,--pd,"__UVISION_VERSION SETA 542" -Wa,armasm,--pd,"TM4C123GH6PM SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup.o)
-F (..\hardware\SysTick.c)(0x68EAAF02)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/systick.o -MMD)
-I (..\..\Lab15\hardware\SysTick.h)(0x68EAA664)
+F (..\hardware\SysTick.c)(0x68EDBED1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/systick.o -MMD)
+I (..\..\Lab15\hardware\SysTick.h)(0x68EDBEE3)
 I (..\..\Lab15\hardware\ADC.h)(0x68D37ED5)
 I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
 I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
 I (..\..\Lab15\gameLogic\player.h)(0x68EAAE2D)
 I (..\..\Lab15\gameLogic\bitmaps.h)(0x68D73978)
-F (..\hardware\SysTick.h)(0x68EAA664)()
-F (..\hardware\Timer0.c)(0x68D8A0B8)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/timer0.o -MMD)
+F (..\hardware\SysTick.h)(0x68EDBEE3)()
+F (..\hardware\Timer0.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/timer0.o -MMD)
+I (..\hardware\Timer0.h)(0x68EDB1E0)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
-F (..\hardware\Timer0.h)(0x68D37FC7)()
+F (..\hardware\Timer0.h)(0x68EDB1E0)()
 F (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)()
-F (..\hardware\UART.c)(0x68C622FF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/uart.o -MMD)
+F (..\hardware\UART.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/uart.o -MMD)
+I (..\hardware\UART.h)(0x68EDB1E0)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
-I (..\hardware\UART.h)(0x68C50F3F)
-F (..\hardware\UART.h)(0x68C50F3F)()
+F (..\hardware\UART.h)(0x68EDB1E0)()
+F (..\hardware\Timer1.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/timer1.o -MMD)
+I (..\..\Lab15\hardware\Timer1.h)(0x68EDB1E0)
+I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
+F (..\hardware\Timer1.h)(0x68EDB1E0)()
+F (..\hardware\Timer2.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/timer2.o -MMD)
+I (..\..\Lab15\hardware\Timer2.h)(0x68EDB1E0)
+I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
+F (..\hardware\Timer2.h)(0x68EDB1E0)()
+F (..\hardware\Timer3.c)(0x68EDB1E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/timer3.o -MMD)
+I (..\..\Lab15\hardware\Timer3.h)(0x68EDB1E0)
+I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
+F (..\hardware\Timer3.h)(0x68EDB1E0)()
 F (..\gameLogic\bitmaps.c)(0x68EC03B4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/bitmaps.o -MMD)
 I (..\gameLogic\bitmaps.h)(0x68D73978)
 F (..\gameLogic\bitmaps.h)(0x68D73978)()
@@ -55,7 +68,7 @@ I (..\..\Lab15\gameLogic\player.h)(0x68EAAE2D)
 I (..\..\Lab15\gameLogic\bitmaps.h)(0x68D73978)
 I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
 F (..\gameLogic\player.h)(0x68EAAE2D)()
-F (..\gameLogic\projectile.c)(0x68EC068A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/projectile.o -MMD)
+F (..\gameLogic\projectile.c)(0x68EC0B04)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/projectile.o -MMD)
 I (..\..\Lab15\gameLogic\projectile.h)(0x68EC0541)
 I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
 I (..\..\Lab15\gameLogic\bitmaps.h)(0x68D73978)
@@ -63,28 +76,33 @@ I (..\..\Lab15\gameLogic\player.h)(0x68EAAE2D)
 F (..\gameLogic\projectile.h)(0x68EC0541)()
 F (..\gameLogic\random.h)(0x68D37ED5)()
 F (..\gameLogic\random.s)(0x68D37ED5)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-Wa,armasm,--pd,"__UVISION_VERSION SETA 542" -Wa,armasm,--pd,"TM4C123GH6PM SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/random.o)
-F (..\gameLogic\enemies.c)(0x68EC085F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/enemies.o -MMD)
-I (..\..\Lab15\gameLogic\enemies.h)(0x68EC0456)
-I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
+F (..\gameLogic\enemies.c)(0x68EDBF70)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/enemies.o -MMD)
+I (..\..\Lab15\gameLogic\enemies.h)(0x68EDBF46)
 I (..\..\Lab15\gameLogic\bitmaps.h)(0x68D73978)
-F (..\gameLogic\enemies.h)(0x68EC0456)()
-F (..\main.c)(0x68EC0970)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/main.o -MMD)
+I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
+I (..\..\Lab15\hardware\Timer1.h)(0x68EDB1E0)
+I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
+I (..\..\Lab15\hardware\Timer2.h)(0x68EDB1E0)
+F (..\gameLogic\enemies.h)(0x68EDBF46)()
+F (..\main.c)(0x68EDC0E3)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Lab15-I./RTE/_Target_1-IC:/Users/johnd/AppData/Local/Arm/Packs/ARM/CMSIS/6.1.0/CMSIS/Core/Include-IC:/Users/johnd/AppData/Local/Arm/Packs/Keil/TM4C_DFP/1.1.0/Device/Include/TM4C123-D__UVISION_VERSION="542" -DTM4C123GH6PM -D_RTE_-o ./objects/main.o -MMD)
 I (..\hardware\tm4c123gh6pm.h)(0x68D37ED5)
 I (..\hardware\ADC.h)(0x68D37ED5)
-I (..\hardware\Buttons.h)(0x68EA9AF8)
+I (..\hardware\Buttons.h)(0x68EDBE8E)
 I (..\hardware\LED.h)(0x68D37FC7)
-I (..\hardware\PLL.h)(0x68D37ED5)
+I (..\hardware\PLL.h)(0x68EDB1E0)
 I (..\hardware\Sound.h)(0x68D37ED5)
-I (..\hardware\SysTick.h)(0x68EAA664)
+I (..\hardware\SysTick.h)(0x68EDBEE3)
 I (..\..\Lab15\hardware\ADC.h)(0x68D37ED5)
 I (..\..\Lab15\hardware\Nokia5110.h)(0x68D37FC7)
 I (..\..\Lab15\hardware\tm4c123gh6pm.h)(0x68D37ED5)
 I (..\..\Lab15\gameLogic\player.h)(0x68EAAE2D)
 I (..\..\Lab15\gameLogic\bitmaps.h)(0x68D73978)
 I (..\hardware\Nokia5110.h)(0x68D37FC7)
-I (..\hardware\UART.h)(0x68C50F3F)
+I (..\hardware\UART.h)(0x68EDB1E0)
 I (..\gameLogic\bitmaps.h)(0x68D73978)
-I (..\gameLogic\enemies.h)(0x68EC0456)
+I (..\gameLogic\enemies.h)(0x68EDBF46)
+I (..\..\Lab15\hardware\Timer1.h)(0x68EDB1E0)
+I (..\..\Lab15\hardware\Timer2.h)(0x68EDB1E0)
 I (..\gameLogic\player.h)(0x68EAAE2D)
 I (..\gameLogic\projectile.h)(0x68EC0541)
 I (..\gameLogic\random.h)(0x68D37ED5)

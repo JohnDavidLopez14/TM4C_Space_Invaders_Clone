@@ -22,15 +22,19 @@ Dialog DLL:      TCM.DLL V1.56.6.0
  
 <h2>Project:</h2>
 C:\EmbeddedProjects\ESSTW\Chapter_15\Lab15\Keil\Lab15.uvprojx
-Project File Date:  10/11/2025
+Project File Date:  10/13/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Users\johnd\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target_1'
+../main.c(90): warning: unused variable 'Enemies' [-Wunused-variable]
+   90 | static Enemy **Enemies;
+      |                ^~~~~~~
+1 warning generated.
 compiling main.c...
 linking...
-Program Size: Code=6454 RO-data=2058 RW-data=4 ZI-data=2256  
-".\Objects\Lab15.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=5576 RO-data=1216 RW-data=4 ZI-data=1448  
+".\Objects\Lab15.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -56,10 +60,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@6.1.0
 
    * Component: Keil::Device:Startup@1.0.1
-      Include file:  Device/Include/TM4C123/TM4C123.h
-      Source file:   Device/Source/ARM/startup_TM4C123.s
       Source file:   Device/Source/system_TM4C123.c
-Build Time Elapsed:  00:00:00
+      Source file:   Device/Source/ARM/startup_TM4C123.s
+      Include file:  Device/Include/TM4C123/TM4C123.h
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
