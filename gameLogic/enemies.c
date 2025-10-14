@@ -1,9 +1,13 @@
 #include "gameLogic/enemies.h"
+#include "hardware/UART.h"
+#include "hardware/Timer0.h"
 
 #define MAX_ENEMIES 20
-#define ENEMY_MOVEMENT_RELOAD 0x0000FFFF
+#define ENEMY_MOVEMENT_RELOAD 0x1E84800
 
-bool Movement_Flag;
+static volatile bool Movement_Flag = false;
+static volatile bool SpriteA_Flag = true;
+static volatile int Movement_Dir = 1;
 
 static Enemy EnemyStorage[MAX_ENEMIES];
 static Enemy *Enemies[MAX_ENEMIES + 1];
@@ -57,13 +61,60 @@ void Spawn_Enemies(int enemyNumber, int uHealth, const Bitmap *uSpriteA, const B
   }
 }
 
+void Move_Horizontally_One_Pixel(){
+    for (int i = 0; Enemies[i] != NULL; i++){
+      if (Enemies[i]->active)
+        Enemies[i]->xPos += Movement_Dir;
+  }
+}
+
+void Move_Down_One_Pixel(){
+  Movement_Dir *= -1; // switch horizontal movement
+  for (int i = 0; Enemies[i] != NULL; i++){
+    if(Enemies[i]->active)
+      Enemies[i]->yPos += 1;
+  }
+
+}
+
+bool Check_Vertical_Movement(void){
+  for (int i = 0; Enemies[i] != NULL; i++){
+    if (Enemies[i]->active)
+      if (Enemies[i]->xPos == 0 || (Enemies[i]->xPos + Enemies[i]->sprite->width) == SCREENW) // if the enemy is off the screen on either side
+        return true;
+  }
+  return false;
+}
+
+void Swap_SpriteAB(void){
+  if (SpriteA_Flag) {
+    for (int i = 0; Enemies[i] != NULL; i++){
+      Enemies[i]->sprite = Enemies[i]->spriteB;
+    }
+    SpriteA_Flag = false;
+  } else {
+    for (int i = 0; Enemies[i] != NULL; i++){
+      Enemies[i]->sprite = Enemies[i]->spriteA;
+    }
+    SpriteA_Flag = true;
+  }
+}
+
+
 // moves all enemies horizontally one pixel
 // when a wall is reached, horizontal movement will flip
 // enemies will then continue in the other direction
 void Update_Enemies_Position(void){
-
+  if (!Movement_Flag)
+    return;
+  Movement_Flag = false; // reset flag
+  Swap_SpriteAB();
+  if (Check_Vertical_Movement())
+    Move_Down_One_Pixel();
+  Move_Horizontally_One_Pixel();
 }
 
+#include "hardware/LED.h"
 void Set_Movement_Flag(void){
   Movement_Flag = true;
 }
@@ -84,5 +135,5 @@ void Enemies_Init(void){
     Enemies[i]->dy = 0;
   }
   Enemies[MAX_ENEMIES] = NULL;
-  Timer2_Init(Set_Movement_Flag, ENEMY_MOVEMENT_RELOAD);
+  Timer1_Init(Set_Movement_Flag, ENEMY_MOVEMENT_RELOAD);
 }

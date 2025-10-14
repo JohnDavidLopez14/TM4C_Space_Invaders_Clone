@@ -92,7 +92,7 @@ void Timer0_Init(void(*task)(void), unsigned long period){
   // 1 - Timer A is enabled and begins counting or the capture logic is enabled based on the GPTMCFG register
 }
 
-void Timer0A_Handler(void){
+void TIMER0A_Handler(void){
   TIMER0_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER0A timeout
   // TIMER_ICR_TATOCINT - 0x00000001
   // Writing a 1 to this bit clears the TATORIS bit in the GPTMRIS register and the TATOMIS bit in the GPTMMIS register

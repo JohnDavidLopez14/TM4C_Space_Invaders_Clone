@@ -33,8 +33,7 @@ void Timer1_Init(void(*task)(void), unsigned long period){
 
 }
 
-void Timer1A_Handler(void){
+void TIMER1A_Handler(void){
     TIMER1_ICR_R |= TIMER_ICR_TATOCINT; // clear TimerA timeout flag
-
     (*PeriodicTask)();
 }

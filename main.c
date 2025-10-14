@@ -94,7 +94,7 @@ static Enemy **Enemies;
 void DisableInterrupts(void);
 void EnableInterrupts(void);
 
-void Poll_Flags(void){
+void Poll_Inputs(void){
     if (XposFlag) {
       XposFlag = false;
       PlayerShip->xPos = Xpos;
@@ -126,11 +126,11 @@ void Draw_State(void){
   // Player Ship
   Nokia5110_PrintBMP(PlayerShip->xPos, PlayerShip->yPos, PlayerShip->sprite->bmp, 0);
 
-  // Enemies
-  //for (int i = 0; Enemies[i] != NULL; i++){
-//    if (Enemies[i]->active)
-      //Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
-  //}
+  // sEnemies
+  for (int i = 0; Enemies[i] != NULL; i++){
+    if (Enemies[i]->active)
+      Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
+  }
 
   // Missiles
   for (int i = 0; Missiles[i] != NULL; i++)
@@ -165,17 +165,21 @@ int main(void){
   SysTick_Init(PlayerShip);
 
   // Enemy Initialization
-  //Enemies_Init();
-  //Enemies = Get_Enemies();
+  Enemies_Init();
+  Enemies = Get_Enemies();
   
   // Projectile Initialization
   Projectile_Init(PlayerShip);
   Missiles = Get_Missiles(); // returns a null terminated array
   Lasers = Get_Lasers(); // returns a null terminated array
 
+  // testing
+  Spawn_Enemies(4, 100, &smallEnemy10PointA, &smallEnemy10PointB, smallEnemy10PointA.height, 0, 0);
+  Spawn_Enemies(3, 100, &smallEnemy20PointA, &smallEnemy20PointB, smallEnemy20PointA.height * 2, 0, 0);
+  Spawn_Enemies(2, 100, &smallEnemy30PointA, &smallEnemy30PointB, smallEnemy30PointA.height * 3, 0, 0);
   EnableInterrupts();
   while(1){ // main code logic
-    Poll_Flags(); // Read Inputs / Poll Flags// Collision Detection
+    Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
     Check_OOB(); // check out of bounds
     Draw_State(); // draw everything

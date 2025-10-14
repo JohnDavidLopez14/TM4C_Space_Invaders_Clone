@@ -7,8 +7,6 @@
   #include "hardware/Timer1.h"
   #include "hardware/Timer2.h"
 
-  extern bool Movement_Flag;
-
   typedef struct {
     bool active;
     const Bitmap *sprite, *spriteA, *spriteB;
