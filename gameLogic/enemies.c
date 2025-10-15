@@ -6,6 +6,7 @@
 #define ENEMY_MOVEMENT_RELOAD 0x1E84800
 
 static volatile bool Movement_Flag = false;
+static volatile bool VERTICAL_MOVEMENT_FLAG = true;
 static volatile bool SpriteA_Flag = true;
 static volatile int Movement_Dir = 1;
 
@@ -100,7 +101,6 @@ void Swap_SpriteAB(void){
   }
 }
 
-
 // moves all enemies horizontally one pixel
 // when a wall is reached, horizontal movement will flip
 // enemies will then continue in the other direction
@@ -109,9 +109,13 @@ void Update_Enemies_Position(void){
     return;
   Movement_Flag = false; // reset flag
   Swap_SpriteAB();
-  if (Check_Vertical_Movement())
+  if (Check_Vertical_Movement() && VERTICAL_MOVEMENT_FLAG){
     Move_Down_One_Pixel();
-  Move_Horizontally_One_Pixel();
+    VERTICAL_MOVEMENT_FLAG = false;
+  } else {
+    Move_Horizontally_One_Pixel();
+    VERTICAL_MOVEMENT_FLAG = true;
+  }
 }
 
 #include "hardware/LED.h"
