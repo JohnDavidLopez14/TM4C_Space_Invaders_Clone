@@ -80,6 +80,8 @@
 // Constant macros
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
+#define H_MARGIN 4 // penetration margin
+#define V_MARGIN 5 
 
 // Globals
 const uint32_t LED1 = PB4;
@@ -88,7 +90,7 @@ static Player *PlayerShip;
 static Projectile **Missiles;
 static Projectile **Lasers;
 static Enemy **Enemies;
-
+unsigned int Score = 0;
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -146,6 +148,44 @@ void Draw_State(void){
   }
 }
 
+bool BitmapsOverlap(int x1, int y1, int w1, int h1,
+                    int x2, int y2, int w2, int h2,
+                  int hMargin, int vMargin)
+{
+    return !(x1 + hMargin + w1 - 2 * hMargin < x2 ||  // A left of B
+             x2 + w2 < x1 + hMargin||  // A right of B
+             y1 + vMargin + h1 - 2 * vMargin < y2 ||  // A above B
+             y2 + h2 < y1 + vMargin);   // A below B
+}
+
+void Check_Collisions(void){
+  for(int x = 0; Enemies[x] != NULL; x++){
+    if(!Enemies[x]->active)continue;
+
+    for(int y = 0; Lasers[y] != NULL; y++){
+      if (!Lasers[y]->active) continue;
+
+      if (BitmapsOverlap(Enemies[x]->xPos, Enemies[x]->yPos, Enemies[x]->sprite->width, Enemies[x]->sprite->height,
+            Lasers[y]->xPos, Lasers[y]->yPos, Lasers[y]->sprite->width, Lasers[y]->sprite->height, H_MARGIN, V_MARGIN)){
+              Enemies[x]->active = false;
+              Lasers[y]->active = false;
+              // need to add score here
+      }  
+    }
+
+    for(int z = 0; Missiles[z] != NULL; z++){
+      if(!Missiles[z]->active) continue;
+
+      if (BitmapsOverlap(Enemies[x]->xPos, Enemies[x]->yPos, Enemies[x]->sprite->width, Enemies[x]->sprite->height,
+            Missiles[z]->xPos, Missiles[z]->yPos, Missiles[z]->sprite->width, Missiles[z]->sprite->height, H_MARGIN, V_MARGIN)){
+              Enemies[x]->active = false;
+              Missiles[z]->active = false;
+              // need to add score here
+      }  
+    }
+  }
+}
+
 int main(void){
   // Hardware Initialization
   UART_Init();
@@ -174,7 +214,7 @@ int main(void){
   Lasers = Get_Lasers(); // returns a null terminated array
 
   // testing
-  Spawn_Enemies(4, 100, &smallEnemy10PointA, &smallEnemy10PointB, smallEnemy10PointA.height, 0, 0);
+  Spawn_Enemies(4, 100, &smallEnemy10PointA, &smallEnemy10PointB, smallEnemy10PointA.height, 0, 0); // need to pre-wrap bitmaps into enemies struct
   Spawn_Enemies(3, 100, &smallEnemy20PointA, &smallEnemy20PointB, smallEnemy20PointA.height * 2, 0, 0);
   Spawn_Enemies(2, 100, &smallEnemy30PointA, &smallEnemy30PointB, smallEnemy30PointA.height * 3, 0, 0);
   EnableInterrupts();
@@ -182,6 +222,7 @@ int main(void){
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
     Check_OOB(); // check out of bounds
+    Check_Collisions();
     Draw_State(); // draw everything
 
     // Display Graphics

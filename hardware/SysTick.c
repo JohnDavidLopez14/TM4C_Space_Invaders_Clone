@@ -1,7 +1,7 @@
 #include "hardware/SysTick.h"
 
 #define SMOOTH_DEN 8
-#define ADCMIN 2000
+#define ADCMIN 2200
 #define ADCMAX 3400
 
 // Global Variables

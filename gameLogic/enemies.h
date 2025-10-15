@@ -10,7 +10,7 @@
   typedef struct {
     bool active;
     const Bitmap *sprite, *spriteA, *spriteB;
-    int health;
+    int health; // need to add points
     float xReal, yReal;
     int xPos, yPos;
     float dx, dy;
