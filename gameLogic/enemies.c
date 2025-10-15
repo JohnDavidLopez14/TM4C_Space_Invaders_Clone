@@ -26,21 +26,14 @@ Enemy *Find_First_Enemy_By_State(bool state){
 }
 
 // searches for inactive enemy and then spawns it if available
-void Spawn_Enemy(int uHealth, const Bitmap *uSpriteA, const Bitmap *uSpriteB, int x, int y, int xVelocity, int yVelocity){
+void Spawn_Enemy_From_Template(const Enemy *templateEnemy, int x, int y){
   Enemy *enemy;
   enemy = Find_First_Enemy_By_State(false);
   if (enemy != NULL){
     enemy->active = true;
-    enemy->sprite = uSpriteA;
-    enemy->spriteA = uSpriteA;
-    enemy->spriteB = uSpriteB;
-    enemy->health = uHealth;
-    enemy->xReal = x;
-    enemy->yReal = y;
+    *enemy = *templateEnemy; // copy all fields from the template
     enemy->xPos = x;
     enemy->yPos = y;
-    enemy->dx = xVelocity;
-    enemy->dy = yVelocity;
   }
 }
 
@@ -53,12 +46,12 @@ int Enemy_Spacing(int enemyNumber,int enemyWidth, int enemyIndex){
   return (int) (xPos + 0.5f);
 }
 
-void Spawn_Enemies(int enemyNumber, int uHealth, const Bitmap *uSpriteA, const Bitmap *uSpriteB, int y, float xVelocity, float yVelocity){
-  int enemyWidth = (uSpriteA->width >= uSpriteB->width) ? uSpriteA->width : uSpriteB->width;
+void Spawn_Enemies(int enemyNumber, const Enemy *templateEnemy, int yPos){
+  int enemyWidth = (templateEnemy->spriteA->width >= templateEnemy->spriteB->width) ? templateEnemy->spriteA->width : templateEnemy->spriteB->width;
   for (int i = 0; i < enemyNumber; i++){
     int xPos = Enemy_Spacing(enemyNumber, enemyWidth, i);
     if (xPos > 0)
-      Spawn_Enemy(uHealth, uSpriteA, uSpriteB, xPos, y, xVelocity, yVelocity);
+      Spawn_Enemy_From_Template(templateEnemy, xPos, yPos);
   }
 }
 
@@ -126,18 +119,11 @@ void Set_Movement_Flag(void){
 void Enemies_Init(void){
   for (int i = 0; i < MAX_ENEMIES; i++){
     Enemies[i] = &EnemyStorage[i];
-    Enemies[i]->active = false;
-    Enemies[i]->sprite = NULL;
-    Enemies[i]->spriteA = NULL;
-    Enemies[i]->spriteB = NULL;
-    Enemies[i]->health = 0;
-    Enemies[i]->xReal = 0;
-    Enemies[i]->yReal = 0;
-    Enemies[i]->xPos = 0;
-    Enemies[i]->yPos = 0;
-    Enemies[i]->dx = 0;
-    Enemies[i]->dy = 0;
   }
   Enemies[MAX_ENEMIES] = NULL;
   Timer1_Init(Set_Movement_Flag, ENEMY_MOVEMENT_RELOAD);
 }
+
+const Enemy smallEnemy30Point_Enemy = {false, &smallEnemy30PointA, &smallEnemy30PointA, &smallEnemy30PointB, 100, 30, 0, 0};
+const Enemy smallEnemy20Point_Enemy = {false, &smallEnemy20PointA, &smallEnemy20PointA, &smallEnemy20PointB, 100, 20 ,0 ,0};
+const Enemy smallEnemy10Point_Enemy = {false, &smallEnemy10PointA, &smallEnemy10PointA, &smallEnemy10PointB, 100, 10, 0, 0};

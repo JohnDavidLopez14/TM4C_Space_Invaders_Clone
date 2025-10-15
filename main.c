@@ -214,9 +214,9 @@ int main(void){
   Lasers = Get_Lasers(); // returns a null terminated array
 
   // testing
-  Spawn_Enemies(4, 100, &smallEnemy10PointA, &smallEnemy10PointB, smallEnemy10PointA.height, 0, 0); // need to pre-wrap bitmaps into enemies struct
-  Spawn_Enemies(3, 100, &smallEnemy20PointA, &smallEnemy20PointB, smallEnemy20PointA.height * 2, 0, 0);
-  Spawn_Enemies(2, 100, &smallEnemy30PointA, &smallEnemy30PointB, smallEnemy30PointA.height * 3, 0, 0);
+  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.sprite->height * 1);
+  Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.sprite->height * 2);
+  Spawn_Enemies(2, &smallEnemy30Point_Enemy, smallEnemy30Point_Enemy.sprite->height * 3);
   EnableInterrupts();
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
