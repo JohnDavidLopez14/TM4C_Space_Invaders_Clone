@@ -148,14 +148,24 @@ void Draw_State(void){
   }
 }
 
-bool BitmapsOverlap(int x1, int y1, int w1, int h1,
-                    int x2, int y2, int w2, int h2,
-                  int hMargin, int vMargin)
+bool BitmapsOverlap(Enemy *enemy, Projectile *projectile, int hMargin, int vMargin)
 {
-    return !(x1 + hMargin + w1 - 2 * hMargin < x2 ||  // A left of B
-             x2 + w2 < x1 + hMargin||  // A right of B
-             y1 + vMargin + h1 - 2 * vMargin < y2 ||  // A above B
-             y2 + h2 < y1 + vMargin);   // A below B
+  int aLeft, aRight, aTop, aBottom, bLeft, bRight, bTop, bBottom;
+  aLeft = enemy->xPos + hMargin;
+  aRight = enemy->xPos + enemy->sprite->width - hMargin;
+  aTop = enemy->yPos - enemy->sprite->height + vMargin;
+  aBottom = enemy->yPos - vMargin;
+
+  bLeft = projectile->xPos;
+  bRight = projectile->xPos + projectile->sprite->width;
+  bTop = projectile->yPos - projectile->sprite->height;
+  bBottom = projectile-> yPos;
+  return (
+    aLeft <= bRight &&
+    aRight >= bLeft &&
+    aTop <= bBottom &&
+    aBottom >= bTop
+  );
 }
 
 void Check_Collisions(void){
@@ -165,8 +175,7 @@ void Check_Collisions(void){
     for(int y = 0; Lasers[y] != NULL; y++){
       if (!Lasers[y]->active) continue;
 
-      if (BitmapsOverlap(Enemies[x]->xPos, Enemies[x]->yPos, Enemies[x]->sprite->width, Enemies[x]->sprite->height,
-            Lasers[y]->xPos, Lasers[y]->yPos, Lasers[y]->sprite->width, Lasers[y]->sprite->height, H_MARGIN, V_MARGIN)){
+      if (BitmapsOverlap(Enemies[x], Lasers[y], H_MARGIN, V_MARGIN)){
               Enemies[x]->active = false;
               Lasers[y]->active = false;
               // need to add score here
@@ -176,8 +185,7 @@ void Check_Collisions(void){
     for(int z = 0; Missiles[z] != NULL; z++){
       if(!Missiles[z]->active) continue;
 
-      if (BitmapsOverlap(Enemies[x]->xPos, Enemies[x]->yPos, Enemies[x]->sprite->width, Enemies[x]->sprite->height,
-            Missiles[z]->xPos, Missiles[z]->yPos, Missiles[z]->sprite->width, Missiles[z]->sprite->height, H_MARGIN, V_MARGIN)){
+      if (BitmapsOverlap(Enemies[x], Missiles[z], H_MARGIN, V_MARGIN)){
               Enemies[x]->active = false;
               Missiles[z]->active = false;
               // need to add score here

@@ -1,8 +1,8 @@
 #include "gameLogic/projectile.h"
 
-#define MAX_MISSILES 4
-#define MAX_LASERS 4
-#define MISSILEV .05 // pixsel/tick
+#define MAX_MISSILES 1
+#define MAX_LASERS 1
+#define MISSILEV .05 // pixel/tick
 #define LASERV .05 // pixel/tick
 #define DEFAULT_LASER_BMP &laser0
 #define DEFAULT_MISSILE_BMP &missile0
