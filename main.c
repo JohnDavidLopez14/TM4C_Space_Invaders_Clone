@@ -91,10 +91,36 @@ static Projectile **Missiles;
 static Projectile **Lasers;
 static Enemy **Enemies;
 unsigned int Score = 0;
+typedef enum {Init,Reset, Game, End} State;
+typedef State (*stateHandler) (void); // this is how you alias function pointers apparently
 
 // Function Prototypes
 void DisableInterrupts(void);
 void EnableInterrupts(void);
+State InitializeHandler(void);
+State ResetHandler(void);
+State GameHandler(void);
+State EndHandler(void);
+
+// State Table
+stateHandler StateTable[] = {
+  InitializeHandler,
+  ResetHandler,
+  GameHandler,
+  EndHandler
+};
+
+void main_loop(State *FSM){
+  State current = Init;
+  while(1){
+    current = StateTable[current]();
+  }
+}
+
+State InitializeGame(void){
+  
+  return Reset;
+}
 
 void Poll_Inputs(void){
     if (XposFlag) {
