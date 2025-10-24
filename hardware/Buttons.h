@@ -2,6 +2,7 @@
 #define __Buttons__
 #include <stdint.h>
 #include <stdbool.h>
+#include "hardware/Timer2.h"
 
 #define PE0 (1 << 0)
 #define PE1 (1 << 1)

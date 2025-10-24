@@ -3,6 +3,8 @@
 #include "hardware/tm4c123gh6pm.h"
 #include <stdint.h>
 
-void Timer2_Init(void(*task)(void), unsigned long period);
+void Timer2_Init(void(*task)(void));
+
+void Timer2_Oneshot(unsigned long);
 
 #endif

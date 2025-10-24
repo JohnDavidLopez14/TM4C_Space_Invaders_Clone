@@ -63,7 +63,7 @@
 // hardware
 #include "hardware/tm4c123gh6pm.h"
 #include "hardware/ADC.h"
-#include "hardware/Buttons.h"
+#include "hardware/Buttons.h" // Timer 2A, 32 bits
 #include "hardware/LED.h" // Timer 3A, 32 bis
 #include "hardware/PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "hardware/Sound.h" // Timer 0A, 32 bit

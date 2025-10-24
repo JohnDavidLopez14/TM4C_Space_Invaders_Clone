@@ -6,10 +6,14 @@
 #define PE0 (1 << 0)
 #define PE1 (1 << 1)
 #define PIN_MASK (PE0 | PE1)
+#define GPIOE_DISABLE_PERIOD 0x4E200
 
 volatile bool MissileFlag = false;
 volatile bool LaserFlag = false;
 
+void Debounce_GPIOE(void){
+  GPIO_PORTE_IM_R |= PIN_MASK; // re-enable interrupts on GPIOE
+}
 
 // Initialize PE0:1 as negative logic input pin
 void Buttons_Init(void){
@@ -27,16 +31,29 @@ void Buttons_Init(void){
     // Interrupts
     GPIO_PORTE_IS_R &= ~PIN_MASK; // 0 - the edge on the corresponding pin is detected
     GPIO_PORTE_IBE_R &= ~PIN_MASK; // 0 - the interrupt generation is controlled by the GPIO Interrupt Event (GPIOIEV) register
-    GPIO_PORTE_IEV_R &= ~PIN_MASK; // 0 - the falliwng edge or a low level on the corresponding pin triggers an interrupt
+    GPIO_PORTE_IEV_R &= ~PIN_MASK; // 0 - the falling edge or a low level on the corresponding pin triggers an interrupt
     GPIO_PORTE_ICR_R |= PIN_MASK; // 1 - the corresponding interrupt is cleared
     GPIO_PORTE_IM_R |= PIN_MASK; // 1 - The interrupt from the corresponding pin is sent to the interrupt controller
     NVIC_PRI1_R = (NVIC_PRI1_R & 0xFFFFFF1F) | (3 << 5); // 7:5 - priority 3
     NVIC_EN0_R |= 1 << 4; // Interrupt Number (Bit in Interrupt Registers)
+
+    // Timer 2A
+    Timer2_Init(&Debounce_GPIOE); // this does not enable timer2
 		//UART_Init();
 }
 
 void GPIOE_Handler(void){
+    // Read port
     uint32_t status = GPIO_PORTE_RIS_R;
+
+    // start timer to re-enable interupts
+    Timer2_Oneshot(GPIOE_DISABLE_PERIOD);
+
+    GPIO_PORTE_ICR_R |= PIN_MASK; // acknowledge interrupt
+    // disable interrupts for GPIOE
+    GPIO_PORTE_IM_R &= ~PIN_MASK;
+
+    // read port and set flags
     if (status & PE0){
 				//UART_OutString("missile flag\r\n");
         MissileFlag = true;
@@ -45,5 +62,5 @@ void GPIOE_Handler(void){
 				//UART_OutString("laser flag\r\n");
         LaserFlag = true;
     }
-    GPIO_PORTE_ICR_R |= PIN_MASK; // acknowledge interrupt
+    
 }

@@ -30,8 +30,8 @@ void Spawn_Enemy_From_Template(const Enemy *templateEnemy, int x, int y){
   Enemy *enemy;
   enemy = Find_First_Enemy_By_State(false);
   if (enemy != NULL){
-    enemy->active = true;
     *enemy = *templateEnemy; // copy all fields from the template
+    enemy->active = true;
     enemy->xPos = x;
     enemy->yPos = y;
   }
