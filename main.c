@@ -83,6 +83,10 @@
 #define H_MARGIN 4 // penetration margin
 #define V_MARGIN 5 
 
+// Function Prototypes
+void DisableInterrupts(void);
+void EnableInterrupts(void);
+
 // Globals
 const uint32_t LED1 = PB4;
 const uint32_t LED2 = PB5;
@@ -90,37 +94,73 @@ static Player *PlayerShip;
 static Projectile **Missiles;
 static Projectile **Lasers;
 static Enemy **Enemies;
-unsigned int Score = 0;
-typedef enum {Init,Reset, Game, End} State;
-typedef State (*stateHandler) (void); // this is how you alias function pointers apparently
 
-// Function Prototypes
-void DisableInterrupts(void);
-void EnableInterrupts(void);
-State InitializeHandler(void);
-State ResetHandler(void);
-State GameHandler(void);
-State EndHandler(void);
+// State Alias
+typedef enum {Init,Reset, Game, End} State;
+
+// State function prototypes
+State Initialize_Handler(void);
+State Reset_Handler(void);
+State Game_Handler(void);
+State End_Handler(void);
 
 // State Table
+typedef State (*stateHandler) (void); // this is how you alias function pointers apparently
 stateHandler StateTable[] = {
-  InitializeHandler,
-  ResetHandler,
-  GameHandler,
-  EndHandler
+  Initialize_Handler,
+  Reset_Handler,
+  Game_Handler,
+  End_Handler
 };
 
-void main_loop(State *FSM){
+// Main
+
+int main(void){
   State current = Init;
   while(1){
     current = StateTable[current]();
   }
 }
 
-State InitializeGame(void){
-  
-  return Reset;
+// Initialization
+
+void Hardware_Init(void){
+  UART_Init();
+  PLL_Init(); // set to 80 mHz
+  Nokia5110_Init();
+  Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
+  LED_Init(); // initialize PB4:5 for LED output
+  Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
+  ADC0_Init();  // initialize ADC on PE2 / AIN1
 }
+
+void Software_Init(void){
+  Random_Init(1);
+
+  // Player Initialization
+  Player_Init();
+  PlayerShip = Get_Player();
+  SysTick_Init(PlayerShip);
+
+  // Enemy Initialization
+  Enemies_Init();
+  Enemies = Get_Enemies();
+  
+  // Projectile Initialization
+  Projectile_Init(PlayerShip);
+  Missiles = Get_Missiles(); // returns a null terminated array
+  Lasers = Get_Lasers(); // returns a null terminated array
+};
+
+State Initialize_Handler(void){
+  Hardware_Init();
+  Software_Init();
+  return Game;
+}
+
+// Reset
+
+// Game
 
 void Poll_Inputs(void){
     if (XposFlag) {
@@ -220,33 +260,7 @@ void Check_Collisions(void){
   }
 }
 
-int main(void){
-  // Hardware Initialization
-  UART_Init();
-  PLL_Init(); // set to 80 mHz
-  Nokia5110_Init();
-  Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
-  LED_Init(); // initialize PB4:5 for LED output
-  Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
-  ADC0_Init();  // initialize ADC on PE2 / AIN1
-  Random_Init(1);
-
-  // Game Initialization
-  
-  // Player Initialization
-  Player_Init();
-  PlayerShip = Get_Player();
-  SysTick_Init(PlayerShip);
-
-  // Enemy Initialization
-  Enemies_Init();
-  Enemies = Get_Enemies();
-  
-  // Projectile Initialization
-  Projectile_Init(PlayerShip);
-  Missiles = Get_Missiles(); // returns a null terminated array
-  Lasers = Get_Lasers(); // returns a null terminated array
-
+State Game_Handler(void){
   // testing
   Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.sprite->height * 1);
   Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.sprite->height * 2);
@@ -262,5 +276,13 @@ int main(void){
     // Display Graphics
     Nokia5110_DisplayBuffer();
     Nokia5110_ClearBuffer();
+    if (PlayerShip->health <= 0){
+      return End;
+    }
   }
+}
+
+// End
+State End_Handler(void){
+  return Reset;
 }
