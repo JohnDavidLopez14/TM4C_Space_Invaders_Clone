@@ -116,6 +116,14 @@ stateHandler StateTable[] = {
 // Main
 
 int main(void){
+  PLL_Init();
+  Nokia5110_Init();
+  Nokia5110_Clear();
+  Nokia5110_SetCursor(0, 0);
+  Nokia5110_OutString("GAME OVER");
+}
+
+int main1(void){
   State current = Init;
   while(1){
     current = StateTable[current]();
