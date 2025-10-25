@@ -20,6 +20,7 @@
   extern const Enemy smallEnemy10Point_Enemy;
 
   void Enemies_Init(void);
+  void Enemies_Reset(void);
   Enemy **Get_Enemies(void);
   void Spawn_Enemies(int enemyNumber, const Enemy *templateEnemy, int yPos);
   void Spawn_Enemy_From_Template(const Enemy *templateEnemy, int x, int y);

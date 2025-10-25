@@ -8,12 +8,14 @@
 // Global Data Types
 typedef struct {
     const Bitmap *sprite;
-    unsigned int health;
+    int health;
     unsigned int xPos, yPos;
+    int score;
 } Player;
 
 //Prototypes
 void Player_Init(void);
+void Player_Reset(void);
 Player* Get_Player(void);
 
 #endif

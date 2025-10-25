@@ -69,7 +69,6 @@
 #include "hardware/Sound.h" // Timer 0A, 32 bit
 #include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
-#include "hardware/UART.h"
 // game logic
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/enemies.h" // Timer 1A, 32 bit, Timer2A 32 bit
@@ -99,23 +98,23 @@ static Enemy **Enemies;
 typedef enum {Init,Reset, Game, End} State;
 
 // State function prototypes
-State Initialize_Handler(void);
-State Reset_Handler(void);
-State Game_Handler(void);
-State End_Handler(void);
+State Initialize_State(void);
+State Reset_State(void);
+State Game_State(void);
+State End_State(void);
 
 // State Table
 typedef State (*stateHandler) (void); // this is how you alias function pointers apparently
 stateHandler StateTable[] = {
-  Initialize_Handler,
-  Reset_Handler,
-  Game_Handler,
-  End_Handler
+  Initialize_State,
+  Reset_State,
+  Game_State,
+  End_State
 };
 
 // Main
 
-int main(void){
+int main_test(void){
   PLL_Init();
   Nokia5110_Init();
   Nokia5110_Clear();
@@ -123,22 +122,22 @@ int main(void){
   Nokia5110_OutString("GAME OVER");
 }
 
-int main1(void){
+int main(void){
   State current = Init;
   while(1){
     current = StateTable[current]();
   }
+  return 0;
 }
 
 // Initialization
 
 void Hardware_Init(void){
-  UART_Init();
   PLL_Init(); // set to 80 mHz
   Nokia5110_Init();
   Sound_Init(); // initializes PB0:3 for DAC output, also initializes Timer0A for interrupts
   LED_Init(); // initialize PB4:5 for LED output
-  Buttons_Init(); // initialize PE0:1 for falling edge interrupts, not complete yet
+  Buttons_Init(); // initialize PE0:1 for falling edge interrupts
   ADC0_Init();  // initialize ADC on PE2 / AIN1
 }
 
@@ -160,13 +159,20 @@ void Software_Init(void){
   Lasers = Get_Lasers(); // returns a null terminated array
 };
 
-State Initialize_Handler(void){
+State Initialize_State(void){
   Hardware_Init();
   Software_Init();
-  return Game;
+  return End;
 }
 
 // Reset
+
+State Reset_State(void){
+  Player_Reset();
+  Projectile_Reset();
+  Enemies_Reset();
+  return Game;
+}
 
 // Game
 
@@ -268,12 +274,12 @@ void Check_Collisions(void){
   }
 }
 
-State Game_Handler(void){
+State Game_State(void){
+  EnableInterrupts();
   // testing
   Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.sprite->height * 1);
   Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.sprite->height * 2);
   Spawn_Enemies(2, &smallEnemy30Point_Enemy, smallEnemy30Point_Enemy.sprite->height * 3);
-  EnableInterrupts();
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
@@ -285,12 +291,27 @@ State Game_Handler(void){
     Nokia5110_DisplayBuffer();
     Nokia5110_ClearBuffer();
     if (PlayerShip->health <= 0){
+      DisableInterrupts();
       return End;
     }
   }
 }
 
 // End
-State End_Handler(void){
+State End_State(void){
+  unsigned char scoreBuffer[13];
+  snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
+
+  Nokia5110_Clear();
+  Nokia5110_SetCursor(0, 0);
+  Nokia5110_OutString((unsigned char *)"GAME OVER");
+  Nokia5110_SetCursor(0, 2);
+  Nokia5110_OutString(scoreBuffer);
+  Nokia5110_SetCursor(0, 4);
+  Nokia5110_OutString((unsigned char *) "Press Both");
+  Nokia5110_SetCursor(0, 5);
+  Nokia5110_OutString((unsigned char *) "Keys");
+
+  while (!Buttons_Read(BUTTON_MASK)); // cleaner to poll hardware vs polling flags in a loop here
   return Reset;
 }

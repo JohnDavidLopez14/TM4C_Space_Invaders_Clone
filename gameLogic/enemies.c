@@ -111,9 +111,14 @@ void Update_Enemies_Position(void){
   }
 }
 
-#include "hardware/LED.h"
 void Set_Movement_Flag(void){
   Movement_Flag = true;
+}
+
+void Enemies_Reset(void){
+  for (Enemy **ptr = Enemies;*ptr != NULL; ptr++){
+    (*ptr)->active = false;
+  }
 }
 
 void Enemies_Init(void){

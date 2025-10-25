@@ -13,6 +13,17 @@ static Projectile *Lasers[MAX_LASERS + 1];
 static Projectile LaserStorage[MAX_LASERS];
 static Player *PlayerShip;
 
+void Projectile_Reset_Array(Projectile **ptr){
+  for(; *ptr != NULL; ptr++){
+  (*ptr)->active = false;
+  }
+}
+
+void Projectile_Reset(void){
+  Projectile_Reset_Array(Missiles);
+  Projectile_Reset_Array(Lasers);
+}
+
 void Projectile_Init(Player *playerShip){
   // store player bitmap into global
   PlayerShip = playerShip;
@@ -22,11 +33,6 @@ void Projectile_Init(Player *playerShip){
     Missiles[i] = &MissileStorage[i];
     Missiles[i]->sprite = &missile0;
     Missiles[i]->active = false;
-    Missiles[i]->xPos = 0;
-    Missiles[i]->yPos = 0;
-    Missiles[i]->xReal = 0;
-    Missiles[i]->yReal = 0;
-    Missiles[i]->dy = 0;
   }
   Missiles[MAX_MISSILES] = NULL;
 
@@ -35,11 +41,6 @@ void Projectile_Init(Player *playerShip){
     Lasers[i] = &LaserStorage[i];
     Lasers[i]->sprite = &laser0;
     Lasers[i]->active = false;
-    Lasers[i]->xPos = 0;
-    Lasers[i]->yPos = 0;
-    Lasers[i]->xReal = 0;
-    Lasers[i]->yReal = 0;
-    Lasers[i]->dy = 0;
   }
   Lasers[MAX_LASERS] = NULL;
 }

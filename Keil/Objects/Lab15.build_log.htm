@@ -27,17 +27,26 @@ Project File Date:  10/24/2025
 <h2>Output:</h2>
 *** Using Compiler 'V6.23', folder: 'C:\Users\johnd\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target_1'
-../main.c(123): warning: passing 'char[10]' to parameter of type 'unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
-  123 |   Nokia5110_OutString("GAME OVER");
+../main.c(122): warning: passing 'char[10]' to parameter of type 'unsigned char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  122 |   Nokia5110_OutString("GAME OVER");
       |                       ^~~~~~~~~~~
 ../../Lab15\hardware/Nokia5110.h(119): note: passing argument to parameter 'ptr' here
   119 | void Nokia5110_OutString(unsigned char *ptr);
       |                                         ^
-1 warning generated.
+../main.c(123): warning: non-void function does not return a value [-Wreturn-type]
+  123 | }
+      | ^
+../main.c(303): warning: passing 'unsigned char[13]' to parameter of type 'char *' converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+  303 |   snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
+      |            ^~~~~~~~~~~
+C:\Users\johnd\AppData\Local\Keil_v5\ARM\ARMCLANG\bin\..\include\stdio.h(440): note: passing argument to parameter here
+  440 | extern _ARMABI int snprintf(char * __restrict /*s*/, size_t /*n*/,
+      |                                                    ^
+3 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=2302 RO-data=1126 RW-data=0 ZI-data=640  
-".\Objects\Lab15.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=14876 RO-data=3640 RW-data=32 ZI-data=2576  
+".\Objects\Lab15.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 

@@ -19,6 +19,7 @@ typedef struct {
 
 // Prototypes
 void Projectile_Init(Player *);
+void Projectile_Reset(void);
 Projectile **Get_Missiles(void);
 Projectile **Get_Lasers(void);
 void Fire_Missile(void);

@@ -4,6 +4,6 @@
   ..\hardware\PLL.h ..\hardware\Sound.h ..\hardware\SysTick.h \
   ..\..\Lab15\hardware\ADC.h ..\..\Lab15\hardware\Nokia5110.h \
   ..\..\Lab15\gameLogic\player.h ..\..\Lab15\gameLogic\bitmaps.h \
-  ..\hardware\Nokia5110.h ..\hardware\UART.h ..\gameLogic\bitmaps.h \
-  ..\gameLogic\enemies.h ..\..\Lab15\hardware\Timer1.h \
-  ..\gameLogic\player.h ..\gameLogic\projectile.h ..\gameLogic\random.h
+  ..\hardware\Nokia5110.h ..\gameLogic\bitmaps.h ..\gameLogic\enemies.h \
+  ..\..\Lab15\hardware\Timer1.h ..\gameLogic\player.h \
+  ..\gameLogic\projectile.h ..\gameLogic\random.h
