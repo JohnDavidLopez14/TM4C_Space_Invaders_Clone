@@ -6,6 +6,6 @@ typedef struct {
     const Bitmap *sprite;
     int xPos;
     int yPos;
-} collidable;
+} Collidable;
 
 #endif

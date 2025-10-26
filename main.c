@@ -75,6 +75,7 @@
 #include "gameLogic/player.h"
 #include "gameLogic/projectile.h"
 #include "gameLogic/random.h"
+#include "gameLogic/collidable.h"
 
 // Constant macros
 #define PB4 (1 << 4)
@@ -179,7 +180,7 @@ State Reset_State(void){
 void Poll_Inputs(void){
     if (XposFlag) {
       XposFlag = false;
-      PlayerShip->xPos = Xpos;
+      PlayerShip->base.xPos = Xpos;
     }
 
     if (MissileFlag){
@@ -206,40 +207,40 @@ void Check_OOB(void){
 
 void Draw_State(void){
   // Player Ship
-  Nokia5110_PrintBMP(PlayerShip->xPos, PlayerShip->yPos, PlayerShip->sprite->bmp, 0);
+  Nokia5110_PrintBMP(PlayerShip->base.xPos, PlayerShip->base.yPos, PlayerShip->base.sprite->bmp, 0);
 
   // sEnemies
   for (int i = 0; Enemies[i] != NULL; i++){
     if (Enemies[i]->active)
-      Nokia5110_PrintBMP(Enemies[i]->xPos, Enemies[i]->yPos, Enemies[i]->sprite->bmp, 0);
+      Nokia5110_PrintBMP(Enemies[i]->base.xPos, Enemies[i]->base.yPos, Enemies[i]->base.sprite->bmp, 0);
   }
 
   // Missiles
   for (int i = 0; Missiles[i] != NULL; i++)
   {
     if (Missiles[i]->active)
-      Nokia5110_PrintBMP(Missiles[i]->xPos, Missiles[i]->yPos, Missiles[i]->sprite->bmp, 0);
+      Nokia5110_PrintBMP(Missiles[i]->base.xPos, Missiles[i]->base.yPos, Missiles[i]->base.sprite->bmp, 0);
   }
 
   // Lasers
   for (int i = 0; Lasers[i] != NULL; i++){
     if (Lasers[i]->active)
-      Nokia5110_PrintBMP(Lasers[i]->xPos, Lasers[i]->yPos, Lasers[i]->sprite->bmp, 0);
+      Nokia5110_PrintBMP(Lasers[i]->base.xPos, Lasers[i]->base.yPos, Lasers[i]->base.sprite->bmp, 0);
   }
 }
 
-bool BitmapsOverlap(Enemy *enemy, Projectile *projectile, int hMargin, int vMargin)
+bool BitmapsOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargin)
 {
   int aLeft, aRight, aTop, aBottom, bLeft, bRight, bTop, bBottom;
-  aLeft = enemy->xPos + hMargin;
-  aRight = enemy->xPos + enemy->sprite->width - hMargin;
-  aTop = enemy->yPos - enemy->sprite->height + vMargin;
-  aBottom = enemy->yPos - vMargin;
+  aLeft = baseA->xPos + hMargin;
+  aRight = baseA->xPos + baseA->sprite->width - hMargin;
+  aTop = baseA->yPos - baseA->sprite->height + vMargin;
+  aBottom = baseA->yPos - vMargin;
 
-  bLeft = projectile->xPos;
-  bRight = projectile->xPos + projectile->sprite->width;
-  bTop = projectile->yPos - projectile->sprite->height;
-  bBottom = projectile-> yPos;
+  bLeft = baseB->xPos;
+  bRight = baseB->xPos + baseB->sprite->width;
+  bTop = baseB->yPos - baseB->sprite->height;
+  bBottom = baseB->yPos;
   return (
     aLeft <= bRight &&
     aRight >= bLeft &&
@@ -248,14 +249,52 @@ bool BitmapsOverlap(Enemy *enemy, Projectile *projectile, int hMargin, int vMarg
   );
 }
 
+void For_All_Enemies(void (*enemyFunc)(Enemy *enemy)){
+  for(Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    enemyFunc(*ptr);
+  }
+}
+
+static void Check_Lasers(Enemy *enemy){
+  if (!enemy->active) return; // skip inactive enemies
+
+  // Missiles
+  for(Projectile **ptr = Lasers; *ptr != NULL; ptr++){
+    if(BitmapOverlap(&enemy->base, &(*ptr)->base)){
+      enemy->active = false;
+      (*ptr)->active = false;
+    }
+  }
+}
+
+static void Check_Missiles(Enemy *enemy){
+  if (!enemy->active) return; // skip inactive enemies
+
+  // Missiles
+  for(Projectile **ptr = Missiles; *ptr != NULL; ptr++){
+    if(BitmapOverlap(&enemy->base, &(*ptr)->base)){
+      enemy->active = false;
+      (*ptr)->active = false;
+    }
+  }
+}
+
 void Check_Collisions(void){
+  For_All_Enemies(Check_Lasers);
+  For_All_Enemies(Check_Missiles);
+  //For_All_Enemies(Check_Player);
+  //For_All_Enemies(Check_Bunker);
+}
+
+// checks collisions on enemies - lasers, missiles, player, bunkers
+void Check_Collisions2(void){
   for(int x = 0; Enemies[x] != NULL; x++){
     if(!Enemies[x]->active)continue;
 
     for(int y = 0; Lasers[y] != NULL; y++){
       if (!Lasers[y]->active) continue;
 
-      if (BitmapsOverlap(Enemies[x], Lasers[y], H_MARGIN, V_MARGIN)){
+      if (BitmapsOverlap(&Enemies[x]->base, &Lasers[y]->base, H_MARGIN, V_MARGIN))
               Enemies[x]->active = false;
               Lasers[y]->active = false;
               // need to add score here
@@ -264,8 +303,7 @@ void Check_Collisions(void){
 
     for(int z = 0; Missiles[z] != NULL; z++){
       if(!Missiles[z]->active) continue;
-
-      if (BitmapsOverlap(Enemies[x], Missiles[z], H_MARGIN, V_MARGIN)){
+      if (BitmapsOverlap(&Enemies[x]->base, &Missiles[z]->base, H_MARGIN, V_MARGIN)){
               Enemies[x]->active = false;
               Missiles[z]->active = false;
               // need to add score here
@@ -277,9 +315,9 @@ void Check_Collisions(void){
 State Game_State(void){
   EnableInterrupts();
   // testing
-  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.sprite->height * 1);
-  Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.sprite->height * 2);
-  Spawn_Enemies(2, &smallEnemy30Point_Enemy, smallEnemy30Point_Enemy.sprite->height * 3);
+  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 1);
+  Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.base.sprite->height * 2);
+  Spawn_Enemies(2, &smallEnemy30Point_Enemy, smallEnemy30Point_Enemy.base.sprite->height * 3);
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State

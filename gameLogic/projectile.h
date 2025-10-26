@@ -12,7 +12,7 @@
 // Global Data Types
 typedef struct {
   bool active;
-  collidable base;
+  Collidable base;
 	float yReal; // stores the actual position
   float dy; // this will be pixels/tick
 } Projectile;

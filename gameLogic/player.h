@@ -8,7 +8,7 @@
 
 // Global Data Types
 typedef struct {
-    collidable base; // contains the x and y positions on the screen + bitmap struct
+    Collidable base; // contains the x and y positions on the screen + bitmap struct
     int health;
     int score;
 } Player;

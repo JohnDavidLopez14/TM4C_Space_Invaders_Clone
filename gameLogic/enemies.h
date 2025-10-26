@@ -10,7 +10,7 @@
 
   typedef struct {
     bool active;
-    collidable base; // contains x and y positions on the screen + bitmap struct
+    Collidable base; // contains x and y positions on the screen + bitmap struct
     const Bitmap *spriteA, *spriteB;
     int health; // need to add points
     int points;
