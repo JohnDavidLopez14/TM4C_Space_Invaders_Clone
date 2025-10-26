@@ -29,7 +29,7 @@ unsigned long Convert(unsigned long sample){
     if (sample > ADCMAX){
         sample = ADCMAX;
     }
-    unsigned long xMax = SCREENW - PlayerShip->sprite->width;
+    unsigned long xMax = SCREENW - PlayerShip->base.sprite->width;
     unsigned long result = (xMax  * (sample - ADCMIN)) / (ADCMAX - ADCMIN);
     return result;
 }

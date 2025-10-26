@@ -292,7 +292,7 @@ void Nokia5110_Init(void){
 // inputs: data  character to print
 // outputs: none
 // assumes: LCD is in default horizontal addressing mode (V = 0)
-void Nokia5110_OutChar(unsigned char data){
+void Nokia5110_OutChar(char data){
   int i;
   lcdwrite(DATA, 0x00);                 // blank vertical line padding
   for(i=0; i<5; i=i+1){
@@ -308,9 +308,9 @@ void Nokia5110_OutChar(unsigned char data){
 // inputs: ptr  pointer to NULL-terminated ASCII string
 // outputs: none
 // assumes: LCD is in default horizontal addressing mode (V = 0)
-void Nokia5110_OutString(unsigned char *ptr){
+void Nokia5110_OutString(char *ptr){
   while(*ptr){
-    Nokia5110_OutChar((unsigned char)*ptr);
+    Nokia5110_OutChar((char)*ptr);
     ptr = ptr + 1;
   }
 }

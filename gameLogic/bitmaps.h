@@ -3,8 +3,8 @@
 
 typedef struct {
     const unsigned char *bmp;
-    unsigned int width;
-    unsigned int height;
+    int width;
+    int height;
 } Bitmap;
 
 extern const Bitmap smallEnemy30PointA;

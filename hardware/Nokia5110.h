@@ -107,7 +107,7 @@ void Nokia5110_Init(void);
 // inputs: data  character to print
 // outputs: none
 // assumes: LCD is in default horizontal addressing mode (V = 0)
-void Nokia5110_OutChar(unsigned char data);
+void Nokia5110_OutChar(char data);
 
 //********Nokia5110_OutString*****************
 // Print a string of characters to the Nokia 5110 48x84 LCD.
@@ -116,7 +116,7 @@ void Nokia5110_OutChar(unsigned char data);
 // inputs: ptr  pointer to NULL-terminated ASCII string
 // outputs: none
 // assumes: LCD is in default horizontal addressing mode (V = 0)
-void Nokia5110_OutString(unsigned char *ptr);
+void Nokia5110_OutString(char *ptr);
 
 //********Nokia5110_OutUDec*****************
 // Output a 16-bit number in unsigned decimal format with a

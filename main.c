@@ -115,14 +115,6 @@ stateHandler StateTable[] = {
 
 // Main
 
-int main_test(void){
-  PLL_Init();
-  Nokia5110_Init();
-  Nokia5110_Clear();
-  Nokia5110_SetCursor(0, 0);
-  Nokia5110_OutString("GAME OVER");
-}
-
 int main(void){
   State current = Init;
   while(1){
@@ -229,7 +221,7 @@ void Draw_State(void){
   }
 }
 
-bool BitmapsOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargin)
+bool BitmapOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargin)
 {
   int aLeft, aRight, aTop, aBottom, bLeft, bRight, bTop, bBottom;
   aLeft = baseA->xPos + hMargin;
@@ -260,7 +252,7 @@ static void Check_Lasers(Enemy *enemy){
 
   // Missiles
   for(Projectile **ptr = Lasers; *ptr != NULL; ptr++){
-    if(BitmapOverlap(&enemy->base, &(*ptr)->base)){
+    if(BitmapOverlap(&enemy->base, &(*ptr)->base, H_MARGIN, V_MARGIN)){
       enemy->active = false;
       (*ptr)->active = false;
     }
@@ -272,7 +264,7 @@ static void Check_Missiles(Enemy *enemy){
 
   // Missiles
   for(Projectile **ptr = Missiles; *ptr != NULL; ptr++){
-    if(BitmapOverlap(&enemy->base, &(*ptr)->base)){
+    if(BitmapOverlap(&enemy->base, &(*ptr)->base, H_MARGIN, V_MARGIN)){
       enemy->active = false;
       (*ptr)->active = false;
     }
@@ -284,32 +276,6 @@ void Check_Collisions(void){
   For_All_Enemies(Check_Missiles);
   //For_All_Enemies(Check_Player);
   //For_All_Enemies(Check_Bunker);
-}
-
-// checks collisions on enemies - lasers, missiles, player, bunkers
-void Check_Collisions2(void){
-  for(int x = 0; Enemies[x] != NULL; x++){
-    if(!Enemies[x]->active)continue;
-
-    for(int y = 0; Lasers[y] != NULL; y++){
-      if (!Lasers[y]->active) continue;
-
-      if (BitmapsOverlap(&Enemies[x]->base, &Lasers[y]->base, H_MARGIN, V_MARGIN))
-              Enemies[x]->active = false;
-              Lasers[y]->active = false;
-              // need to add score here
-      }  
-    }
-
-    for(int z = 0; Missiles[z] != NULL; z++){
-      if(!Missiles[z]->active) continue;
-      if (BitmapsOverlap(&Enemies[x]->base, &Missiles[z]->base, H_MARGIN, V_MARGIN)){
-              Enemies[x]->active = false;
-              Missiles[z]->active = false;
-              // need to add score here
-      }  
-    }
-  }
 }
 
 State Game_State(void){
@@ -337,18 +303,22 @@ State Game_State(void){
 
 // End
 State End_State(void){
-  unsigned char scoreBuffer[13];
+	char scoreBuffer[13];
   snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
 
   Nokia5110_Clear();
   Nokia5110_SetCursor(0, 0);
-  Nokia5110_OutString((unsigned char *)"GAME OVER");
+	Nokia5110_OutString("GAME OVER");
+	Nokia5110_SetCursor(0, 1);
+	Nokia5110_OutString("Final score:");
   Nokia5110_SetCursor(0, 2);
   Nokia5110_OutString(scoreBuffer);
+  Nokia5110_SetCursor(0, 3);
+  Nokia5110_OutString("Press Both");
   Nokia5110_SetCursor(0, 4);
-  Nokia5110_OutString((unsigned char *) "Press Both");
-  Nokia5110_SetCursor(0, 5);
-  Nokia5110_OutString((unsigned char *) "Keys");
+  Nokia5110_OutString("Buttons");
+	Nokia5110_SetCursor(0, 5);
+	Nokia5110_OutString("To Continue");
 
   while (!Buttons_Read(BUTTON_MASK)); // cleaner to poll hardware vs polling flags in a loop here
   return Reset;
