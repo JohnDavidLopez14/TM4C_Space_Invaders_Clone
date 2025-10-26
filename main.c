@@ -155,7 +155,7 @@ void Software_Init(void){
 State Initialize_State(void){
   Hardware_Init();
   Software_Init();
-  return End;
+  return Game;
 }
 
 // Reset
@@ -241,41 +241,60 @@ bool BitmapOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargi
   );
 }
 
-void For_All_Enemies(void (*enemyFunc)(Enemy *enemy)){
+void For_All_Active_Enemies(void (*enemyFunc)(Enemy *enemy)){
   for(Enemy **ptr = Enemies; *ptr != NULL; ptr++){
-    enemyFunc(*ptr);
+    Enemy *enemy = *ptr;
+    if (enemy->active)
+      enemyFunc(enemy);
   }
 }
 
 static void Check_Lasers(Enemy *enemy){
-  if (!enemy->active) return; // skip inactive enemies
-
-  // Missiles
   for(Projectile **ptr = Lasers; *ptr != NULL; ptr++){
-    if(BitmapOverlap(&enemy->base, &(*ptr)->base, H_MARGIN, V_MARGIN)){
+    Projectile *laser = *ptr;
+    if(BitmapOverlap(&enemy->base, &laser->base, H_MARGIN, V_MARGIN)){
+      PlayerShip->score += enemy->points;
       enemy->active = false;
-      (*ptr)->active = false;
+      laser->active = false;
     }
   }
 }
 
 static void Check_Missiles(Enemy *enemy){
-  if (!enemy->active) return; // skip inactive enemies
-
-  // Missiles
   for(Projectile **ptr = Missiles; *ptr != NULL; ptr++){
-    if(BitmapOverlap(&enemy->base, &(*ptr)->base, H_MARGIN, V_MARGIN)){
+    Projectile *missile = *ptr;
+    if(BitmapOverlap(&enemy->base, &missile->base, H_MARGIN, V_MARGIN)){
+      PlayerShip->score += enemy->points;
       enemy->active = false;
-      (*ptr)->active = false;
+      missile->active = false;
     }
   }
 }
 
+static void Check_Player(Enemy *enemy){
+  if(BitmapOverlap(&enemy->base, &PlayerShip->base)){
+    enemy->active = false;
+    PlayerShip->health -= enemy->dmg;
+  }
+}
+
 void Check_Collisions(void){
-  For_All_Enemies(Check_Lasers);
-  For_All_Enemies(Check_Missiles);
-  //For_All_Enemies(Check_Player);
+  For_All_Active_Enemies(Check_Lasers);
+  For_All_Active_Enemies(Check_Missiles); // if there is a collision, projectile and enemies are deactivated
+  For_All_Enemies(Check_Player);
   //For_All_Enemies(Check_Bunker);
+}
+
+bool Check_End_Conditions(void){
+  // Check if the player health is below 0
+  if (PlayerShip->health < 0)
+    return true;
+
+  // Check if an Enemy has made it to the bottom of the screen
+    if (Check_Enemy_End()) // need to think of how I want to handle this in Enemies
+      return true;
+
+  return false;
 }
 
 State Game_State(void){
@@ -288,16 +307,20 @@ State Game_State(void){
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
     Check_OOB(); // check out of bounds
-    Check_Collisions();
+    Check_Collisions(); // collisions with enemies to projectiles, player, bunkers
+    bool gameOver = Check_End_Conditions();
+
+    // Check to see if player has lost health or an enemy has made it to the bottom of the screen
+    if (gameOver){
+      DisableInterrupts();
+      return End;
+    }
+
     Draw_State(); // draw everything
 
     // Display Graphics
     Nokia5110_DisplayBuffer();
     Nokia5110_ClearBuffer();
-    if (PlayerShip->health <= 0){
-      DisableInterrupts();
-      return End;
-    }
   }
 }
 

@@ -17,7 +17,6 @@ Enemy **Get_Enemies(void){
   return Enemies;
 }
 
-
 // iterate through all enemies, does not return anything
 static void For_All(void (*enemyFunc)(Enemy*)){
   for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
@@ -31,6 +30,17 @@ static Enemy *Find_First_Enemy_By_State(bool state){
       return (*ptr);
   }
   return NULL;
+}
+
+bool Check_Enemy_End(void){
+  for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    Enemy *enemy = *ptr;
+    if (enemy->active){
+      if (enemy->base.yPos > SCREENH)
+        return true;
+    }
+  }
+  return false;
 }
 
 // searches for inactive enemy and then spawns it if available

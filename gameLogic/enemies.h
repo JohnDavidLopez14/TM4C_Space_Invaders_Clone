@@ -12,7 +12,7 @@
     bool active;
     Collidable base; // contains x and y positions on the screen + bitmap struct
     const Bitmap *spriteA, *spriteB;
-    int health; // need to add points
+    int health; // need to add damage maybe, not sure if this is something I want to add
     int points;
     int dmg;
   } Enemy;
@@ -21,6 +21,7 @@
   extern Enemy smallEnemy20Point_Enemy;
   extern Enemy smallEnemy10Point_Enemy;
 
+  bool Check_Enemy_End(void);
   void Enemies_Init(void);
   void Enemies_Reset(void);
   Enemy **Get_Enemies(void);
