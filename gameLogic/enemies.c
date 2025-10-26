@@ -17,10 +17,18 @@ Enemy **Get_Enemies(void){
   return Enemies;
 }
 
-Enemy *Find_First_Enemy_By_State(bool state){
-  for (int i = 0; Enemies[i] != NULL; i++){
-    if (Enemies[i]->active == state)
-      return Enemies[i];
+
+// iterate through all enemies, does not return anything
+static void For_All(void (*enemyFunc)(Enemy*)){
+  for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    enemyFunc(*ptr);
+  }
+}
+
+static Enemy *Find_First_Enemy_By_State(bool state){
+  for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    if ((*ptr)->active == state)
+      return (*ptr);
   }
   return NULL;
 }
@@ -31,13 +39,15 @@ void Spawn_Enemy_From_Template(const Enemy *templateEnemy, int x, int y){
   enemy = Find_First_Enemy_By_State(false);
   if (enemy != NULL){
     *enemy = *templateEnemy; // copy all fields from the template
+    
+    // set active and set initial position
     enemy->active = true;
-    enemy->xPos = x;
-    enemy->yPos = y;
+    enemy->base.xPos = x;
+    enemy->base.yPos = y;
   }
 }
 
-int Enemy_Spacing(int enemyNumber,int enemyWidth, int enemyIndex){
+static int Enemy_Spacing(int enemyNumber,int enemyWidth, int enemyIndex){
   int enemyTotalWidth = enemyWidth * enemyNumber;
   if (SCREENW < enemyTotalWidth)
     return -1;
@@ -55,41 +65,47 @@ void Spawn_Enemies(int enemyNumber, const Enemy *templateEnemy, int yPos){
   }
 }
 
-void Move_Horizontally_One_Pixel(){
-    for (int i = 0; Enemies[i] != NULL; i++){
-      if (Enemies[i]->active)
-        Enemies[i]->xPos += Movement_Dir;
-  }
+static void Move_Horizontally_One_Pixel_Helper(Enemy *enemy){
+  enemy->base.xPos += Movement_Dir;
 }
 
-void Move_Down_One_Pixel(){
+static void Move_Horizontally_One_Pixel(void){
+  For_All(Move_Horizontally_One_Pixel_Helper);
+}
+
+static void Move_Down_One_Pixel_Helper(Enemy *enemy){
+  if (enemy->active)
+    enemy->base.yPos += 1;
+}
+
+static void Move_Down_One_Pixel(void){
   Movement_Dir *= -1; // switch horizontal movement
-  for (int i = 0; Enemies[i] != NULL; i++){
-    if(Enemies[i]->active)
-      Enemies[i]->yPos += 1;
-  }
-
+  For_All(Move_Down_One_Pixel_Helper);
 }
 
-bool Check_Vertical_Movement(void){
-  for (int i = 0; Enemies[i] != NULL; i++){
-    if (Enemies[i]->active)
-      if (Enemies[i]->xPos == 0 || (Enemies[i]->xPos + Enemies[i]->sprite->width) == SCREENW) // if the enemy is off the screen on either side
+static bool Check_Vertical_Movement(void){
+  for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    if ((*ptr)->active)
+      if ((*ptr)->base.xPos == 0 || (*ptr)->base.xPos + (*ptr)->base.sprite->width == SCREENW) // if the enemy is off the screen on either side
         return true;
   }
   return false;
 }
 
-void Swap_SpriteAB(void){
+static void Swap_SpriteA(Enemy *enemy){
+  enemy->base.sprite = enemy->spriteA;
+}
+
+static void Swap_SpriteB(Enemy *enemy){
+  enemy->base.sprite = enemy->spriteB;
+}
+
+static void Swap_SpriteAB(void){
   if (SpriteA_Flag) {
-    for (int i = 0; Enemies[i] != NULL; i++){
-      Enemies[i]->sprite = Enemies[i]->spriteB;
-    }
+    For_All(Swap_SpriteB);
     SpriteA_Flag = false;
   } else {
-    for (int i = 0; Enemies[i] != NULL; i++){
-      Enemies[i]->sprite = Enemies[i]->spriteA;
-    }
+    For_All(Swap_SpriteA);
     SpriteA_Flag = true;
   }
 }
@@ -111,14 +127,16 @@ void Update_Enemies_Position(void){
   }
 }
 
-void Set_Movement_Flag(void){
+static void Set_Movement_Flag(void){
   Movement_Flag = true;
 }
 
+static void Enemies_Reset_Helper(Enemy *enemy){
+  enemy->active = false;
+}
+
 void Enemies_Reset(void){
-  for (Enemy **ptr = Enemies;*ptr != NULL; ptr++){
-    (*ptr)->active = false;
-  }
+  For_All(Enemies_Reset_Helper);
 }
 
 void Enemies_Init(void){
@@ -129,6 +147,32 @@ void Enemies_Init(void){
   Timer1_Init(Set_Movement_Flag, ENEMY_MOVEMENT_RELOAD);
 }
 
-const Enemy smallEnemy30Point_Enemy = {false, &smallEnemy30PointA, &smallEnemy30PointA, &smallEnemy30PointB, 100, 30, 0, 0};
-const Enemy smallEnemy20Point_Enemy = {false, &smallEnemy20PointA, &smallEnemy20PointA, &smallEnemy20PointB, 100, 20 ,0 ,0};
-const Enemy smallEnemy10Point_Enemy = {false, &smallEnemy10PointA, &smallEnemy10PointA, &smallEnemy10PointB, 100, 10, 0, 0};
+Enemy smallEnemy30Point_Enemy = {
+  .active = false,
+  .base = {.sprite = &smallEnemy30PointA, .xPos = 0, .yPos = 0},
+  .spriteA = &smallEnemy30PointA,
+  .spriteB = &smallEnemy30PointB,
+  .health = 100,
+  .points = 30,
+  .dmg = 10
+};
+
+Enemy smallEnemy20Point_Enemy = {
+  .active = false,
+  .base = {.sprite = &smallEnemy20PointA, .xPos = 0, .yPos = 0},
+  .spriteA = &smallEnemy20PointA,
+  .spriteB = &smallEnemy20PointB,
+  .health = 100,
+  .points = 20,
+  .dmg = 10
+};
+
+Enemy smallEnemy10Point_Enemy = {
+  .active = false,
+  .base = {.sprite = &smallEnemy20PointA, .xPos = 0, .yPos = 0},
+  .spriteA = &smallEnemy20PointA,
+  .spriteB = &smallEnemy20PointB,
+  .health = 100,
+  .points = 20,
+  .dmg = 10
+};

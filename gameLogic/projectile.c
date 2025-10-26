@@ -13,6 +13,8 @@ static Projectile *Lasers[MAX_LASERS + 1];
 static Projectile LaserStorage[MAX_LASERS];
 static Player *PlayerShip;
 
+static void For_All
+
 void Projectile_Reset_Array(Projectile **ptr){
   for(; *ptr != NULL; ptr++){
   (*ptr)->active = false;

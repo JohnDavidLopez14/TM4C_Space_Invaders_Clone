@@ -4,16 +4,16 @@
 // Pre-Processor Includes
 #include <stddef.h>
 #include <stdbool.h>
-#include "hardware/Nokia5110.h"
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/player.h"
+#include "gameLogic/collidable.h"
+#include "hardware/Nokia5110.h"
 
 // Global Data Types
 typedef struct {
-  const Bitmap *sprite;
   bool active;
-  unsigned int xPos, yPos; // stores the screen position
-	float xReal, yReal; // stores the actual position
+  collidable base;
+	float yReal; // stores the actual position
   float dy; // this will be pixels/tick
 } Projectile;
 
