@@ -164,7 +164,7 @@ Enemy smallEnemy30Point_Enemy = {
   .spriteB = &smallEnemy30PointB,
   .health = 100,
   .points = 30,
-  .dmg = 10
+  .dmg = 100
 };
 
 Enemy smallEnemy20Point_Enemy = {
@@ -174,7 +174,7 @@ Enemy smallEnemy20Point_Enemy = {
   .spriteB = &smallEnemy20PointB,
   .health = 100,
   .points = 20,
-  .dmg = 10
+  .dmg = 100
 };
 
 Enemy smallEnemy10Point_Enemy = {
@@ -184,5 +184,5 @@ Enemy smallEnemy10Point_Enemy = {
   .spriteB = &smallEnemy20PointB,
   .health = 100,
   .points = 20,
-  .dmg = 10
+  .dmg = 100
 };

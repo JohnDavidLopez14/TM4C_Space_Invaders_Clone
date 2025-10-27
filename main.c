@@ -252,6 +252,7 @@ void For_All_Active_Enemies(void (*enemyFunc)(Enemy *enemy)){
 static void Check_Lasers(Enemy *enemy){
   for(Projectile **ptr = Lasers; *ptr != NULL; ptr++){
     Projectile *laser = *ptr;
+		if (!laser->active) continue;
     if(BitmapOverlap(&enemy->base, &laser->base, H_MARGIN, V_MARGIN)){
       PlayerShip->score += enemy->points;
       enemy->active = false;
@@ -263,6 +264,7 @@ static void Check_Lasers(Enemy *enemy){
 static void Check_Missiles(Enemy *enemy){
   for(Projectile **ptr = Missiles; *ptr != NULL; ptr++){
     Projectile *missile = *ptr;
+		if(!missile->active) continue;
     if(BitmapOverlap(&enemy->base, &missile->base, H_MARGIN, V_MARGIN)){
       PlayerShip->score += enemy->points;
       enemy->active = false;
@@ -287,7 +289,7 @@ void Check_Collisions(void){
 
 bool Check_End_Conditions(void){
   // Check if the player health is below 0
-  if (PlayerShip->health < 0)
+  if (PlayerShip->health <= 0)
     return true;
 
   // Check if an Enemy has made it to the bottom of the screen
@@ -301,8 +303,8 @@ State Game_State(void){
   EnableInterrupts();
   // testing
   Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 1);
-  Spawn_Enemies(3, &smallEnemy20Point_Enemy, smallEnemy20Point_Enemy.base.sprite->height * 2);
-  Spawn_Enemies(2, &smallEnemy30Point_Enemy, smallEnemy30Point_Enemy.base.sprite->height * 3);
+  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 2);
+  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 3);
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
