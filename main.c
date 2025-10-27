@@ -272,7 +272,7 @@ static void Check_Missiles(Enemy *enemy){
 }
 
 static void Check_Player(Enemy *enemy){
-  if(BitmapOverlap(&enemy->base, &PlayerShip->base)){
+  if(BitmapOverlap(&enemy->base, &PlayerShip->base, H_MARGIN, V_MARGIN)){
     enemy->active = false;
     PlayerShip->health -= enemy->dmg;
   }
@@ -281,7 +281,7 @@ static void Check_Player(Enemy *enemy){
 void Check_Collisions(void){
   For_All_Active_Enemies(Check_Lasers);
   For_All_Active_Enemies(Check_Missiles); // if there is a collision, projectile and enemies are deactivated
-  For_All_Enemies(Check_Player);
+  For_All_Active_Enemies(Check_Player);
   //For_All_Enemies(Check_Bunker);
 }
 
@@ -291,8 +291,8 @@ bool Check_End_Conditions(void){
     return true;
 
   // Check if an Enemy has made it to the bottom of the screen
-    if (Check_Enemy_End()) // need to think of how I want to handle this in Enemies
-      return true;
+	if (Check_Enemy_End()) // need to think of how I want to handle this in Enemies
+		return true;
 
   return false;
 }
