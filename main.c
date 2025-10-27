@@ -80,8 +80,8 @@
 // Constant macros
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
-#define H_MARGIN 4 // penetration margin
-#define V_MARGIN 5 
+#define H_MARGIN 2 // penetration margin
+#define V_MARGIN 2 
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -229,10 +229,10 @@ bool BitmapOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargi
   aTop = baseA->yPos - baseA->sprite->height + vMargin;
   aBottom = baseA->yPos - vMargin;
 
-  bLeft = baseB->xPos;
-  bRight = baseB->xPos + baseB->sprite->width;
-  bTop = baseB->yPos - baseB->sprite->height;
-  bBottom = baseB->yPos;
+  bLeft = baseB->xPos + hMargin;
+  bRight = baseB->xPos + baseB->sprite->width - hMargin;
+  bTop = baseB->yPos - baseB->sprite->height + vMargin;
+  bBottom = baseB->yPos - vMargin;
   return (
     aLeft <= bRight &&
     aRight >= bLeft &&

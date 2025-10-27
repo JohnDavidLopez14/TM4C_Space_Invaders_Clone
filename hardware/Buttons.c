@@ -1,9 +1,8 @@
 #include "Buttons.h"
 #include "tm4c123gh6pm.h"
 #include <stdint.h>
-//#include "UART.h"
 
-#define GPIOE_DISABLE_PERIOD 0x4E200
+#define GPIOE_DISABLE_PERIOD 0x2645800 // debounce amount
 
 volatile bool MissileFlag = false;
 volatile bool LaserFlag = false;
@@ -17,7 +16,7 @@ void Buttons_Init(void){
     // GPIO initialization
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOE;
     while ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R4) == 0);
-    GPIO_PORTE_CR_R    |= BUTTON_MASK;   // allow GPIOAFSEL, GPIOPUR, and GPIODEN bits to be written
+    GPIO_PORTE_CR_R    |= BUTTON_MASK;   // allow GPIOAFSEL, GPIOPUR, and GPIODEN hits to be written
     GPIO_PORTE_AMSEL_R &= ~BUTTON_MASK;  // clear analog functions
     GPIO_PORTE_PCTL_R  &= ~0xFF;      // mux the port to clear alternate function selection
     GPIO_PORTE_DIR_R   &= ~BUTTON_MASK;  // pin as input
