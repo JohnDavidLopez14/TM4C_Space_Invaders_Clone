@@ -201,7 +201,7 @@ void Draw_State(void){
   // Player Ship
   Nokia5110_PrintBMP(PlayerShip->base.xPos, PlayerShip->base.yPos, PlayerShip->base.sprite->bmp, 0);
 
-  // sEnemies
+  // Enemies
   for (int i = 0; Enemies[i] != NULL; i++){
     if (Enemies[i]->active)
       Nokia5110_PrintBMP(Enemies[i]->base.xPos, Enemies[i]->base.yPos, Enemies[i]->base.sprite->bmp, 0);
