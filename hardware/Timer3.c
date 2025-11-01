@@ -4,6 +4,7 @@
 #define PRIORITY 7
 
 static void (*PeriodicTask)(void);
+static unsigned long Period;
 
 void Timer3_Init(void(*task)(void), unsigned long period){
     PeriodicTask = task;
@@ -15,7 +16,7 @@ void Timer3_Init(void(*task)(void), unsigned long period){
     // offset 0x000
     TIMER3_TAMR_R = (TIMER3_TAMR_R & ~0x03) | 0x02; // 3) configure for periodic mode, defalut down-count settings
     // offset 0x004
-    TIMER3_TAILR_R = period - 1; // 4) reload value
+    Period = period - 1; // 4) reload value
     // offset 0x028
     TIMER3_TAPR_R &= ~0xFFFF; // 5) bus clock resolution
     // offset 0x038
@@ -29,8 +30,17 @@ void Timer3_Init(void(*task)(void), unsigned long period){
     // bits 15:13
     NVIC_EN1_R |= (1<<3); // 9) Enable the correct irq IN nvic
     // offset 0x100
-    TIMER3_CTL_R |= 0X01; // 10) Enable TimerA
+    //TIMER3_CTL_R |= 0X01; // 10) Enable TimerA
 
+}
+
+void Timer3_Enable(void){
+    TIMER3_TAILR_R = Period - 1; // 4) reload value
+    TIMER3_CTL_R |= 0X01; // 10) Enable TimerA
+}
+
+void Timer3_Disable(void){
+    TIMER3_CTL_R &= ~0X01; // disable TimerA
 }
 
 void Timer3A_Handler(void){

@@ -64,14 +64,15 @@
 #include "hardware/tm4c123gh6pm.h"
 #include "hardware/ADC.h"
 #include "hardware/Buttons.h" // Timer 2A, 32 bits
-#include "hardware/LED.h" // Timer 3A, 32 bis
+#include "hardware/LED.h"
 #include "hardware/PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "hardware/Sound.h" // Timer 0A, 32 bit
 #include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
 // game logic
 #include "gameLogic/bitmaps.h"
-#include "gameLogic/enemies.h" // Timer 1A, 32 bit, Timer2A 32 bit
+#include "gameLogic/enemies.h" // Timer 1A, 32 bit
+#include "gameLogic/explosions.h" // Timer 3A, 32 bits
 #include "gameLogic/player.h"
 #include "gameLogic/projectile.h"
 #include "gameLogic/random.h"

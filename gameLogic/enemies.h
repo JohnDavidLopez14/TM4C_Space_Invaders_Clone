@@ -6,7 +6,8 @@
   #include "gameLogic/collidable.h"
   #include "hardware/Nokia5110.h"
   #include "hardware/Timer1.h"
-  #include "hardware/Timer2.h"
+
+  #define MAX_ENEMIES 20 // external for explosions
 
   typedef struct {
     bool active;
