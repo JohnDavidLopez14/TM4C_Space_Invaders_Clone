@@ -212,24 +212,25 @@ void Draw_State(void){
   Nokia5110_PrintBMP(PlayerShip->base.xPos, PlayerShip->base.yPos, PlayerShip->base.sprite->bmp, 0);
 
   // Enemies
-  for (int i = 0; Enemies[i] != NULL; i++){
-    if (Enemies[i]->active)
-      Nokia5110_PrintBMP(Enemies[i]->base.xPos, Enemies[i]->base.yPos, Enemies[i]->base.sprite->bmp, 0);
+  for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    if ((*ptr)->active)
+      Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
   }
 
   // Missiles
-  for (int i = 0; Missiles[i] != NULL; i++)
+  for (Projectile **ptr; *ptr != NULL; ptr)
   {
-    if (Missiles[i]->active)
-      Nokia5110_PrintBMP(Missiles[i]->base.xPos, Missiles[i]->base.yPos, Missiles[i]->base.sprite->bmp, 0);
+    if ((*ptr)->active)
+      Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
   }
 
   // Lasers
-  for (int i = 0; Lasers[i] != NULL; i++){
-    if (Lasers[i]->active)
-      Nokia5110_PrintBMP(Lasers[i]->base.xPos, Lasers[i]->base.yPos, Lasers[i]->base.sprite->bmp, 0);
+  for (Projectile **ptr; *ptr != NULL; ptr++){
+    if ((*ptr)->active)
+      Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
   }
 	
+  // Explosions
 	for (Explosion **ptr = Explosions; *ptr != NULL; ptr++){
 		if((*ptr)->active){
 			Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
