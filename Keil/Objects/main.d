@@ -6,6 +6,7 @@
   ..\..\Lab15\gameLogic\player.h ..\..\Lab15\gameLogic\bitmaps.h \
   ..\..\Lab15\gameLogic\collidable.h ..\hardware\Nokia5110.h \
   ..\gameLogic\bitmaps.h ..\gameLogic\enemies.h \
-  ..\..\Lab15\hardware\Timer1.h ..\gameLogic\player.h \
-  ..\gameLogic\projectile.h ..\gameLogic\random.h \
+  ..\..\Lab15\hardware\Timer1.h ..\gameLogic\explosions.h \
+  ..\..\Lab15\gameLogic\enemies.h ..\..\Lab15\hardware\Timer3.h \
+  ..\gameLogic\player.h ..\gameLogic\projectile.h ..\gameLogic\random.h \
   ..\gameLogic\collidable.h

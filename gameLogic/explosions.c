@@ -1,8 +1,21 @@
 #include "gameLogic/explosions.h"
-#define UPDATE_PERIOD 0xFFFF
+#define UPDATE_PERIOD 0xB71B00
 
+volatile bool Explosion_Update_Flag = false;
 static Explosion Explosions_Storage[MAX_ENEMIES + 1];
 static Explosion *Explosions[MAX_ENEMIES + 2]; // 1 for null, 1 for player
+
+Explosion Template_EnemyExplosion = {
+    .active = false,
+    .frameOne = &smallExplosion0,
+    .frameTwo = &smallExplosion1,
+};
+
+Explosion Template_PlayerExplosion = {
+    .active = false,
+    .frameOne = &bigExplosion0,
+    .frameTwo = &bigExplosion1,
+};
 
 Explosion **Get_Explosions(void){
     return Explosions;
@@ -50,11 +63,11 @@ static void Spawn_Explosion_From_Template(Collidable *base, Explosion *template)
             Timer3_Enable();
         }
         *current = *template;
-        current->active = true;
         current->base.xPos = base->xPos;
         current->base.yPos = base->yPos;
         current->base.sprite = current->frameOne;
-        current->currentFrame = frameOne;
+        current->currentFrame = frameOne_enum;
+				current->active = true;
     }
 }
 
@@ -68,13 +81,12 @@ void Spawn_Player_Explosion(Collidable *base){
 
 static void Update_Explosion_Frames_Helper(Explosion *explosion){
     switch(explosion->currentFrame){
-        case frameOne: // if on frame one, set to frame two
-            explosion->base.sprite = explosion->frameOne;
-            explosion->currentFrame = frameTwo;
+        case frameOne_enum: // if on frame one, set to frame two
+            explosion->base.sprite = explosion->frameTwo;
+            explosion->currentFrame = frameTwo_enum;
             break;
-        case frameTwo: // if on frame two, set to deactivate
+        case frameTwo_enum: // if on frame two, set to deactivate
             explosion->active = false;
-            explosion->currentFrame = frameNull;
             if (!Check_If_Any_State(true)) // if none are active now
                 Timer3_Disable();
             break;
@@ -84,17 +96,3 @@ static void Update_Explosion_Frames_Helper(Explosion *explosion){
 void Update_Explosion_Frames(void){
     For_All_Active(Update_Explosion_Frames_Helper);
 }
-
-Explosion Template_EnemyExplosion = {
-    .active = false,
-    .frameOne = &smallExplosion0,
-    .frameTwo = &smallExplosion1,
-    .currentFrame = frameNull
-};
-
-Explosion Template_PlayerExplosion = {
-    .active = false,
-    .frameOne = &bigExplosion0,
-    .frameTwo = &bigExplosion1,
-    .currentFrame = frameNull
-};

@@ -35,7 +35,7 @@ void Timer3_Init(void(*task)(void), unsigned long period){
 }
 
 void Timer3_Enable(void){
-    TIMER3_TAILR_R = Period - 1; // 4) reload value
+    TIMER3_TAILR_R = Period; // 4) reload value
     TIMER3_CTL_R |= 0X01; // 10) Enable TimerA
 }
 
@@ -43,7 +43,7 @@ void Timer3_Disable(void){
     TIMER3_CTL_R &= ~0X01; // disable TimerA
 }
 
-void Timer3A_Handler(void){
+void TIMER3A_Handler(void){
     TIMER3_ICR_R |= TIMER_ICR_TATOCINT; // clear TimerA timeout flag
 
     (*PeriodicTask)();

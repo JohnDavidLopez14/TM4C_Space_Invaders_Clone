@@ -584,6 +584,16 @@
               <FileType>5</FileType>
               <FilePath>..\gameLogic\collidable.h</FilePath>
             </File>
+            <File>
+              <FileName>explosions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\gameLogic\explosions.c</FilePath>
+            </File>
+            <File>
+              <FileName>explosions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\gameLogic\explosions.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

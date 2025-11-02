@@ -7,7 +7,7 @@
 #include "gameLogic/enemies.h"
 #include "hardware/Timer3.h"
 
-typedef enum {frameOne, frameTwo, frameNull} Explosion_Frame;
+typedef enum {frameOne_enum, frameTwo_enum} Explosion_Frame;
 
 // Global Data Types
 typedef struct {

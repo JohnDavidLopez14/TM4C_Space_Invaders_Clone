@@ -18,6 +18,7 @@
 ".\objects\projectile.o"
 ".\objects\random.o"
 ".\objects\enemies.o"
+".\objects\explosions.o"
 ".\objects\main.o"
 ".\objects\startup_tm4c123.o"
 ".\objects\system_tm4c123.o"

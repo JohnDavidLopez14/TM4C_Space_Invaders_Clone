@@ -229,6 +229,12 @@ void Draw_State(void){
     if (Lasers[i]->active)
       Nokia5110_PrintBMP(Lasers[i]->base.xPos, Lasers[i]->base.yPos, Lasers[i]->base.sprite->bmp, 0);
   }
+	
+	for (Explosion **ptr = Explosions; *ptr != NULL; ptr++){
+		if((*ptr)->active){
+			Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
+		}
+	}
 }
 
 bool BitmapOverlap(Collidable *baseA, Collidable *baseB, int hMargin, int vMargin)
