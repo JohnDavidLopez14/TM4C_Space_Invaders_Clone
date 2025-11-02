@@ -53,6 +53,8 @@
 // Timer1A - Priority 5
 // Timer2A - Priority 6
 // Timer3A - Priority 7
+// Timer4A - Priority 7
+// Timer5a - Priority 7
 
 // Include macros
 // library
@@ -64,11 +66,12 @@
 #include "hardware/tm4c123gh6pm.h"
 #include "hardware/ADC.h"
 #include "hardware/Buttons.h" // Timer 2A, 32 bits
-#include "hardware/LED.h"
+#include "hardware/LED.h" // Timer 4A, 32 bits
 #include "hardware/PLL.h" // this is fine, but double check to see if 80Mhz is correct for this lab
 #include "hardware/Sound.h" // Timer 0A, 32 bit
 #include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
+#include "Timer5.h" // used for delays 
 // game logic
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/enemies.h" // Timer 1A, 32 bit
