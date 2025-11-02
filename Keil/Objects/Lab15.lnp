@@ -13,6 +13,8 @@
 ".\objects\timer1.o"
 ".\objects\timer2.o"
 ".\objects\timer3.o"
+".\objects\timer4.o"
+".\objects\timer5.o"
 ".\objects\bitmaps.o"
 ".\objects\player.o"
 ".\objects\projectile.o"

@@ -26,22 +26,6 @@ static LedBlink_t PB5_BlinkTask = {
     .led_mask = PB5
 };
 
-void LED_Init(void){
-    SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
-    while             ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1) == 0);  // Poll until ready
-    GPIO_PORTB_CR_R    |= PIN_MASK;                                 // allow GPIOAFSEL, GPIOPUR, and GPIODEN bits to be written
-    GPIO_PORTB_AMSEL_R &= ~PIN_MASK;                                // clear analog functions
-    GPIO_PORTB_PCTL_R  &= ~0x00FF0000;                                // clear alternate 
-    GPIO_PORTB_DIR_R   |= PIN_MASK;                                 // pins as output
-    GPIO_PORTB_AFSEL_R &= ~PIN_MASK;                                // clear alternate functions
-    GPIO_PORTB_DEN_R   |= PIN_MASK;                                 // enable digital for all pins
-
-    // clear output pins
-    GPIO_PORTB_DATA_BITS_R[PIN_MASK] = 0;
-		//GPIO_PORTB_DATA_R &= ~PIN_MASK; // pretty sure DATA_BITS_R is a safer way of doing this
-    Timer4_Init(LED_Event_Timer, LED_COUNTER_RELOAD);
-}
-
 void LED_On(uint8_t led_mask){
     led_mask &= PIN_MASK;  // mask PB4:5
     if (led_mask){
@@ -58,14 +42,14 @@ void LED_Off(uint8_t led_mask){
     }
 }
 
-void LED_Blink(uint8_t led_mask){
+static void LED_Blink(uint8_t led_mask){
     led_mask &= PIN_MASK;
     if (led_mask){
 	    GPIO_PORTB_DATA_BITS_R[led_mask] ^= led_mask; // blink led
     }
 }
 
-void ModifyTimerifAllInactive(bool activeState){
+static void ModifyTimerifAllInactive(bool activeState){
     if (!(PB4_BlinkTask.active | PB5_BlinkTask.active)){ // if no events are active, ie timer isn't runnig
         if (activeState)
             Timer4_Enable();
@@ -91,7 +75,7 @@ void PB5_Blink_Start(uint32_t duration, uint32_t frequency){
     BlinkEvent_Start(&PB5_BlinkTask, duration, frequency);
 }
 
-void LED_Blink_Event(LedBlink_t *BlinkTask){
+static void LED_Blink_Event(LedBlink_t *BlinkTask){
     if (BlinkTask->active){
         if (LED_Counter >= BlinkTask->next_toggle){
             if (LED_Counter - BlinkTask->start_time >= BlinkTask->duration){ // if the duration is over
@@ -110,4 +94,20 @@ static void LED_Event_Timer(void){
     LED_Blink_Event(&PB4_BlinkTask);
     LED_Blink_Event(&PB5_BlinkTask);
     ModifyTimerifAllInactive(false);
+}
+
+void LED_Init(void){
+    SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
+    while             ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R1) == 0);  // Poll until ready
+    GPIO_PORTB_CR_R    |= PIN_MASK;                                 // allow GPIOAFSEL, GPIOPUR, and GPIODEN bits to be written
+    GPIO_PORTB_AMSEL_R &= ~PIN_MASK;                                // clear analog functions
+    GPIO_PORTB_PCTL_R  &= ~0x00FF0000;                                // clear alternate 
+    GPIO_PORTB_DIR_R   |= PIN_MASK;                                 // pins as output
+    GPIO_PORTB_AFSEL_R &= ~PIN_MASK;                                // clear alternate functions
+    GPIO_PORTB_DEN_R   |= PIN_MASK;                                 // enable digital for all pins
+
+    // clear output pins
+    GPIO_PORTB_DATA_BITS_R[PIN_MASK] = 0;
+		//GPIO_PORTB_DATA_R &= ~PIN_MASK; // pretty sure DATA_BITS_R is a safer way of doing this
+    Timer4_Init(LED_Event_Timer, LED_COUNTER_RELOAD);
 }

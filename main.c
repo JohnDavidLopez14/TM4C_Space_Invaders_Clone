@@ -71,7 +71,7 @@
 #include "hardware/Sound.h" // Timer 0A, 32 bit
 #include "hardware/SysTick.h"
 #include "hardware/Nokia5110.h"
-#include "Timer5.h" // used for delays 
+#include "hardware/Timer5.h" // used for delays 
 // game logic
 #include "gameLogic/bitmaps.h"
 #include "gameLogic/enemies.h" // Timer 1A, 32 bit
@@ -221,14 +221,14 @@ void Draw_State(void){
   }
 
   // Missiles
-  for (Projectile **ptr; *ptr != NULL; ptr)
+  for (Projectile **ptr = Missiles; *ptr != NULL; ptr++)
   {
     if ((*ptr)->active)
       Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
   }
 
   // Lasers
-  for (Projectile **ptr; *ptr != NULL; ptr++){
+  for (Projectile **ptr = Lasers; *ptr != NULL; ptr++){
     if ((*ptr)->active)
       Nokia5110_PrintBMP((*ptr)->base.xPos, (*ptr)->base.yPos, (*ptr)->base.sprite->bmp, 0);
   }

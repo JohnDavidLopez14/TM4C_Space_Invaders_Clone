@@ -4,5 +4,7 @@
 #include <stdint.h>
 
 void Timer4_Init(void(*task)(void), unsigned long period);
+void Timer4_Enable(void);
+void Timer4_Disable(void);
 
 #endif

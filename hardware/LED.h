@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "Timer4.h"
+#include "hardware/Timer4.h"
 #include "tm4c123gh6pm.h"
 
 // Initializes PB4:5 as output LEDs
@@ -14,5 +14,8 @@ void LED_On(uint8_t led_mask);
 
 // turns off the led pin in led_mask
 void LED_Off(uint8_t led_mask);
+
+void PB4_Blink_Start(uint32_t, uint32_t);
+void PB5_Blink_Start(uint32_t, uint32_t);
 
 #endif
