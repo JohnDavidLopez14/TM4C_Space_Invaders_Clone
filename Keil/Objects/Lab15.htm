@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Lab15.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Lab15.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sun Nov  2 10:00:58 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sun Nov  2 10:22:10 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1777,10 +1777,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_End_Conditions
 </UL>
 
-<P><STRONG><a name="[f4]"></a>Check_Lasers_OOB</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Check_Lasers_OOB))
+<P><STRONG><a name="[f3]"></a>Check_Lasers_OOB</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Check_Lasers_OOB))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Check_Lasers_OOB &rArr; For_All_Lasers
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_OOB
 </UL>
@@ -1796,7 +1796,7 @@ Global Symbols
 <P><STRONG><a name="[f8]"></a>Check_OOB</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, main.o(.text.Check_OOB))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Check_OOB &rArr; Check_Lasers_OOB &rArr; For_All_Lasers
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers_OOB
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers_OOB
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Missiles_OOB
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
@@ -2037,15 +2037,15 @@ Global Symbols
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_Clear
 </UL>
 
-<P><STRONG><a name="[f2]"></a>PB4_Blink_Start</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, led.o(.text.PB4_Blink_Start))
+<P><STRONG><a name="[f5]"></a>PB4_Blink_Start</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, led.o(.text.PB4_Blink_Start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = PB4_Blink_Start &rArr; BlinkEvent_Start &rArr; ModifyTimerifAllInactive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BlinkEvent_Start
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Missiles
 </UL>
 
-<P><STRONG><a name="[f3]"></a>PB5_Blink_Start</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, led.o(.text.PB5_Blink_Start))
+<P><STRONG><a name="[f2]"></a>PB5_Blink_Start</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, led.o(.text.PB5_Blink_Start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = PB5_Blink_Start &rArr; BlinkEvent_Start &rArr; ModifyTimerifAllInactive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BlinkEvent_Start
@@ -2097,7 +2097,7 @@ Global Symbols
 <P><STRONG><a name="[125]"></a>Projectile_Reset</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, projectile.o(.text.Projectile_Reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Projectile_Reset &rArr; For_All_Lasers
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Missiles
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_State
@@ -2301,7 +2301,7 @@ Global Symbols
 <P><STRONG><a name="[140]"></a>Update_Laser_Position</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Update_Laser_Position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Update_Laser_Position &rArr; For_All_Lasers
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 </UL>
@@ -2437,8 +2437,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModifyTimerifAllInactive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB5_Blink_Start
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB4_Blink_Start
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB5_Blink_Start
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB4_Blink_Start
 </UL>
 
 <P><STRONG><a name="[e9]"></a>ModifyTimerifAllInactive</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, led.o(.text.ModifyTimerifAllInactive))
@@ -2497,10 +2497,10 @@ Local Symbols
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Reset
 </UL>
 
-<P><STRONG><a name="[f5]"></a>For_All_Lasers</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, projectile.o(.text.For_All_Lasers))
+<P><STRONG><a name="[f4]"></a>For_All_Lasers</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, projectile.o(.text.For_All_Lasers))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = For_All_Lasers
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers_OOB
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers_OOB
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Laser_Position
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Reset
 </UL>
@@ -2659,21 +2659,21 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames
 </UL>
 
-<P><STRONG><a name="[7c]"></a>Check_Lasers</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, main.o(.text.Check_Lasers))
+<P><STRONG><a name="[7c]"></a>Check_Lasers</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, main.o(.text.Check_Lasers))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Check_Lasers &rArr; Spawn_Enemy_Explosion &rArr; Spawn_Explosion_From_Template &rArr; Find_First_Explosion_By_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BitmapOverlap
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_Explosion
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB5_Blink_Start
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB4_Blink_Start
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB5_Blink_Start
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.Check_Collisions)
 </UL>
-<P><STRONG><a name="[7d]"></a>Check_Missiles</STRONG> (Thumb, 120 bytes, Stack size 24 bytes, main.o(.text.Check_Missiles))
+<P><STRONG><a name="[7d]"></a>Check_Missiles</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, main.o(.text.Check_Missiles))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Check_Missiles &rArr; Spawn_Enemy_Explosion &rArr; Spawn_Explosion_From_Template &rArr; Find_First_Explosion_By_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BitmapOverlap
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_Explosion
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PB4_Blink_Start
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.Check_Collisions)
 </UL>
