@@ -1,10 +1,30 @@
 #include "LED.h"
-#include "tm4c123gh6pm.h"
-#include <stdint.h>
 
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
 #define PIN_MASK (PB4 | PB5)
+#define LED_COUNTER_RELOAD 0x4C4B40F // 1 HZ
+
+static uint32_t LED_Counter = 0;
+
+typedef struct{
+    bool active;
+    uint32_t start_time;
+    uint32_t duration;
+    uint32_t frequency;
+    uint32_t next_toggle;
+    uint8_t led_mask;
+} LedBlink_t;
+
+static LedBlink_t PB4_BlinkTask = {
+    .active = false,
+    .led_mask = PB4
+};
+
+static LedBlink_t PB5_BlinkTask = {
+    .active = false,
+    .led_mask = PB5
+};
 
 void LED_Init(void){
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
@@ -19,6 +39,7 @@ void LED_Init(void){
     // clear output pins
     GPIO_PORTB_DATA_BITS_R[PIN_MASK] = 0;
 		//GPIO_PORTB_DATA_R &= ~PIN_MASK; // pretty sure DATA_BITS_R is a safer way of doing this
+    Timer4_Init(LED_Event_Timer, LED_COUNTER_RELOAD);
 }
 
 void LED_On(uint8_t led_mask){
@@ -35,4 +56,58 @@ void LED_Off(uint8_t led_mask){
 			GPIO_PORTB_DATA_BITS_R[led_mask] = 0; // can also use ~led_mask
 			//GPIO_PORTB_DATA_R &= ~led_mask;
     }
+}
+
+void LED_Blink(uint8_t led_mask){
+    led_mask &= PIN_MASK;
+    if (led_mask){
+	    GPIO_PORTB_DATA_BITS_R[led_mask] ^= led_mask; // blink led
+    }
+}
+
+void ModifyTimerifAllInactive(bool activeState){
+    if (!(PB4_BlinkTask.active | PB5_BlinkTask.active)){ // if no events are active, ie timer isn't runnig
+        if (activeState)
+            Timer4_Enable();
+        else if (!activeState)
+            Timer4_Disable();
+    }
+}
+
+static void BlinkEvent_Start(LedBlink_t *BlinkTask, uint32_t duration, uint32_t frequency){
+    ModifyTimerifAllInactive(true); // start timer
+    BlinkTask->active = true;
+    BlinkTask->start_time = LED_Counter;
+    BlinkTask->duration = duration;
+    BlinkTask->frequency = frequency;
+    BlinkTask->next_toggle = LED_Counter + frequency;
+}
+
+void PB4_Blink_Start(uint32_t duration, uint32_t frequency){
+    BlinkEvent_Start(&PB4_BlinkTask, duration, frequency);
+}
+
+void PB5_Blink_Start(uint32_t duration, uint32_t frequency){
+    BlinkEvent_Start(&PB5_BlinkTask, duration, frequency);
+}
+
+void LED_Blink_Event(LedBlink_t *BlinkTask){
+    if (BlinkTask->active){
+        if (LED_Counter >= BlinkTask->next_toggle){
+            if (LED_Counter - BlinkTask->start_time >= BlinkTask->duration){ // if the duration is over
+                BlinkTask->active = false;
+                LED_Off(BlinkTask->led_mask);
+            } else { // if it is not over, blink the led and schedule the next blink
+                LED_Blink(BlinkTask->led_mask);
+                BlinkTask->next_toggle += BlinkTask->frequency;
+            }
+        }
+    }
+}
+
+static void LED_Event_Timer(void){
+    LED_Counter++;
+    LED_Blink_Event(&PB4_BlinkTask);
+    LED_Blink_Event(&PB5_BlinkTask);
+    ModifyTimerifAllInactive(false);
 }

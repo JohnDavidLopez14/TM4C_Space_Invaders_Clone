@@ -4,6 +4,7 @@
 #define PRIORITY 7
 
 static void (*PeriodicTask)(void);
+static unsigned long Period;
 
 void Timer4_Init(void(*task)(void), unsigned long period){
     PeriodicTask = task;
@@ -15,7 +16,8 @@ void Timer4_Init(void(*task)(void), unsigned long period){
     // offset 0x000
     TIMER4_TAMR_R = (TIMER4_TAMR_R & ~0x03) | 0x02; // 3) configure for periodic mode, defalut down-count settings
     // offset 0x004
-    TIMER4_TAILR_R = period - 1; // 4) reload value
+    //TIMER4_TAILR_R = period - 1; // 4) reload value
+    Period = period -1;
     // offset 0x028
     TIMER4_TAPR_R &= ~0xFFFF; // 5) bus clock resolution
     // offset 0x038
@@ -29,11 +31,20 @@ void Timer4_Init(void(*task)(void), unsigned long period){
     // bits 15:13
     NVIC_EN2_R |= (1<<6); // 9) Enable the correct irq IN nvic
     // offset 0x100
-    TIMER4_CTL_R |= 0X01; // 10) Enable Timer1A
+    // TIMER4_CTL_R |= 0X01; // 10) Enable Timer1A
 
 }
 
 void TIMER4A_Handler(void){
     TIMER4_ICR_R |= TIMER_ICR_TATOCINT; // clear TimerA timeout flag
     (*PeriodicTask)();
+}
+
+void Timer4_Enable(void){
+    TIMER4_TAILR_R = Period; // reset reload value
+    TIMER4_CTL_R |= 0X01; // 10) Enable Timer1A
+}
+
+void Timer4_Disable(void){
+    TIMER4_CTL_R &= ~0X01; // 10) Enable Timer1A
 }

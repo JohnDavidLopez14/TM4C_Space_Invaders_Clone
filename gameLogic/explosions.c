@@ -8,13 +8,13 @@ static Explosion *Explosions[MAX_ENEMIES + 2]; // 1 for null, 1 for player
 Explosion Template_EnemyExplosion = {
     .active = false,
     .frameOne = &smallExplosion0,
-    .frameTwo = &smallExplosion1,
+    .frameTwo = &smallExplosion1
 };
 
 Explosion Template_PlayerExplosion = {
     .active = false,
     .frameOne = &bigExplosion0,
-    .frameTwo = &bigExplosion1,
+    .frameTwo = &bigExplosion1
 };
 
 Explosion **Get_Explosions(void){

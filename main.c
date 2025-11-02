@@ -278,6 +278,8 @@ static void Check_Lasers(Enemy *enemy){
       enemy->active = false;
       laser->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
+      PB4_Blink_Start(5, 5);
+      PB5_Blink_Start(5,5);
     }
   }
 }
