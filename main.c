@@ -95,6 +95,7 @@ static Player *PlayerShip;
 static Projectile **Missiles;
 static Projectile **Lasers;
 static Enemy **Enemies;
+static Explosion **Explosions;
 
 // State Alias
 typedef enum {Init,Reset, Game, End} State;
@@ -151,6 +152,10 @@ void Software_Init(void){
   Projectile_Init(PlayerShip);
   Missiles = Get_Missiles(); // returns a null terminated array
   Lasers = Get_Lasers(); // returns a null terminated array
+  
+  // Explosion Initialization
+  Explosions_Init();
+  Explosions = Get_Explosions();
 };
 
 State Initialize_State(void){
@@ -191,6 +196,10 @@ void Update_Game_State(void){
   Update_Missile_Position();
   Update_Laser_Position();
   Update_Enemies_Position();
+  if (Explosion_Update_Flag){
+    Explosion_Update_Flag = false;
+    Update_Explosion_Frames();
+  }
 }
 
 void Check_OOB(void){
@@ -258,6 +267,7 @@ static void Check_Lasers(Enemy *enemy){
       PlayerShip->score += enemy->points;
       enemy->active = false;
       laser->active = false;
+      Spawn_Enemy_Explosion(&enemy->base);
     }
   }
 }
@@ -270,6 +280,7 @@ static void Check_Missiles(Enemy *enemy){
       PlayerShip->score += enemy->points;
       enemy->active = false;
       missile->active = false;
+      Spawn_Enemy_Explosion(&enemy->base);
     }
   }
 }
@@ -278,6 +289,7 @@ static void Check_Player(Enemy *enemy){
   if(BitmapOverlap(&enemy->base, &PlayerShip->base, H_MARGIN, V_MARGIN)){
     enemy->active = false;
     PlayerShip->health -= enemy->dmg;
+    Spawn_Enemy_Explosion(&enemy->base);
   }
 }
 

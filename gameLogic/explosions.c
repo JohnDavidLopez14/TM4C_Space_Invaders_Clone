@@ -1,8 +1,12 @@
 #include "gameLogic/explosions.h"
 #define UPDATE_PERIOD 0xFFFF
 
-Explosion Explosions_Storage[MAX_ENEMIES + 1];
-Explosion *Explosions[MAX_ENEMIES + 2]; // 1 for null, 1 for player
+static Explosion Explosions_Storage[MAX_ENEMIES + 1];
+static Explosion *Explosions[MAX_ENEMIES + 2]; // 1 for null, 1 for player
+
+Explosion **Get_Explosions(void){
+    return Explosions;
+}
 
 static void For_All_Active(void(*explosionFunc)(Explosion*)){
     for (Explosion **ptr = Explosions; *ptr != NULL; ptr++){
@@ -93,4 +97,4 @@ Explosion Template_PlayerExplosion = {
     .frameOne = &bigExplosion0,
     .frameTwo = &bigExplosion1,
     .currentFrame = frameNull
-}
+};

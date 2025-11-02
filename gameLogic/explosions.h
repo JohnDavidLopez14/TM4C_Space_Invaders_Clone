@@ -23,7 +23,6 @@ extern volatile bool Explosion_Update_Flag;
 // Prototypes
 void Explosions_Init(void);
 Explosion **Get_Explosions(void);
-void Spawn_Explosions(int, int);
 void Spawn_Enemy_Explosion(Collidable *);
 void Spawn_Player_Explosion(Collidable *);
 void Update_Explosion_Frames(void);

@@ -1,8 +1,5 @@
 #include "gameLogic/enemies.h"
-#include "hardware/UART.h"
-#include "hardware/Timer0.h"
 
-#define MAX_ENEMIES 20
 #define ENEMY_MOVEMENT_RELOAD 0x1E84800
 
 static volatile bool Movement_Flag = false;
