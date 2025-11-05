@@ -4,6 +4,7 @@
 #define PB5 (1 << 5)
 #define PIN_MASK (PB4 | PB5)
 #define LED_COUNTER_RELOAD 0x4C4B40F // 1 HZ
+#define INFINITE_DURATION 0
 
 static uint32_t LED_Counter = 0;
 
@@ -77,8 +78,8 @@ void PB5_Blink_Start(uint32_t duration, uint32_t frequency){
 
 static void LED_Blink_Event(LedBlink_t *BlinkTask){
     if (BlinkTask->active){
-        if (LED_Counter >= BlinkTask->next_toggle){
-            if (LED_Counter - BlinkTask->start_time >= BlinkTask->duration){ // if the duration is over
+        if (LED_Counter >= BlinkTask->next_toggle){ // if the counter is still greater than the next toggle
+            if (BlinkTask->duration != INFINITE_DURATION && LED_Counter - BlinkTask->start_time >= BlinkTask->duration){ // ends the duration if not infinite and the delta is greater than duration
                 BlinkTask->active = false;
                 LED_Off(BlinkTask->led_mask);
             } else { // if it is not over, blink the led and schedule the next blink

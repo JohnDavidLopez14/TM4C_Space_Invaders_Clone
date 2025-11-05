@@ -278,7 +278,7 @@ static void Check_Lasers(Enemy *enemy){
       enemy->active = false;
       laser->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
-				PB5_Blink_Start(2,1);
+				PB5_Blink_Start(0,1);
     }
   }
 }
@@ -292,7 +292,7 @@ static void Check_Missiles(Enemy *enemy){
       enemy->active = false;
       missile->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
-				PB4_Blink_Start(2,1);
+				PB4_Blink_Start(0,1);
     }
   }
 }
