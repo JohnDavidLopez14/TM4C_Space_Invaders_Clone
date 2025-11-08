@@ -171,7 +171,7 @@ Enemy smallEnemy20Point_Enemy = {
   .spriteB = &smallEnemy20PointB,
   .health = 100,
   .points = 20,
-  .dmg = 100
+  .dmg = 10
 };
 
 Enemy smallEnemy10Point_Enemy = {

@@ -96,6 +96,12 @@ static void LED_Blink_Event(LedBlink_t *BlinkTask){
     }
 }
 
+void Clear_All_LED_Events(void){
+    PB4_BlinkTask.active = false;
+    PB5_BlinkTask.active = false;
+    LED_Off(PIN_MASK);
+}
+
 static void LED_Event_Timer(void){
     LED_Blink_Event(&PB4_BlinkTask);
     LED_Blink_Event(&PB5_BlinkTask);

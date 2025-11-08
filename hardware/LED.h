@@ -24,5 +24,6 @@ void PB4_Blink_Start(uint32_t, uint32_t);
 void PB5_Blink_Start(uint32_t, uint32_t);
 bool PB4_Get_State(void);
 bool PB5_Get_State(void);
+void Clear_All_LED_Events(void);
 
 #endif

@@ -104,12 +104,13 @@ static Explosion **Explosions;
 unsigned int point_event_counter = 0; // counts everytime 100 points are reached
 
 // State Alias
-typedef enum {Init,Reset, Game, End} State;
+typedef enum {Init,Reset, Game, Lose, End} State;
 
 // State function prototypes
 State Initialize_State(void);
 State Reset_State(void);
 State Game_State(void);
+State Lose_State(void);
 State End_State(void);
 
 // State Table
@@ -118,6 +119,7 @@ stateHandler StateTable[] = {
   Initialize_State,
   Reset_State,
   Game_State,
+  Lose_State,
   End_State
 };
 
@@ -172,10 +174,16 @@ State Initialize_State(void){
 
 // Reset
 
+void Flag_Reset(void){
+  MissileFlag = false;
+  LaserFlag = false;
+}
+
 State Reset_State(void){
   Player_Reset();
   Projectile_Reset();
   Enemies_Reset();
+  Flag_Reset();
   return Game;
 }
 
@@ -213,9 +221,10 @@ void Check_OOB(void){
   Check_Missiles_OOB();
 }
 
-void Draw_State(void){
+void Draw_State(State current){
   // Player Ship
-  Nokia5110_PrintBMP(PlayerShip->base.xPos, PlayerShip->base.yPos, PlayerShip->base.sprite->bmp, 0);
+  if (current == Game)
+    Nokia5110_PrintBMP(PlayerShip->base.xPos, PlayerShip->base.yPos, PlayerShip->base.sprite->bmp, 0);
 
   // Enemies
   for (Enemy **ptr = Enemies; *ptr != NULL; ptr++){
@@ -342,9 +351,9 @@ void Check_Current_Points(void){
 State Game_State(void){
   EnableInterrupts();
   // testing
-  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 1);
   Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 2);
   Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 3);
+  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 4);
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
@@ -356,11 +365,10 @@ State Game_State(void){
 
     // Check to see if player has lost health or an enemy has made it to the bottom of the screen
     if (gameOver){
-      DisableInterrupts();
-      return End;
+      return Lose;
     }
 
-    Draw_State(); // draw everything
+    Draw_State(Game); // draw everything
 
     // Display Graphics
     Nokia5110_DisplayBuffer();
@@ -368,8 +376,30 @@ State Game_State(void){
   }
 }
 
+bool Check_If_Explosions_Active(void){
+  for(Explosion **ptr = Explosions; *ptr != NULL; ptr++){
+    if((*ptr)->active)
+      return true;
+  }
+  return false;
+}
+
+State Lose_State(void){
+  Clear_All_LED_Events();
+  Spawn_Player_Explosion(&PlayerShip->base);
+  while (Check_If_Explosions_Active()){
+    Update_Game_State();
+    Draw_State(Lose);
+    Nokia5110_DisplayBuffer();
+    Nokia5110_ClearBuffer();
+  }
+  // need to add a system delay here
+  return End;
+}
+
 // End
 State End_State(void){
+  DisableInterrupts();
 	LED_Off(PIN_MASK); // turn off all leds
 	char scoreBuffer[13];
   snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
@@ -388,6 +418,8 @@ State End_State(void){
 	Nokia5110_SetCursor(0, 5);
 	Nokia5110_OutString("To Continue");
 
-  while (!Buttons_Read(BUTTON_MASK)); // cleaner to poll hardware vs polling flags in a loop here
+  while (!Buttons_Read(BUTTON_MASK)); // wait for both buttons to be pressed
+  // need to add a timer delay here
+  while (Buttons_Read(BUTTON_MASK)); // wait for both buttons to be released
   return Reset;
 }
