@@ -102,6 +102,7 @@ static Projectile **Lasers;
 static Enemy **Enemies;
 static Explosion **Explosions;
 unsigned int point_event_counter = 0; // counts everytime 100 points are reached
+volatile bool TimerFlag = false;
 
 // State Alias
 typedef enum {Init,Reset, Game, Lose, End} State;
@@ -123,6 +124,13 @@ stateHandler StateTable[] = {
   End_State
 };
 
+// Timers
+
+void Timer_Periodic_Task(void){
+  TimerFlag = true;
+}
+
+
 // Main
 
 int main(void){
@@ -142,6 +150,7 @@ void Hardware_Init(void){
   LED_Init(); // initialize PB4:5 for LED output
   Buttons_Init(); // initialize PE0:1 for falling edge interrupts
   ADC0_Init();  // initialize ADC on PE2 / AIN1
+  Timer5_Init(Timer_Periodic_Task);
 }
 
 void Software_Init(void){
@@ -393,13 +402,14 @@ State Lose_State(void){
     Nokia5110_DisplayBuffer();
     Nokia5110_ClearBuffer();
   }
-  // need to add a system delay here
+  Timer5_Oneshot(0x09896800);
+  while(!TimerFlag);
+  TimerFlag = false;
   return End;
 }
 
 // End
 State End_State(void){
-  DisableInterrupts();
 	LED_Off(PIN_MASK); // turn off all leds
 	char scoreBuffer[13];
   snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
@@ -419,7 +429,9 @@ State End_State(void){
 	Nokia5110_OutString("To Continue");
 
   while (!Buttons_Read(BUTTON_MASK)); // wait for both buttons to be pressed
-  // need to add a timer delay here
   while (Buttons_Read(BUTTON_MASK)); // wait for both buttons to be released
+  Timer5_Oneshot(0x09896800); // timer delay before resetting
+  while(!TimerFlag);
+  TimerFlag = false;
   return Reset;
 }
