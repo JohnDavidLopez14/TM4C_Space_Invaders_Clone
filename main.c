@@ -86,7 +86,7 @@
 #define PB5 (1 << 5)
 #define H_MARGIN 2 // penetration margin
 #define V_MARGIN 2
-#define HEALTH_LED 100 // if player health is below this, red led starts blinking 
+#define HEALTH_LED 30 // if player health is below this, red led starts blinking 
 #define POINT_LED 100 // the threshold for blinking the green led
 
 // Function Prototypes
@@ -331,7 +331,7 @@ void Check_Player_Health(void){
 }
 
 void Check_Current_Points(void){
-  unsigned int current_point_counter = PlayerShip->score % POINT_LED;
+  unsigned int current_point_counter = PlayerShip->score / POINT_LED;
   if(current_point_counter > point_event_counter) // if another 100 point increment has goten hit
     if(!PB4_Get_State()){ // if the led is not blinking
       PB4_Blink_Start(2,1);
