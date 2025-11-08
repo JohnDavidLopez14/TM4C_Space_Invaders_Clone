@@ -1,8 +1,6 @@
 #include "LED.h"
 
-#define PB4 (1 << 4)
-#define PB5 (1 << 5)
-#define PIN_MASK (PB4 | PB5)
+
 #define LED_COUNTER_RELOAD 0x4C4B40F // 1 HZ
 #define INFINITE_DURATION 0
 
@@ -76,6 +74,14 @@ void PB5_Blink_Start(uint32_t duration, uint32_t frequency){
     BlinkEvent_Start(&PB5_BlinkTask, duration, frequency);
 }
 
+bool PB4_Get_State(void){
+    return PB4_BlinkTask.active;
+}
+
+bool PB5_Get_State(void){
+    return PB5_BlinkTask.active;
+}
+
 static void LED_Blink_Event(LedBlink_t *BlinkTask){
     if (BlinkTask->active){
         if (LED_Counter >= BlinkTask->next_toggle){ // if the counter is still greater than the next toggle
@@ -91,10 +97,10 @@ static void LED_Blink_Event(LedBlink_t *BlinkTask){
 }
 
 static void LED_Event_Timer(void){
-    LED_Counter++;
     LED_Blink_Event(&PB4_BlinkTask);
     LED_Blink_Event(&PB5_BlinkTask);
     ModifyTimerifAllInactive(false);
+		LED_Counter++;
 }
 
 void LED_Init(void){

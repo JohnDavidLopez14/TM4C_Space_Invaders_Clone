@@ -6,6 +6,11 @@
 #include "hardware/Timer4.h"
 #include "tm4c123gh6pm.h"
 
+// LED Pin macros
+#define PB4 (1 << 4)
+#define PB5 (1 << 5)
+#define PIN_MASK (PB4 | PB5)
+
 // Initializes PB4:5 as output LEDs
 void LED_Init(void);
 
@@ -17,5 +22,7 @@ void LED_Off(uint8_t led_mask);
 
 void PB4_Blink_Start(uint32_t, uint32_t);
 void PB5_Blink_Start(uint32_t, uint32_t);
+bool PB4_Get_State(void);
+bool PB5_Get_State(void);
 
 #endif

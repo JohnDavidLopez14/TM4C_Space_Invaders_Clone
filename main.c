@@ -85,7 +85,9 @@
 #define PB4 (1 << 4)
 #define PB5 (1 << 5)
 #define H_MARGIN 2 // penetration margin
-#define V_MARGIN 2 
+#define V_MARGIN 2
+#define HEALTH_LED 100 // if player health is below this, red led starts blinking 
+#define POINT_LED 100 // the threshold for blinking the green led
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -99,6 +101,7 @@ static Projectile **Missiles;
 static Projectile **Lasers;
 static Enemy **Enemies;
 static Explosion **Explosions;
+unsigned int point_event_counter = 0; // counts everytime 100 points are reached
 
 // State Alias
 typedef enum {Init,Reset, Game, End} State;
@@ -278,7 +281,6 @@ static void Check_Lasers(Enemy *enemy){
       enemy->active = false;
       laser->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
-				PB5_Blink_Start(0,1);
     }
   }
 }
@@ -292,7 +294,6 @@ static void Check_Missiles(Enemy *enemy){
       enemy->active = false;
       missile->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
-				PB4_Blink_Start(0,1);
     }
   }
 }
@@ -324,6 +325,20 @@ bool Check_End_Conditions(void){
   return false;
 }
 
+void Check_Player_Health(void){
+  if (PlayerShip->health <= HEALTH_LED && !PB5_Get_State())
+    PB5_Blink_Start(0,1);
+}
+
+void Check_Current_Points(void){
+  unsigned int current_point_counter = PlayerShip->score % POINT_LED;
+  if(current_point_counter > point_event_counter) // if another 100 point increment has goten hit
+    if(!PB4_Get_State()){ // if the led is not blinking
+      PB4_Blink_Start(2,1);
+      point_event_counter = current_point_counter;
+    }
+}
+
 State Game_State(void){
   EnableInterrupts();
   // testing
@@ -335,6 +350,8 @@ State Game_State(void){
     Update_Game_State();// Update Game State
     Check_OOB(); // check out of bounds
     Check_Collisions(); // collisions with enemies to projectiles, player, bunkers
+    Check_Player_Health(); // checks player health, will activate led if below 30 - this will not turn off until end state
+		Check_Current_Points();
     bool gameOver = Check_End_Conditions();
 
     // Check to see if player has lost health or an enemy has made it to the bottom of the screen
@@ -353,6 +370,7 @@ State Game_State(void){
 
 // End
 State End_State(void){
+	LED_Off(PIN_MASK); // turn off all leds
 	char scoreBuffer[13];
   snprintf(scoreBuffer, sizeof(scoreBuffer), "%d", PlayerShip->score);
 
