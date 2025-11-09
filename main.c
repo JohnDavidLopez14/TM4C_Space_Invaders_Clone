@@ -182,6 +182,7 @@ void Software_Init(void){
 State Initialize_State(void){
   Hardware_Init();
   Software_Init();
+  EnableInterrupts();
   return Game;
 }
 
@@ -213,11 +214,13 @@ void Poll_Inputs(void){
     if (MissileFlag){
       MissileFlag = false;
       Fire_Missile();
+      Sound_Shoot();
     }
 
     if (LaserFlag){
       LaserFlag = false;
       Fire_Laser();
+      Sound_Shoot();
     }
 }
 
@@ -305,6 +308,7 @@ static void Check_Lasers(Enemy *enemy){
       enemy->active = false;
       laser->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
+      Sound_Killed();
     }
   }
 }
@@ -318,6 +322,7 @@ static void Check_Missiles(Enemy *enemy){
       enemy->active = false;
       missile->active = false;
       Spawn_Enemy_Explosion(&enemy->base);
+      Sound_Killed();
     }
   }
 }
@@ -327,6 +332,7 @@ static void Check_Player(Enemy *enemy){
     enemy->active = false;
     PlayerShip->health -= enemy->dmg;
     Spawn_Enemy_Explosion(&enemy->base);
+    Sound_Killed();
   }
 }
 
@@ -401,7 +407,6 @@ void Spawn_Wave(void){
 }
 
 State Game_State(void){
-  EnableInterrupts();
   // testing
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
@@ -437,6 +442,7 @@ bool Check_If_Explosions_Active(void){
 State Lose_State(void){
   Clear_All_LED_Events();
   Spawn_Player_Explosion(&PlayerShip->base);
+  Sound_Explosion();
   while (Check_If_Explosions_Active()){
     Update_Game_State();
     Draw_State(Lose);
