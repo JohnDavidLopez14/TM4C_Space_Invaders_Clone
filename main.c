@@ -88,6 +88,9 @@
 #define V_MARGIN 2
 #define HEALTH_LED 30 // if player health is below this, red led starts blinking 
 #define POINT_LED 100 // the threshold for blinking the green led
+#define END_DELAY 0x09896800
+#define ENEMY_SPAWN_DELAY 0x09896800
+
 
 // Function Prototypes
 void DisableInterrupts(void);
@@ -103,6 +106,7 @@ static Enemy **Enemies;
 static Explosion **Explosions;
 unsigned int point_event_counter = 0; // counts everytime 100 points are reached
 volatile bool TimerFlag = false;
+volatile bool TimerRunning = false;
 
 // State Alias
 typedef enum {Init,Reset, Game, Lose, End} State;
@@ -186,6 +190,8 @@ State Initialize_State(void){
 void Flag_Reset(void){
   MissileFlag = false;
   LaserFlag = false;
+  TimerRunning = false;
+  TimerFlag = false;
 }
 
 State Reset_State(void){
@@ -357,17 +363,52 @@ void Check_Current_Points(void){
     }
 }
 
+bool Check_Enemies_All_Inactive(){
+  for(Enemy **ptr = Enemies; *ptr != NULL; ptr++){
+    if((*ptr)->active) // if any enemy is active return false
+      return false;
+  }
+  return true;
+}
+
+Enemy Random_Enemy_Template(void){
+  Enemy random_list[3] = {smallEnemy30Point_Enemy, smallEnemy20Point_Enemy, smallEnemy10Point_Enemy};
+  int rand = Random32() % 3;
+  return random_list[rand];
+}
+
+void Spawn_Wave_Enemies(void){ // need to randomize this here
+  int spawn_height = 0;
+  for (int row = 0; row < 3; row++){ // only ever spawns 3 rows
+    int amount = (Random32() % 5) + 1;
+    Enemy randomEnemy = Random_Enemy_Template();
+    spawn_height += randomEnemy.base.sprite->height; // increment the height
+    Spawn_Enemies(amount, &randomEnemy, spawn_height);
+  }
+}
+
+void Spawn_Wave(void){
+  if(Check_Enemies_All_Inactive()){
+    if (TimerFlag){
+      TimerFlag = false; // clear flag
+      TimerRunning = false;
+      Spawn_Wave_Enemies();
+    } else if (!TimerRunning){
+      Timer5_Oneshot(ENEMY_SPAWN_DELAY);
+      TimerRunning = true;
+    }
+  }
+}
+
 State Game_State(void){
   EnableInterrupts();
   // testing
-  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 2);
-  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 3);
-  Spawn_Enemies(4, &smallEnemy10Point_Enemy, smallEnemy10Point_Enemy.base.sprite->height * 4);
   while(1){ // main code logic
     Poll_Inputs(); // Read Inputs
     Update_Game_State();// Update Game State
     Check_OOB(); // check out of bounds
     Check_Collisions(); // collisions with enemies to projectiles, player, bunkers
+    Spawn_Wave(); // conditional check and then spawns
     Check_Player_Health(); // checks player health, will activate led if below 30 - this will not turn off until end state
 		Check_Current_Points();
     bool gameOver = Check_End_Conditions();
@@ -402,7 +443,7 @@ State Lose_State(void){
     Nokia5110_DisplayBuffer();
     Nokia5110_ClearBuffer();
   }
-  Timer5_Oneshot(0x09896800);
+  Timer5_Oneshot(END_DELAY);
   while(!TimerFlag);
   TimerFlag = false;
   return End;
@@ -430,7 +471,12 @@ State End_State(void){
 
   while (!Buttons_Read(BUTTON_MASK)); // wait for both buttons to be pressed
   while (Buttons_Read(BUTTON_MASK)); // wait for both buttons to be released
-  Timer5_Oneshot(0x09896800); // timer delay before resetting
+  Nokia5110_Clear();
+  Nokia5110_SetCursor(0, 0);
+	Nokia5110_OutString("Game");
+  Nokia5110_SetCursor(0, 1);
+  Nokia5110_OutString("Starting...");
+  Timer5_Oneshot(END_DELAY); // timer delay before resetting
   while(!TimerFlag);
   TimerFlag = false;
   return Reset;

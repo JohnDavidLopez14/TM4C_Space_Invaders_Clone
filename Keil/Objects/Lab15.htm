@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Lab15.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Lab15.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sat Nov  8 15:42:24 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Sat Nov  8 17:36:00 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -12,9 +12,9 @@ _printf_f &rArr; _printf_fp_dec &rArr; _printf_fp_dec_real &rArr; _fp_digits &rA
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[132]">Random_Init</a>
- <LI><a href="#[17a]">Random32</a>
- <LI><a href="#[17b]">Random</a>
+ <LI><a href="#[134]">Random_Init</a>
+ <LI><a href="#[132]">Random32</a>
+ <LI><a href="#[17f]">Random</a>
  <LI><a href="#[92]">__user_initial_stackheap</a>
 </UL>
 </UL>
@@ -302,9 +302,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[153]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[158]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[154]"></a>__scatterload_loop</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[159]"></a>__scatterload_loop</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[96]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -312,9 +312,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[155]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, __scatter.o(!!handler_null), UNUSED)
+<P><STRONG><a name="[15a]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, __scatter.o(!!handler_null), UNUSED)
 
-<P><STRONG><a name="[156]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[15b]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[97]"></a>_printf_n</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_n.o(.ARM.Collect$$_printf_percent$$00000001))
 <BR><BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_charcount
@@ -359,7 +359,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_fp_hex
 </UL>
 
-<P><STRONG><a name="[157]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
+<P><STRONG><a name="[15c]"></a>_printf_ll</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_ll.o(.ARM.Collect$$_printf_percent$$00000007))
 
 <P><STRONG><a name="[a1]"></a>_printf_i</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_i.o(.ARM.Collect$$_printf_percent$$00000008))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
@@ -431,7 +431,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_ll_hex
 </UL>
 
-<P><STRONG><a name="[158]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
+<P><STRONG><a name="[15d]"></a>_printf_l</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_l.o(.ARM.Collect$$_printf_percent$$00000012))
 
 <P><STRONG><a name="[b1]"></a>_printf_c</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_c.o(.ARM.Collect$$_printf_percent$$00000013))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
@@ -461,7 +461,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_wstring
 </UL>
 
-<P><STRONG><a name="[159]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
+<P><STRONG><a name="[15e]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
 
 <P><STRONG><a name="[c3]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
@@ -471,21 +471,21 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_init
 </UL>
 
-<P><STRONG><a name="[15a]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[15f]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
 <P><STRONG><a name="[bb]"></a>__rt_lib_init_lc_common</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 <BR><BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 </UL>
 
-<P><STRONG><a name="[15b]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000006))
+<P><STRONG><a name="[160]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000006))
 
-<P><STRONG><a name="[15c]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000010))
+<P><STRONG><a name="[161]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000010))
 
-<P><STRONG><a name="[15d]"></a>__rt_lib_init_relocate_pie_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[162]"></a>__rt_lib_init_relocate_pie_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[15e]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[163]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[15f]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[164]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
 <P><STRONG><a name="[bd]"></a>__rt_lib_init_lc_ctype_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000014))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -494,9 +494,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
 </UL>
 
-<P><STRONG><a name="[160]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[165]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
-<P><STRONG><a name="[161]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[166]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
 <P><STRONG><a name="[be]"></a>__rt_lib_init_lc_numeric_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000018))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -505,56 +505,56 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_numeric
 </UL>
 
-<P><STRONG><a name="[162]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[167]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[163]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[168]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[164]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[169]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[165]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[16a]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[166]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000034))
+<P><STRONG><a name="[16b]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000034))
 
-<P><STRONG><a name="[167]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[16c]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[168]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[16d]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[169]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[16e]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
-<P><STRONG><a name="[16a]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[16f]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[16b]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[170]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[16c]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000035))
+<P><STRONG><a name="[171]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000035))
 
-<P><STRONG><a name="[16d]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[172]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[16e]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000027))
+<P><STRONG><a name="[173]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000027))
 
 <P><STRONG><a name="[c8]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[16f]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[174]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[170]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+<P><STRONG><a name="[175]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
 
-<P><STRONG><a name="[171]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+<P><STRONG><a name="[176]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
 
-<P><STRONG><a name="[172]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+<P><STRONG><a name="[177]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
 
-<P><STRONG><a name="[173]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+<P><STRONG><a name="[178]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
 
-<P><STRONG><a name="[174]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[179]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[175]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[17a]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[94]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[176]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[17b]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[c0]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -567,7 +567,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[177]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[17c]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[c4]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
@@ -577,7 +577,7 @@ Global Symbols
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[178]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[17d]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[e9]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -587,19 +587,22 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[179]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[17e]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[c9]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[132]"></a>Random_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, random.o(.text))
+<P><STRONG><a name="[134]"></a>Random_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, random.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
-<P><STRONG><a name="[17a]"></a>Random32</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, random.o(.text), UNUSED)
+<P><STRONG><a name="[132]"></a>Random32</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, random.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave_Enemies
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Enemy_Template
+</UL>
 
-<P><STRONG><a name="[17b]"></a>Random</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, random.o(.text), UNUSED)
+<P><STRONG><a name="[17f]"></a>Random</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, random.o(.text), UNUSED)
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
@@ -1380,11 +1383,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_State
 </UL>
 
-<P><STRONG><a name="[17c]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[180]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[17d]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[181]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[17e]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[182]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[ce]"></a>_printf_pre_padding</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, _printf_pad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _printf_pre_padding
@@ -1700,15 +1703,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[17f]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[183]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[e8]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[180]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[184]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[152]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
+<P><STRONG><a name="[157]"></a>strcmp</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, strcmpv7em.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_get_lc_ctype
@@ -1719,13 +1722,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[181]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[185]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[182]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[186]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[183]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[187]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[144]"></a>ADC0_In</STRONG> (Thumb, 70 bytes, Stack size 4 bytes, adc.o(.text.ADC0_In))
+<P><STRONG><a name="[149]"></a>ADC0_In</STRONG> (Thumb, 70 bytes, Stack size 4 bytes, adc.o(.text.ADC0_In))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ADC0_In
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
@@ -1782,6 +1785,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
 </UL>
 
+<P><STRONG><a name="[146]"></a>Check_Enemies_All_Inactive</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, main.o(.text.Check_Enemies_All_Inactive))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Check_Enemies_All_Inactive
+</UL>
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave
+</UL>
+
 <P><STRONG><a name="[f4]"></a>Check_Enemy_End</STRONG> (Thumb, 84 bytes, Stack size 12 bytes, enemies.o(.text.Check_Enemy_End))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Check_Enemy_End
 </UL>
@@ -1836,13 +1845,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lose_State
 </UL>
 
-<P><STRONG><a name="[145]"></a>Convert</STRONG> (Thumb, 96 bytes, Stack size 12 bytes, systick.o(.text.Convert))
+<P><STRONG><a name="[14a]"></a>Convert</STRONG> (Thumb, 96 bytes, Stack size 12 bytes, systick.o(.text.Convert))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Convert
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[13a]"></a>DAC_Init</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, dac.o(.text.DAC_Init))
+<P><STRONG><a name="[13c]"></a>DAC_Init</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, dac.o(.text.DAC_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init
 </UL>
 
@@ -1864,8 +1873,8 @@ Global Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
 </UL>
 
-<P><STRONG><a name="[91]"></a>End_State</STRONG> (Thumb, 240 bytes, Stack size 32 bytes, main.o(.text.End_State))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
+<P><STRONG><a name="[91]"></a>End_State</STRONG> (Thumb, 286 bytes, Stack size 40 bytes, main.o(.text.End_State))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = End_State &rArr; snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;snprintf
@@ -1907,7 +1916,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Fire_Projectile
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
+<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
 </UL>
 
 <P><STRONG><a name="[111]"></a>Fire_Missile</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, projectile.o(.text.Fire_Missile))
@@ -1915,10 +1924,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Fire_Projectile
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
+<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
 </UL>
 
-<P><STRONG><a name="[131]"></a>Flag_Reset</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(.text.Flag_Reset))
+<P><STRONG><a name="[133]"></a>Flag_Reset</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, main.o(.text.Flag_Reset))
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_State
 </UL>
 
@@ -1935,40 +1944,41 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[8f]"></a>Game_State</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, main.o(.text.Game_State))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = Game_State &rArr; Spawn_Enemies &rArr; Spawn_Enemy_From_Template &rArr; Find_First_Enemy_By_State
+<P><STRONG><a name="[8f]"></a>Game_State</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, main.o(.text.Game_State))
+<BR><BR>[Stack]<UL><LI>Max Depth = 224 + Unknown Stack Size
+<LI>Call Chain = Game_State &rArr; Spawn_Wave &rArr; Spawn_Wave_Enemies &rArr; Random_Enemy_Template
 </UL>
 <BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Draw_State
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_End_Conditions
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Current_Points
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Player_Health
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Collisions
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_OOB
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Poll_Inputs
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_DisplayBuffer
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_ClearBuffer
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data.StateTable)
 </UL>
-<P><STRONG><a name="[135]"></a>Get_Enemies</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, enemies.o(.text.Get_Enemies))
+<P><STRONG><a name="[137]"></a>Get_Enemies</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, enemies.o(.text.Get_Enemies))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
-<P><STRONG><a name="[139]"></a>Get_Explosions</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, explosions.o(.text.Get_Explosions))
+<P><STRONG><a name="[13b]"></a>Get_Explosions</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, explosions.o(.text.Get_Explosions))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
-<P><STRONG><a name="[138]"></a>Get_Lasers</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, projectile.o(.text.Get_Lasers))
+<P><STRONG><a name="[13a]"></a>Get_Lasers</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, projectile.o(.text.Get_Lasers))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
-<P><STRONG><a name="[137]"></a>Get_Missiles</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, projectile.o(.text.Get_Missiles))
+<P><STRONG><a name="[139]"></a>Get_Missiles</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, projectile.o(.text.Get_Missiles))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
-<P><STRONG><a name="[133]"></a>Get_Player</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, player.o(.text.Get_Player))
+<P><STRONG><a name="[135]"></a>Get_Player</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, player.o(.text.Get_Player))
 <BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
 </UL>
 
@@ -2016,7 +2026,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_If_Explosions_Active
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Draw_State
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Player_Explosion
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer5_Oneshot
 <LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Nokia5110_DisplayBuffer
@@ -2149,7 +2159,7 @@ Global Symbols
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Player_Init
 </UL>
 
-<P><STRONG><a name="[115]"></a>Poll_Inputs</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, main.o(.text.Poll_Inputs))
+<P><STRONG><a name="[114]"></a>Poll_Inputs</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, main.o(.text.Poll_Inputs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = Poll_Inputs &rArr; Fire_Laser &rArr; Fire_Projectile &rArr; Find_First_Projectile_By_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Fire_Laser
@@ -2158,7 +2168,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
 </UL>
 
-<P><STRONG><a name="[136]"></a>Projectile_Init</STRONG> (Thumb, 202 bytes, Stack size 12 bytes, projectile.o(.text.Projectile_Init))
+<P><STRONG><a name="[138]"></a>Projectile_Init</STRONG> (Thumb, 202 bytes, Stack size 12 bytes, projectile.o(.text.Projectile_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Projectile_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
@@ -2173,10 +2183,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_State
 </UL>
 
+<P><STRONG><a name="[131]"></a>Random_Enemy_Template</STRONG> (Thumb, 252 bytes, Stack size 136 bytes, main.o(.text.Random_Enemy_Template))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
+<LI>Call Chain = Random_Enemy_Template
+</UL>
+<BR>[Calls]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave_Enemies
+</UL>
+
 <P><STRONG><a name="[8e]"></a>Reset_State</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, main.o(.text.Reset_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Reset_State &rArr; Projectile_Reset &rArr; For_All_Lasers
 </UL>
-<BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flag_Reset
+<BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flag_Reset
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enemies_Reset
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Reset
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Player_Reset
@@ -2188,16 +2207,16 @@ Global Symbols
 <LI>Call Chain = Software_Init &rArr; Explosions_Init &rArr; Timer3_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Explosions_Init
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Explosions
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Explosions
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enemies_Init
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Enemies
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Init
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Lasers
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Missiles
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Init
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Player
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Enemies
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Init
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Lasers
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Missiles
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Init
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Player
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Player_Init
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Initialize_State
 </UL>
@@ -2205,56 +2224,78 @@ Global Symbols
 <P><STRONG><a name="[11c]"></a>Sound_Init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, sound.o(.text.Sound_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Sound_Init &rArr; Timer0_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0_Init
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DAC_Init
+<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer0_Init
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DAC_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hardware_Init
 </UL>
 
-<P><STRONG><a name="[114]"></a>Spawn_Enemies</STRONG> (Thumb, 112 bytes, Stack size 40 bytes, enemies.o(.text.Spawn_Enemies))
+<P><STRONG><a name="[13e]"></a>Spawn_Enemies</STRONG> (Thumb, 112 bytes, Stack size 40 bytes, enemies.o(.text.Spawn_Enemies))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Spawn_Enemies &rArr; Spawn_Enemy_From_Template &rArr; Find_First_Enemy_By_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_From_Template
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enemy_Spacing
+<BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_From_Template
+<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enemy_Spacing
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
+<BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave_Enemies
 </UL>
 
 <P><STRONG><a name="[f6]"></a>Spawn_Enemy_Explosion</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, explosions.o(.text.Spawn_Enemy_Explosion))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Spawn_Enemy_Explosion &rArr; Spawn_Explosion_From_Template &rArr; Find_First_Explosion_By_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
+<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Player
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Missiles
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers
 </UL>
 
-<P><STRONG><a name="[13d]"></a>Spawn_Enemy_From_Template</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, enemies.o(.text.Spawn_Enemy_From_Template))
+<P><STRONG><a name="[140]"></a>Spawn_Enemy_From_Template</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, enemies.o(.text.Spawn_Enemy_From_Template))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = Spawn_Enemy_From_Template &rArr; Find_First_Enemy_By_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Find_First_Enemy_By_State
+<BR>[Calls]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Find_First_Enemy_By_State
 </UL>
-<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
+<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
 </UL>
 
 <P><STRONG><a name="[124]"></a>Spawn_Player_Explosion</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, explosions.o(.text.Spawn_Player_Explosion))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Spawn_Player_Explosion &rArr; Spawn_Explosion_From_Template &rArr; Find_First_Explosion_By_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
+<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lose_State
+</UL>
+
+<P><STRONG><a name="[116]"></a>Spawn_Wave</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, main.o(.text.Spawn_Wave))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
+<LI>Call Chain = Spawn_Wave &rArr; Spawn_Wave_Enemies &rArr; Random_Enemy_Template
+</UL>
+<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave_Enemies
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Enemies_All_Inactive
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer5_Oneshot
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
+</UL>
+
+<P><STRONG><a name="[147]"></a>Spawn_Wave_Enemies</STRONG> (Thumb, 90 bytes, Stack size 64 bytes, main.o(.text.Spawn_Wave_Enemies))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
+<LI>Call Chain = Spawn_Wave_Enemies &rArr; Random_Enemy_Template
+</UL>
+<BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Enemy_Template
+<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave
 </UL>
 
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, systick.o(.text.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SysTick_Handler &rArr; Convert
 </UL>
-<BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
-<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_In
+<BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_In
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[134]"></a>SysTick_Init</STRONG> (Thumb, 86 bytes, Stack size 4 bytes, systick.o(.text.SysTick_Init))
+<P><STRONG><a name="[136]"></a>SysTick_Init</STRONG> (Thumb, 86 bytes, Stack size 4 bytes, systick.o(.text.SysTick_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = SysTick_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Software_Init
@@ -2295,7 +2336,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[13b]"></a>Timer0_Init</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, timer0.o(.text.Timer0_Init))
+<P><STRONG><a name="[13d]"></a>Timer0_Init</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, timer0.o(.text.Timer0_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Timer0_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init
@@ -2319,12 +2360,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOE_Handler
 </UL>
 
-<P><STRONG><a name="[14a]"></a>Timer3_Disable</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer3.o(.text.Timer3_Disable))
+<P><STRONG><a name="[14f]"></a>Timer3_Disable</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer3.o(.text.Timer3_Disable))
 <BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames_Helper
 </UL>
 
-<P><STRONG><a name="[142]"></a>Timer3_Enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, timer3.o(.text.Timer3_Enable))
-<BR><BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
+<P><STRONG><a name="[145]"></a>Timer3_Enable</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, timer3.o(.text.Timer3_Enable))
+<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
 </UL>
 
 <P><STRONG><a name="[10e]"></a>Timer3_Init</STRONG> (Thumb, 184 bytes, Stack size 8 bytes, timer3.o(.text.Timer3_Init))
@@ -2358,56 +2399,57 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;End_State
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lose_State
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Wave
 </UL>
 
 <P><STRONG><a name="[83]"></a>Timer_Periodic_Task</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, main.o(.text.Timer_Periodic_Task))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text.Hardware_Init)
 </UL>
-<P><STRONG><a name="[146]"></a>Update_Enemies_Position</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, enemies.o(.text.Update_Enemies_Position))
+<P><STRONG><a name="[14b]"></a>Update_Enemies_Position</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, enemies.o(.text.Update_Enemies_Position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Update_Enemies_Position &rArr; Move_Horizontally_One_Pixel &rArr; For_All
 </UL>
 <BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Move_Horizontally_One_Pixel
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Move_Down_One_Pixel
-<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Vertical_Movement
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Swap_SpriteAB
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Vertical_Movement
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Swap_SpriteAB
 </UL>
-<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 </UL>
 
-<P><STRONG><a name="[148]"></a>Update_Explosion_Frames</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, explosions.o(.text.Update_Explosion_Frames))
+<P><STRONG><a name="[14d]"></a>Update_Explosion_Frames</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, explosions.o(.text.Update_Explosion_Frames))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Update_Explosion_Frames &rArr; For_All_Active
 </UL>
-<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Active
+<BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Active
 </UL>
-<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 </UL>
 
-<P><STRONG><a name="[116]"></a>Update_Game_State</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(.text.Update_Game_State))
+<P><STRONG><a name="[115]"></a>Update_Game_State</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(.text.Update_Game_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Update_Game_State &rArr; Update_Enemies_Position &rArr; Move_Horizontally_One_Pixel &rArr; For_All
 </UL>
-<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames
-<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Laser_Position
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Missile_Position
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Laser_Position
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Missile_Position
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lose_State
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Game_State
 </UL>
 
-<P><STRONG><a name="[14c]"></a>Update_Laser_Position</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Update_Laser_Position))
+<P><STRONG><a name="[151]"></a>Update_Laser_Position</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Update_Laser_Position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Update_Laser_Position &rArr; For_All_Lasers
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Lasers
 </UL>
-<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 </UL>
 
-<P><STRONG><a name="[14b]"></a>Update_Missile_Position</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Update_Missile_Position))
+<P><STRONG><a name="[150]"></a>Update_Missile_Position</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, projectile.o(.text.Update_Missile_Position))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Update_Missile_Position &rArr; For_All_Missiles
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All_Missiles
 </UL>
-<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Game_State
 </UL>
 
 <P><STRONG><a name="[c5]"></a>main</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, main.o(.text.main))
@@ -2417,28 +2459,28 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[dd]"></a>_btod_d2e</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e))
-<BR><BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
+<BR><BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[14e]"></a>_d2e_denorm_low</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_denorm_low))
-<BR><BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
+<P><STRONG><a name="[153]"></a>_d2e_denorm_low</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_denorm_low))
+<BR><BR>[Called By]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_norm_op1
 </UL>
 
-<P><STRONG><a name="[14d]"></a>_d2e_norm_op1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_norm_op1))
-<BR><BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_denorm_low
+<P><STRONG><a name="[152]"></a>_d2e_norm_op1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, btod.o(CL$$btod_d2e_norm_op1))
+<BR><BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2e_denorm_low
 </UL>
 <BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_d2e
 </UL>
 
-<P><STRONG><a name="[14f]"></a>__btod_div_common</STRONG> (Thumb, 696 bytes, Stack size 24 bytes, btod.o(CL$$btod_div_common))
+<P><STRONG><a name="[154]"></a>__btod_div_common</STRONG> (Thumb, 696 bytes, Stack size 24 bytes, btod.o(CL$$btod_div_common))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __btod_div_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_ediv
 </UL>
 
-<P><STRONG><a name="[150]"></a>_e2e</STRONG> (Thumb, 220 bytes, Stack size 24 bytes, btod.o(CL$$btod_e2e))
+<P><STRONG><a name="[155]"></a>_e2e</STRONG> (Thumb, 220 bytes, Stack size 24 bytes, btod.o(CL$$btod_e2e))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = _e2e
 </UL>
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
@@ -2448,8 +2490,8 @@ Global Symbols
 <P><STRONG><a name="[de]"></a>_btod_ediv</STRONG> (Thumb, 42 bytes, Stack size 28 bytes, btod.o(CL$$btod_ediv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = _btod_ediv &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
+<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
+<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_div_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
@@ -2458,14 +2500,14 @@ Global Symbols
 <P><STRONG><a name="[df]"></a>_btod_emul</STRONG> (Thumb, 42 bytes, Stack size 28 bytes, btod.o(CL$$btod_emul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = _btod_emul &rArr; _e2e
 </UL>
-<BR>[Calls]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
+<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__btod_mult_common
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_e2e
 </UL>
 <BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_etento
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[151]"></a>__btod_mult_common</STRONG> (Thumb, 580 bytes, Stack size 16 bytes, btod.o(CL$$btod_mult_common))
+<P><STRONG><a name="[156]"></a>__btod_mult_common</STRONG> (Thumb, 580 bytes, Stack size 16 bytes, btod.o(CL$$btod_mult_common))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __btod_mult_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_btod_emul
@@ -2485,7 +2527,7 @@ Global Symbols
 <P><STRONG><a name="[bf]"></a>_get_lc_numeric</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_numeric_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_numeric &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_numeric_2
 </UL>
@@ -2493,7 +2535,7 @@ Global Symbols
 <P><STRONG><a name="[7a]"></a>_get_lc_ctype</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, lc_ctype_c.o(locale$$code))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = _get_lc_ctype &rArr; strcmp
 </UL>
-<BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
+<BR>[Calls]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_lc_ctype_2
 </UL>
@@ -2503,9 +2545,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_fp_1
 </UL>
 
-<P><STRONG><a name="[184]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[188]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[185]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[189]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
 <P><STRONG><a name="[9c]"></a>_printf_fp_dec</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, printf1.o(x$fpl$printf1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _printf_fp_dec &rArr; _printf_fp_dec_real &rArr; _fp_digits &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
@@ -2589,7 +2631,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = For_All_Missiles
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Missiles_OOB
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Missile_Position
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Missile_Position
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Reset
 </UL>
 
@@ -2597,7 +2639,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = For_All_Lasers
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Lasers_OOB
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Laser_Position
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Laser_Position
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Projectile_Reset
 </UL>
 
@@ -2636,30 +2678,30 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_Projectile_OOB
 </UL>
 
-<P><STRONG><a name="[13f]"></a>Find_First_Enemy_By_State</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, enemies.o(.text.Find_First_Enemy_By_State))
+<P><STRONG><a name="[142]"></a>Find_First_Enemy_By_State</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, enemies.o(.text.Find_First_Enemy_By_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Find_First_Enemy_By_State
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_From_Template
+<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_From_Template
 </UL>
 
-<P><STRONG><a name="[13c]"></a>Enemy_Spacing</STRONG> (Thumb, 138 bytes, Stack size 28 bytes, enemies.o(.text.Enemy_Spacing))
+<P><STRONG><a name="[13f]"></a>Enemy_Spacing</STRONG> (Thumb, 138 bytes, Stack size 28 bytes, enemies.o(.text.Enemy_Spacing))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Enemy_Spacing
 </UL>
-<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
+<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemies
 </UL>
 
-<P><STRONG><a name="[143]"></a>Swap_SpriteAB</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, enemies.o(.text.Swap_SpriteAB))
+<P><STRONG><a name="[148]"></a>Swap_SpriteAB</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, enemies.o(.text.Swap_SpriteAB))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Swap_SpriteAB &rArr; For_All
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All
 </UL>
-<BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
 </UL>
 
-<P><STRONG><a name="[147]"></a>Check_Vertical_Movement</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, enemies.o(.text.Check_Vertical_Movement))
+<P><STRONG><a name="[14c]"></a>Check_Vertical_Movement</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, enemies.o(.text.Check_Vertical_Movement))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Check_Vertical_Movement
 </UL>
-<BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
 </UL>
 
 <P><STRONG><a name="[128]"></a>Move_Down_One_Pixel</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, enemies.o(.text.Move_Down_One_Pixel))
@@ -2667,7 +2709,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All
 </UL>
-<BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
 </UL>
 
 <P><STRONG><a name="[129]"></a>Move_Horizontally_One_Pixel</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, enemies.o(.text.Move_Horizontally_One_Pixel))
@@ -2675,7 +2717,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;For_All
 </UL>
-<BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Enemies_Position
 </UL>
 
 <P><STRONG><a name="[89]"></a>Swap_SpriteB</STRONG> (Thumb, 14 bytes, Stack size 4 bytes, enemies.o(.text.Swap_SpriteB))
@@ -2689,7 +2731,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enemies_Reset
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Move_Horizontally_One_Pixel
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Move_Down_One_Pixel
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Swap_SpriteAB
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Swap_SpriteAB
 </UL>
 
 <P><STRONG><a name="[8a]"></a>Swap_SpriteA</STRONG> (Thumb, 14 bytes, Stack size 4 bytes, enemies.o(.text.Swap_SpriteA))
@@ -2718,42 +2760,42 @@ Local Symbols
 <P><STRONG><a name="[82]"></a>Set_Update_Flag</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, explosions.o(.text.Set_Update_Flag))
 <BR>[Address Reference Count : 1]<UL><LI> explosions.o(.text.Explosions_Init)
 </UL>
-<P><STRONG><a name="[13e]"></a>Spawn_Explosion_From_Template</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, explosions.o(.text.Spawn_Explosion_From_Template))
+<P><STRONG><a name="[141]"></a>Spawn_Explosion_From_Template</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, explosions.o(.text.Spawn_Explosion_From_Template))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = Spawn_Explosion_From_Template &rArr; Find_First_Explosion_By_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_If_Any_State
-<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Find_First_Explosion_By_State
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer3_Enable
+<BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_If_Any_State
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Find_First_Explosion_By_State
+<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer3_Enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Player_Explosion
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Enemy_Explosion
 </UL>
 
-<P><STRONG><a name="[140]"></a>Find_First_Explosion_By_State</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, explosions.o(.text.Find_First_Explosion_By_State))
+<P><STRONG><a name="[143]"></a>Find_First_Explosion_By_State</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, explosions.o(.text.Find_First_Explosion_By_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Find_First_Explosion_By_State
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
 </UL>
 
-<P><STRONG><a name="[141]"></a>Check_If_Any_State</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, explosions.o(.text.Check_If_Any_State))
+<P><STRONG><a name="[144]"></a>Check_If_Any_State</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, explosions.o(.text.Check_If_Any_State))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Check_If_Any_State
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames_Helper
-<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Spawn_Explosion_From_Template
 </UL>
 
 <P><STRONG><a name="[8b]"></a>Update_Explosion_Frames_Helper</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, explosions.o(.text.Update_Explosion_Frames_Helper))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Update_Explosion_Frames_Helper &rArr; Check_If_Any_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_If_Any_State
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer3_Disable
+<BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Check_If_Any_State
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer3_Disable
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> explosions.o(.text.Update_Explosion_Frames)
 </UL>
-<P><STRONG><a name="[149]"></a>For_All_Active</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, explosions.o(.text.For_All_Active))
+<P><STRONG><a name="[14e]"></a>For_All_Active</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, explosions.o(.text.For_All_Active))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = For_All_Active
 </UL>
-<BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Update_Explosion_Frames
 </UL>
 
 <P><STRONG><a name="[7c]"></a>Check_Lasers</STRONG> (Thumb, 120 bytes, Stack size 24 bytes, main.o(.text.Check_Lasers))
