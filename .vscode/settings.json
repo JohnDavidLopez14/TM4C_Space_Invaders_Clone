@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.c": "c",
-        "tm4c123gh6pm.h": "c",
-        "nokia5110.h": "c"
-    }
-}
