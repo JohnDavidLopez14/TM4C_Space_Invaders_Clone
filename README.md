@@ -1,5 +1,7 @@
 # Space Invaders Clone for the EK-TM4C123GXL development board
 
+## Youtube Demonstration
+
 [![Watch the video](https://img.youtube.com/vi/qwGozboHAAU/0.jpg)](https://www.youtube.com/watch?v=qwGozboHAAU)
 
 ## Wiring Diagram
@@ -18,13 +20,10 @@
 
 > Note: To install the Stellaris ICDI debugger, you must select the same installation directory as Keil Microvision 5.43a.
 
----
-
 ### Required Operating System
 
 - Windows
 
----
 
 ### Flashing Instructions
 
