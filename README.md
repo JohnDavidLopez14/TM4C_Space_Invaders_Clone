@@ -8,17 +8,39 @@
 
 ## How to Flash
 
-Required Software:
-    Keil Microvision 
+### Required Software
 
-Required Operating System:
-    Windows
+- Keil Microvision 5.43a  
+  https://www.keil.com/demo/eval/arm.htm
 
-Open the Keil Microvsion project under the Keil folder
+- Stellaris ICDI Debugger  
+  https://developer.arm.com/documentation/ka002280/latest
 
-Connect EK-TM4C123GXL development board to computer via usb
+> Note: To install the Stellaris ICDI debugger, you must select the same installation directory as Keil Microvision 5.29.
 
-Navigate to Build and Flash under the Keil menu
+---
+
+### Required Operating System
+
+- Windows
+
+---
+
+### Flashing Instructions
+
+1. Open the Keil Microvision project in the **Keil** folder.
+
+2. Connect the **EK-TM4C123GXL** development board to your computer via USB.
+
+3. Navigate to and open:
+
+using Keil Microvision.
+
+4. Build the project:
+- Press **F7**
+
+5. Download/flash to the board:
+- Press **F8**
 
 ## Third Party Notices
 
