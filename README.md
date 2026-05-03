@@ -16,7 +16,7 @@
 - Stellaris ICDI Debugger  
   https://developer.arm.com/documentation/ka002280/latest
 
-> Note: To install the Stellaris ICDI debugger, you must select the same installation directory as Keil Microvision 5.29.
+> Note: To install the Stellaris ICDI debugger, you must select the same installation directory as Keil Microvision 5.43a.
 
 ---
 
@@ -28,11 +28,9 @@
 
 ### Flashing Instructions
 
-1. Open the Keil Microvision project in the **Keil** folder.
+1. Connect the **EK-TM4C123GXL** development board to your computer via USB. 
 
-2. Connect the **EK-TM4C123GXL** development board to your computer via USB.
-
-3. Navigate to and open:
+2. Navigate to and open: Keil/Lab15.uvprojx
 
 using Keil Microvision.
 
