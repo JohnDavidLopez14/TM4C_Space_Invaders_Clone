@@ -29,9 +29,7 @@
 
 1. Connect the **EK-TM4C123GXL** development board to your computer via USB. 
 
-2. Navigate to and open: Keil/Lab15.uvprojx
-
-with Keil Microvision.
+2. Navigate to Keil/Lab15.uvprojx and open the project with Keil Microvision.
 
 4. Build the project (**F7**).
 
