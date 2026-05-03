@@ -41,10 +41,8 @@ with Keil Microvision.
 
 This project includes code from:
 
-Jonathan W. Valvano
-"Embedded Systems: Introduction to ARM Cortex M Microcontrollers"
+Jonathan W. Valvano "Embedded Systems: Introduction to ARM Cortex M Microcontrollers".
 
 This code is used under its original license (see file headers).
 
-This project includes code from Texas Instruments (Tiva Firmware Development Package),
-licensed under the BSD 3-Clause License.
+This project includes code from Texas Instruments (Tiva Firmware Development Package), licensed under the BSD 3-Clause License.
