@@ -1,4 +1,4 @@
-./objects/enemies.o: ..\gameLogic\enemies.c \
-  ..\..\Lab15\gameLogic\enemies.h ..\..\Lab15\gameLogic\bitmaps.h \
-  ..\..\Lab15\gameLogic\collidable.h ..\..\Lab15\hardware\Nokia5110.h \
-  ..\..\Lab15\hardware\Timer1.h ..\..\Lab15\hardware\tm4c123gh6pm.h
+./objects/enemies.o: ..\gameLogic\enemies.c ..\gameLogic\enemies.h \
+  ..\gameLogic\bitmaps.h ..\gameLogic\collidable.h \
+  ..\hardware\Nokia5110.h ..\hardware\Timer1.h \
+  ..\hardware\tm4c123gh6pm.h

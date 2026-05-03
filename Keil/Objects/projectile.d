@@ -1,4 +1,3 @@
 ./objects/projectile.o: ..\gameLogic\projectile.c \
-  ..\..\Lab15\gameLogic\projectile.h ..\..\Lab15\gameLogic\bitmaps.h \
-  ..\..\Lab15\gameLogic\player.h ..\..\Lab15\gameLogic\collidable.h \
-  ..\..\Lab15\hardware\Nokia5110.h
+  ..\gameLogic\projectile.h ..\gameLogic\bitmaps.h ..\gameLogic\player.h \
+  ..\gameLogic\collidable.h ..\hardware\Nokia5110.h

@@ -1,3 +1,3 @@
-./objects/player.o: ..\gameLogic\player.c ..\..\Lab15\gameLogic\player.h \
-  ..\..\Lab15\gameLogic\bitmaps.h ..\..\Lab15\gameLogic\collidable.h \
-  ..\..\Lab15\hardware\Nokia5110.h
+./objects/player.o: ..\gameLogic\player.c ..\gameLogic\player.h \
+  ..\gameLogic\bitmaps.h ..\gameLogic\collidable.h \
+  ..\hardware\Nokia5110.h

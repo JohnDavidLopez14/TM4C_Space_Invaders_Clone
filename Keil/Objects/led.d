@@ -1,3 +1,2 @@
-./objects/led.o: ..\hardware\LED.c ..\hardware\LED.h \
-  ..\..\Lab15\hardware\Timer4.h ..\..\Lab15\hardware\tm4c123gh6pm.h \
+./objects/led.o: ..\hardware\LED.c ..\hardware\LED.h ..\hardware\Timer4.h \
   ..\hardware\tm4c123gh6pm.h
