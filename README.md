@@ -31,11 +31,11 @@
 
 2. Navigate to and open: Keil/Lab15.uvprojx
 
-using Keil Microvision.
+with Keil Microvision.
 
-4. Build the project (**F7**)
+4. Build the project (**F7**).
 
-5. Download/flash to the board (**F8**)
+5. Download/flash to the board (**F8**).
 
 ## Third Party Notices
 
