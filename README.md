@@ -2,6 +2,10 @@
 
 [![Watch the video](https://img.youtube.com/vi/qwGozboHAAU/0.jpg)](https://www.youtube.com/watch?v=qwGozboHAAU)
 
+## Wiring Diagram
+
+![Wiring Diagram](./wiring_diagram.png)
+
 ## How to Flash
 
 ### Required Software
@@ -30,11 +34,9 @@
 
 using Keil Microvision.
 
-4. Build the project:
-- Press **F7**
+4. Build the project (**F7**)
 
-5. Download/flash to the board:
-- Press **F8**
+5. Download/flash to the board (**F8**)
 
 ## Third Party Notices
 
